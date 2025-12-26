@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحلیل عملکرد کارشناس‌ها - CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .user-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .user-tab:not(.active):hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        .badge-success { background: #10b981; color: white; }
+        .badge-warning { background: #f59e0b; color: white; }
+        .badge-danger { background: #ef4444; color: white; }
+        .badge-info { background: #3b82f6; color: white; }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <div class="glass-card shadow-2xl mb-8">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 p-4 rounded-xl shadow-lg">
+                        <i class="fas fa-users text-3xl text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold gradient-text">تحلیل عملکرد کارشناس‌ها</h1>
+                        <p class="text-gray-600 text-sm mt-1">ارزیابی جامع فعالیت هر کارشناس</p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <a href="/" class="px-6 py-3 bg-white text-purple-600 rounded-xl hover:bg-gray-50 transition shadow-md border border-purple-200 font-semibold">
+                        <i class="fas fa-home ml-2"></i>
+                        صفحه اصلی
+                    </a>
+                    <a href="/history" class="px-6 py-3 bg-white text-purple-600 rounded-xl hover:bg-gray-50 transition shadow-md border border-purple-200 font-semibold">
+                        <i class="fas fa-history ml-2"></i>
+                        تاریخچه
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 pb-12">
+        
+        <!-- Loading -->
+        <div id="loading" class="glass-card rounded-2xl p-12 text-center shadow-2xl">
+            <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-purple-600 mx-auto mb-6"></div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">در حال بارگذاری...</h3>
+            <p class="text-gray-600">لطفاً صبر کنید</p>
+        </div>
+
+        <!-- No Data -->
+        <div id="no-data" class="hidden glass-card rounded-2xl p-12 text-center shadow-2xl">
+            <i class="fas fa-inbox text-6xl text-gray-400 mb-4"></i>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">داده‌ای یافت نشد</h3>
+            <p class="text-gray-600 mb-6">ابتدا یک فایل تحلیل کنید</p>
+            <a href="/" class="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-bold hover:shadow-2xl transition">
+                <i class="fas fa-upload ml-2"></i>
+                تحلیل فایل جدید
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div id="content" class="hidden">
+            
+            <!-- Overview Stats -->
+            <div id="overview-stats" class="grid md:grid-cols-4 gap-6 mb-8">
+                <!-- Dynamic stats -->
+            </div>
+
+            <!-- User Tabs -->
+            <div class="glass-card rounded-2xl p-4 mb-6 shadow-xl">
+                <div id="user-tabs" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                    <!-- Dynamic user tabs -->
+                </div>
+            </div>
+
+            <!-- User Content -->
+            <div id="user-content" class="space-y-6">
+                <!-- Dynamic user analysis -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/users-analysis.js"></script>
+</body>
+</html>

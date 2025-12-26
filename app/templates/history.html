@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تاریخچه تحلیل‌ها - سیستم تحلیل CRM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .modal-section {
+            @apply mb-6 bg-white rounded-lg p-5 border border-gray-200;
+        }
+        .section-title {
+            @apply text-lg font-bold mb-4 flex items-center border-b pb-2;
+        }
+        .score-badge {
+            @apply inline-block px-3 py-1 rounded-full text-sm font-semibold;
+        }
+        .score-high { @apply bg-green-100 text-green-800; }
+        .score-medium { @apply bg-yellow-100 text-yellow-800; }
+        .score-low { @apply bg-red-100 text-red-800; }
+        .data-row {
+            @apply flex justify-between py-2 border-b border-gray-100 text-sm;
+        }
+        .data-label {
+            @apply text-gray-600 font-medium;
+        }
+        .data-value {
+            @apply text-gray-900;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen font-sans">
+    
+    <!-- Header -->
+    <div class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <i class="fas fa-history text-3xl text-purple-600"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">تاریخچه تحلیل‌ها</h1>
+                        <p class="text-sm text-gray-500">مشاهده تمام تحلیل‌های انجام شده</p>
+                    </div>
+                </div>
+                <a href="/" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                    <i class="fas fa-plus ml-2"></i>
+                    تحلیل جدید
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Loading -->
+        <div id="loading" class="text-center py-12">
+            <i class="fas fa-spinner fa-spin text-4xl text-purple-600"></i>
+            <p class="mt-4 text-gray-600">در حال بارگذاری...</p>
+        </div>
+
+        <!-- Table -->
+        <div id="table-container" class="hidden bg-white rounded-xl shadow-sm overflow-hidden">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">ردیف</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">نام فایل</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">تاریخ</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">فروشنده</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">مشتری</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">امتیاز کل</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">تماس‌ها</th>
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="analyses-tbody" class="bg-white divide-y divide-gray-200">
+                    <!-- Rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12">
+            <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+            <p class="text-xl text-gray-600 mb-2">هنوز تحلیلی انجام نشده است</p>
+            <p class="text-gray-500 mb-6">اولین تحلیل خود را انجام دهید</p>
+            <a href="/" class="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                <i class="fas fa-plus ml-2"></i>
+                شروع تحلیل
+            </a>
+        </div>
+    </div>
+
+    <!-- Detail Modal - COMPLETE -->
+    <div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 flex items-center justify-center">
+            <div class="bg-white rounded-xl max-w-6xl w-full my-8">
+                <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center rounded-t-xl z-10">
+                    <h2 class="text-xl font-bold">جزئیات کامل تحلیل</h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="p-6 max-h-[80vh] overflow-y-auto">
+                    <!-- Content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/history.js"></script>
+</body>
+</html>
