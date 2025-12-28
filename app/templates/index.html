@@ -3,139 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سیستم تحلیل هوشمند CRM - Enterprise Edition</title>
+    <title>سیستم تحلیل هوشمند CRM - نسخه سازمانی</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
         
         * {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #64748b;
+            --secondary-light: #94a3b8;
+            --accent: #0ea5e9;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--bg-main);
+            color: var(--text-primary);
             min-height: 100vh;
         }
         
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
         }
         
-        .tab-button {
+        /* Card Styles */
+        .pro-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            position: relative;
         }
         
-        .tab-button.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .tab-button:not(.active):hover {
-            background: rgba(102, 126, 234, 0.1);
+        .pro-card:hover {
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.12);
             transform: translateY(-2px);
         }
         
-        .score-card {
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
             transition: all 0.3s ease;
         }
         
-        .score-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.25);
         }
         
-        .metric-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--bg-main);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        /* Tab Styles */
+        .tab-button {
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            padding: 1rem 1.5rem;
+            background: transparent;
+        }
+        
+        .tab-button:hover {
+            color: var(--primary);
+            background: rgba(30, 64, 175, 0.05);
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: rgba(30, 64, 175, 0.08);
             font-weight: 600;
-            font-size: 0.875rem;
         }
         
-        .badge-high {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-        }
-        
-        .badge-medium {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-        }
-        
-        .badge-low {
-            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-            color: white;
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .progress-ring {
-            transition: stroke-dashoffset 0.5s ease;
-        }
-        
+        /* Upload Area */
         .upload-area {
+            border: 2px dashed var(--border);
+            background: var(--bg-card);
             transition: all 0.3s ease;
-            border: 3px dashed rgba(102, 126, 234, 0.3);
-            background: rgba(255, 255, 255, 0.5);
         }
         
         .upload-area:hover {
-            border-color: #667eea;
-            background: rgba(102, 126, 234, 0.05);
-            transform: scale(1.02);
+            border-color: var(--primary);
+            background: rgba(30, 64, 175, 0.03);
         }
         
         .upload-area.dragover {
-            border-color: #764ba2;
-            background: rgba(118, 75, 162, 0.1);
-            transform: scale(1.05);
+            border-color: var(--accent);
+            background: rgba(14, 165, 233, 0.08);
+            border-style: solid;
         }
         
+        /* Stats Card */
         .stat-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
-            border: 1px solid rgba(255,255,255,0.5);
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
         }
         
-        .chart-container {
-            position: relative;
-            height: 300px;
+        .stat-card.success {
+            border-left-color: var(--success);
         }
         
-        .section-divider {
-            border-top: 2px solid rgba(102, 126, 234, 0.2);
-            margin: 2rem 0;
+        .stat-card.warning {
+            border-left-color: var(--warning);
         }
         
-        .list-item {
-            transition: all 0.2s ease;
+        .stat-card.info {
+            border-left-color: var(--accent);
         }
         
-        .list-item:hover {
-            background: rgba(102, 126, 234, 0.05);
-            transform: translateX(-4px);
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.375rem 0.875rem;
+            border-radius: 9999px;
+            font-size: 0.813rem;
+            font-weight: 600;
+            letter-spacing: 0.025em;
         }
         
+        .badge-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+        
+        .badge-info {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent);
+        }
+        
+        /* Loading Animation */
         .loader {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #667eea;
+            border: 4px solid var(--border);
+            border-top-color: var(--primary);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
         }
         
@@ -144,158 +184,367 @@
             100% { transform: rotate(360deg); }
         }
         
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Progress Bar */
+        .progress-bar {
+            background: var(--border);
+            height: 6px;
+            border-radius: 9999px;
+            overflow: hidden;
         }
         
-        .info-tooltip {
-            position: relative;
-            cursor: help;
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            height: 100%;
+            transition: width 0.3s ease;
         }
         
-        .info-tooltip:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 0.5rem 1rem;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            z-index: 1000;
+        /* Sidebar */
+        .sidebar {
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            min-height: calc(100vh - 4rem);
+        }
+        
+        .sidebar-item {
+            color: var(--text-secondary);
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            border-right: 3px solid transparent;
+        }
+        
+        .sidebar-item:hover {
+            background: var(--bg-main);
+            color: var(--primary);
+            border-right-color: var(--primary);
+        }
+        
+        .sidebar-item.active {
+            background: rgba(30, 64, 175, 0.08);
+            color: var(--primary);
+            border-right-color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: var(--bg-main);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-align: right;
+            padding: 0.875rem 1rem;
+            border-bottom: 2px solid var(--border);
+            font-size: 0.875rem;
+        }
+        
+        .data-table td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .data-table tr:hover {
+            background: var(--bg-main);
+        }
+        
+        /* Icon Styles */
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+        }
+        
+        .icon-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+        
+        .icon-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+        
+        .icon-box.info {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-light);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Title */
+        .section-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-secondary);
         }
     </style>
 </head>
 <body>
     
-    <!-- Header -->
-    <div class="glass-card shadow-2xl mb-8">
-        <div class="max-w-7xl mx-auto px-6 py-6">
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class="bg-gradient-to-br from-purple-500 to-indigo-600 p-4 rounded-xl shadow-lg">
-                        <i class="fas fa-brain text-3xl text-white"></i>
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-4">
+                    <div class="icon-box bg-white bg-opacity-20">
+                        <i class="fas fa-brain text-2xl text-white"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold gradient-text">سیستم تحلیل هوشمند CRM</h1>
-                        <p class="text-gray-600 text-sm mt-1">تحلیل پیشرفته مکالمات فروش با هوش مصنوعی</p>
+                        <h1 class="text-2xl font-bold text-white">سیستم تحلیل هوشمند CRM</h1>
+                        <p class="text-blue-200 text-sm">تحلیل پیشرفته مکالمات فروش با هوش مصنوعی</p>
                     </div>
                 </div>
-                <div class="flex gap-3">
-                    <a href="/users" class="px-6 py-3 bg-white text-purple-600 rounded-xl hover:bg-gray-50 transition shadow-md border border-purple-200 font-semibold">
-                        <i class="fas fa-users ml-2"></i>
-                        تحلیل کارشناسان
+                
+                <!-- Navigation -->
+                <nav class="flex items-center gap-3">
+                    <a href="/" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
+                        <i class="fas fa-home"></i>
+                        <span>صفحه اصلی</span>
                     </a>
-                    <a href="/history" class="px-6 py-3 bg-white text-purple-600 rounded-xl hover:bg-gray-50 transition shadow-md border border-purple-200 font-semibold">
-                        <i class="fas fa-history ml-2"></i>
-                        تاریخچه تحلیل‌ها
+                    <a href="/users" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
+                        <i class="fas fa-users"></i>
+                        <span>تحلیل کارشناسان</span>
                     </a>
-                </div>
+                    <a href="/history" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
+                        <i class="fas fa-history"></i>
+                        <span>تاریخچه</span>
+                    </a>
+                </nav>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="max-w-7xl mx-auto px-6 pb-12">
+    <main class="max-w-7xl mx-auto px-6 py-8">
         
         <!-- Upload Section -->
-        <div id="upload-section" class="glass-card rounded-2xl p-8 mb-8 shadow-2xl">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">آپلود فایل برای تحلیل</h2>
-                <p class="text-gray-600">فایل‌های مکالمات فروش خود را بارگذاری کنید</p>
-            </div>
-            
-            <div id="upload-area" class="upload-area rounded-2xl p-12 cursor-pointer">
-                <input type="file" id="file-input" class="hidden" accept=".txt,.rtf,.pdf,.docx,.xlsx,.xls">
-                <div class="text-center">
-                    <i class="fas fa-cloud-upload-alt text-6xl text-purple-400 mb-4"></i>
-                    <p class="text-xl font-semibold text-gray-700 mb-2">فایل را بکشید و اینجا رها کنید</p>
-                    <p class="text-gray-500 mb-4">یا کلیک کنید تا فایل را انتخاب کنید</p>
-                    <p class="text-sm text-gray-400">پشتیبانی از: TXT, RTF, PDF, DOCX, XLSX</p>
+        <section id="upload-section" class="mb-8 fade-in">
+            <div class="pro-card rounded-xl p-8">
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">آپلود فایل جدید</h2>
+                    <p class="text-gray-600 text-sm">فایل گزارش CRM خود را برای تحلیل بارگذاری کنید</p>
                 </div>
+                
+                <!-- Upload Area -->
+                <div id="upload-area" class="upload-area rounded-xl p-12 cursor-pointer text-center">
+                    <input type="file" id="file-input" class="hidden" accept=".txt,.rtf,.pdf,.docx,.xlsx,.xls">
+                    
+                    <div class="icon-box info mx-auto mb-4 w-16 h-16">
+                        <i class="fas fa-cloud-upload-alt text-3xl"></i>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
+                        فایل را اینجا رها کنید یا کلیک کنید
+                    </h3>
+                    <p class="text-gray-500 text-sm mb-3">
+                        حداکثر حجم: 16 مگابایت
+                    </p>
+                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                        <span class="badge badge-info">TXT</span>
+                        <span class="badge badge-info">RTF</span>
+                        <span class="badge badge-info">PDF</span>
+                        <span class="badge badge-info">DOCX</span>
+                        <span class="badge badge-info">XLSX</span>
+                    </div>
+                </div>
+                
+                <!-- File Info -->
+                <div id="file-info" class="hidden mt-6 p-5 bg-blue-50 border border-blue-200 rounded-xl">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="icon-box info">
+                                <i class="fas fa-file-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800" id="file-name"></p>
+                                <p class="text-sm text-gray-500" id="file-size"></p>
+                            </div>
+                        </div>
+                        <button onclick="removeFile()" class="text-red-500 hover:text-red-700 transition">
+                            <i class="fas fa-times-circle text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Analyze Button -->
+                <button id="analyze-btn" class="hidden w-full mt-6 btn-primary px-6 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
+                    <i class="fas fa-magic"></i>
+                    <span>شروع تحلیل هوشمند</span>
+                    <i class="fas fa-arrow-left"></i>
+                </button>
             </div>
             
-            <div id="file-info" class="hidden mt-6 p-6 bg-white rounded-xl border-2 border-purple-200">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-4 space-x-reverse">
-                        <i class="fas fa-file-alt text-3xl text-purple-600"></i>
+            <!-- Info Boxes -->
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
+                <div class="info-box">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-shield-check text-blue-600 text-xl mt-0.5"></i>
                         <div>
-                            <p class="font-semibold text-gray-800" id="file-name"></p>
-                            <p class="text-sm text-gray-500" id="file-size"></p>
+                            <h4 class="font-semibold text-gray-800 mb-1">امنیت داده‌ها</h4>
+                            <p class="text-xs text-gray-600">تمامی اطلاعات شما محرمانه و امن است</p>
                         </div>
                     </div>
-                    <button onclick="removeFile()" class="text-red-500 hover:text-red-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
+                </div>
+                <div class="info-box">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-bolt text-blue-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-1">تحلیل سریع</h4>
+                            <p class="text-xs text-gray-600">نتایج در کمتر از 30 ثانیه آماده می‌شود</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-chart-line text-blue-600 text-xl mt-0.5"></i>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-1">گزارش جامع</h4>
+                            <p class="text-xs text-gray-600">تحلیل دقیق با نمودارها و آمار کامل</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <button id="analyze-btn" class="hidden w-full mt-6 px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <i class="fas fa-magic ml-2"></i>
-                شروع تحلیل هوشمند
-            </button>
-        </div>
+        </section>
 
-        <!-- Loading -->
-        <div id="loading" class="hidden glass-card rounded-2xl p-12 text-center shadow-2xl">
+        <!-- Loading Section -->
+        <section id="loading" class="hidden pro-card rounded-xl p-12 text-center fade-in">
             <div class="loader mx-auto mb-6"></div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">در حال تحلیل...</h3>
-            <p class="text-gray-600">لطفاً صبر کنید، هوش مصنوعی در حال بررسی مکالمات است</p>
-            <div class="mt-6 flex items-center justify-center space-x-4 space-x-reverse text-sm text-gray-500">
-                <span><i class="fas fa-check-circle text-green-500"></i> استخراج متن</span>
-                <span><i class="fas fa-spinner fa-spin text-purple-500"></i> تحلیل AI</span>
-                <span><i class="far fa-circle text-gray-300"></i> آماده‌سازی گزارش</span>
-            </div>
-        </div>
-
-        <!-- Results -->
-        <div id="results" class="hidden animate-fade-in">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">در حال تحلیل اطلاعات...</h3>
+            <p class="text-gray-600 mb-8">لطفاً کمی صبر کنید، هوش مصنوعی در حال پردازش داده‌هاست</p>
             
-            <!-- Tabs -->
-            <div class="glass-card rounded-2xl p-4 mb-6 shadow-xl">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2">
-                    <button onclick="showTab('overview')" class="tab-button active px-4 py-3 rounded-xl font-semibold transition-all">
+            <!-- Progress Steps -->
+            <div class="max-w-2xl mx-auto">
+                <div class="grid grid-cols-3 gap-4 mb-4">
+                    <div class="text-center">
+                        <div class="icon-box success mx-auto mb-2">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-700">استخراج متن</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="icon-box info mx-auto mb-2">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-700">تحلیل AI</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="icon-box mx-auto mb-2">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <p class="text-xs font-medium text-gray-700">آماده‌سازی گزارش</p>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="hidden fade-in">
+            
+            <!-- Tabs Navigation -->
+            <div class="pro-card rounded-xl mb-6 overflow-hidden">
+                <div class="flex overflow-x-auto">
+                    <button onclick="showTab('overview')" class="tab-button active flex-shrink-0">
                         <i class="fas fa-home ml-2"></i>
-                        <span class="hidden sm:inline">خلاصه کلی</span>
+                        خلاصه کلی
                     </button>
-                    <button onclick="showTab('scores')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('scores')" class="tab-button flex-shrink-0">
                         <i class="fas fa-star ml-2"></i>
-                        <span class="hidden sm:inline">امتیازها</span>
+                        امتیازها
                     </button>
-                    <button onclick="showTab('analysis')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('analysis')" class="tab-button flex-shrink-0">
                         <i class="fas fa-brain ml-2"></i>
-                        <span class="hidden sm:inline">تحلیل عمیق</span>
+                        تحلیل عمیق
                     </button>
-                    <button onclick="showTab('disc')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('disc')" class="tab-button flex-shrink-0">
                         <i class="fas fa-users ml-2"></i>
-                        <span class="hidden sm:inline">DISC</span>
+                        DISC
                     </button>
-                    <button onclick="showTab('lists')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('lists')" class="tab-button flex-shrink-0">
                         <i class="fas fa-list-check ml-2"></i>
-                        <span class="hidden sm:inline">لیست‌ها</span>
+                        لیست‌ها
                     </button>
-                    <button onclick="showTab('stats')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('stats')" class="tab-button flex-shrink-0">
                         <i class="fas fa-chart-pie ml-2"></i>
-                        <span class="hidden sm:inline">آمار</span>
+                        آمار
                     </button>
-                    <button onclick="showTab('best')" class="tab-button px-4 py-3 rounded-xl font-semibold transition-all">
+                    <button onclick="showTab('best')" class="tab-button flex-shrink-0">
                         <i class="fas fa-trophy ml-2"></i>
-                        <span class="hidden sm:inline">بهترین‌ها</span>
+                        بهترین‌ها
                     </button>
                 </div>
             </div>
 
             <!-- Tab Content -->
             <div id="tab-content" class="space-y-6">
-                <!-- Content will be rendered here -->
+                <!-- محتوا توسط JavaScript رندر می‌شود -->
             </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-500 text-sm">
+                © 2025 سیستم تحلیل هوشمند CRM. تمامی حقوق محفوظ است.
+            </p>
         </div>
-    </div>
+    </footer>
 
     <script src="/static/app.js"></script>
 </body>
