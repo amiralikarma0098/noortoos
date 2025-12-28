@@ -783,10 +783,10 @@ def get_latest_analysis():
 
 
 
-
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
     """API برای تحلیل فایل"""
+    file_path = None
     
     try:
         # بررسی وجود فایل
@@ -803,10 +803,10 @@ def analyze():
         safe_filename = f"{timestamp}_{file.filename}"
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], safe_filename)
         
+        file.save(file_path)  # ⬅️⬅️⬅️ این خط را اضافه کنید!
         
         # باز کردن مجدد برای استخراج متن
         with open(file_path, 'rb') as f:
-            # ایجاد یک شیء مشابه file که از Flask می‌آید
             from io import BytesIO
             file_obj = BytesIO(f.read())
             file_obj.filename = file.filename
@@ -843,14 +843,21 @@ def analyze():
         return jsonify(analysis)
         
     except Exception as e:
+        # پرینت خطای دقیق
+        print(f"\n❌❌❌ خطای CRITICAL: {type(e).__name__}")
+        print(f"پیام: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
         # حذف فایل در صورت خطا
-        if 'file_path' in locals() and os.path.exists(file_path):
+        if file_path and os.path.exists(file_path):
             os.remove(file_path)
         
         return jsonify({
             "error": True,
-            "message": str(e)
+            "message": f"{type(e).__name__}: {str(e)}"
         }), 500
+
 
 
 
@@ -893,8 +900,15 @@ def health():
     })
 
 if __name__ == '__main__':
+    # ایجاد پوشه‌های ضروری
+    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+    print(f"✅ پوشه آپلود: {app.config['UPLOAD_FOLDER']}")
+    
+    # بررسی API Key
     if not os.getenv('OPENAI_API_KEY'):
         print("⚠️  هشدار: کلید OpenAI در فایل .env تنظیم نشده است!")
+    else:
+        print("✅ OpenAI API Key تنظیم شده")
     
     # بررسی اتصال به دیتابیس
     conn = get_db_connection()
@@ -903,6 +917,11 @@ if __name__ == '__main__':
         conn.close()
     else:
         print("❌ خطا در اتصال به دیتابیس!")
+    
+    print("\n" + "="*60)
+    print("🚀 سرور Flask آماده است")
+    print("📍 آدرس: http://127.0.0.1:5001")
+    print("="*60 + "\n")
     
     app.run(debug=True, host='0.0.0.0', port=5001)
     
