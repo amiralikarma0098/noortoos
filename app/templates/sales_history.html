@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block title %}تاریخچه تحلیل فروش - نور توس{% endblock %}
+
+{% block extra_css %}
+<style>
+    :root {
+        --primary: #1e3a5f;
+        --primary-dark: #0f2b4a;
+        --primary-light: #2b4c7c;
+        --secondary: #4b5563;
+        --secondary-light: #6b7280;
+        --accent: #8b5cf6;
+        --bg-main: #f3f4f6;
+        --bg-card: #ffffff;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --border: #e5e7eb;
+        --success: #059669;
+        --warning: #d97706;
+        --danger: #b91c1c;
+        --info: #2563eb;
+    }
+    
+    body {
+        background: var(--bg-main);
+        color: var(--text-primary);
+    }
+    
+    .pro-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .pro-card:hover {
+        box-shadow: 0 4px 12px rgba(30, 58, 95, 0.1);
+    }
+    
+    .btn-primary {
+        background: var(--primary);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(30, 58, 95, 0.25);
+    }
+    
+    .btn-secondary {
+        background: var(--bg-card);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+        background: var(--bg-main);
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+    
+    .loader {
+        border: 4px solid var(--border);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* Table Styles with Horizontal Scroll */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-light) var(--border);
+    }
+    
+    .table-container::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .table-container::-webkit-scrollbar-track {
+        background: var(--border);
+        border-radius: 4px;
+    }
+    
+    .table-container::-webkit-scrollbar-thumb {
+        background: var(--primary-light);
+        border-radius: 4px;
+    }
+    
+    .table-container::-webkit-scrollbar-thumb:hover {
+        background: var(--primary);
+    }
+    
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1000px; /* Ensures horizontal scroll on small screens */
+    }
+    
+    .data-table th {
+        background: var(--bg-main);
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-align: right;
+        padding: 0.875rem 1rem;
+        border-bottom: 2px solid var(--border);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .data-table td {
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .data-table tr:hover {
+        background: rgba(30, 58, 95, 0.02);
+    }
+    
+    .modal-section {
+        margin-bottom: 1.5rem;
+        background: var(--bg-card);
+        border-radius: 0.5rem;
+        padding: 1.25rem;
+        border: 1px solid var(--border);
+    }
+    
+    .section-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+    
+    .section-title i {
+        color: var(--primary);
+        margin-left: 0.5rem;
+    }
+    
+    .data-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 0.875rem;
+    }
+    
+    .data-label {
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+    
+    .data-value {
+        color: var(--text-primary);
+        font-weight: 400;
+    }
+    
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.375rem 0.875rem;
+        border-radius: 9999px;
+        font-size: 0.813rem;
+        font-weight: 600;
+    }
+    
+    .badge-success {
+        background: rgba(5, 150, 105, 0.1);
+        color: var(--success);
+    }
+    
+    .badge-warning {
+        background: rgba(217, 119, 6, 0.1);
+        color: var(--warning);
+    }
+    
+    .badge-danger {
+        background: rgba(185, 28, 28, 0.1);
+        color: var(--danger);
+    }
+    
+    .badge-info {
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--info);
+    }
+    
+    .icon-box {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba(30, 58, 95, 0.1);
+        color: var(--primary);
+    }
+    
+    /* Action Buttons */
+    .action-btn {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        color: var(--text-secondary);
+    }
+    
+    .action-btn:hover {
+        background: rgba(30, 58, 95, 0.1);
+        color: var(--primary);
+        transform: scale(1.1);
+    }
+    
+    /* Modal Styles */
+    .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+        padding: 1.5rem;
+    }
+    
+    .modal-content::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    .modal-content::-webkit-scrollbar-track {
+        background: var(--border);
+        border-radius: 4px;
+    }
+    
+    .modal-content::-webkit-scrollbar-thumb {
+        background: var(--primary-light);
+        border-radius: 4px;
+    }
+    
+    /* Score Cards */
+    .score-card {
+        background: white;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        border: 1px solid var(--border);
+    }
+    
+    .score-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+    
+    .score-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Loading State -->
+<section id="loading" class="pro-card rounded-xl p-12 text-center">
+    <div class="loader mx-auto mb-6"></div>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">در حال بارگذاری...</h3>
+    <p class="text-gray-600">لطفاً کمی صبر کنید</p>
+</section>
+
+<!-- Data Table with Horizontal Scroll -->
+<section id="table-container" class="hidden pro-card rounded-xl p-4">
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>نام فایل</th>
+                    <th>تاریخ تحلیل</th>
+                    <th>فروشنده</th>
+                    <th>مشتری</th>
+                    <th>امتیاز کل</th>
+                    <th>تماس‌ها</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody id="analyses-tbody">
+                <!-- Rows inserted by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Empty State -->
+<section id="empty-state" class="hidden pro-card rounded-xl p-12 text-center">
+    <div class="icon-box w-24 h-24 mx-auto mb-6">
+        <i class="fas fa-inbox text-5xl"></i>
+    </div>
+    <h3 class="text-2xl font-bold text-gray-800 mb-2">هنوز تحلیلی انجام نشده است</h3>
+    <p class="text-gray-600 mb-8">برای شروع، یک فایل CRM را تحلیل کنید</p>
+    <a href="{{ url_for('main.index') }}" class="inline-flex items-center gap-3 btn-primary px-8 py-4 rounded-xl font-semibold">
+        <i class="fas fa-plus"></i>
+        <span>شروع تحلیل جدید</span>
+        <i class="fas fa-arrow-left"></i>
+    </a>
+</section>
+
+<!-- Detail Modal -->
+<div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 overflow-y-auto">
+    <div class="min-h-screen px-4 py-8 flex items-center justify-center">
+        <div class="bg-white rounded-xl max-w-6xl w-full shadow-2xl mx-4">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center rounded-t-xl z-10">
+                <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                    <i class="fas fa-chart-line text-primary"></i>
+                    جزئیات کامل تحلیل فروش
+                </h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <!-- Modal Content -->
+            <div id="modal-content" class="modal-content">
+                <!-- Content inserted by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='sales_history.js') }}"></script>
+{% endblock %}

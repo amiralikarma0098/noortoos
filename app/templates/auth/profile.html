@@ -1,0 +1,675 @@
+{% extends "base.html" %}
+
+{% block title %}پروفایل کاربری - نور توس{% endblock %}
+
+{% block page_header %}
+<div class="mb-8 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800">پروفایل کاربری</h2>
+    <p class="text-gray-600 mt-2">مشاهده و ویرایش اطلاعات حساب کاربری</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <!-- Sidebar - اطلاعات کاربر -->
+    <div class="lg:col-span-1">
+        <div class="pro-card rounded-xl p-6 sticky top-24">
+            <!-- آواتار -->
+            <div class="text-center mb-6">
+                <div class="relative inline-block">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white text-4xl font-bold mx-auto border-4 border-white shadow-lg">
+                        {% if user.avatar_url %}
+                            <img src="{{ user.avatar_url }}" alt="آواتار" class="w-full h-full rounded-full object-cover">
+                        {% else %}
+                            {{ user.full_name[0] if user.full_name else user.username[0] }}
+                        {% endif %}
+                    </div>
+                    <button onclick="document.getElementById('avatar-input').click()" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-2 shadow-lg border border-gray-200 hover:bg-gray-50 transition">
+                        <i class="fas fa-camera text-primary"></i>
+                    </button>
+                    <input type="file" id="avatar-input" class="hidden" accept="image/*" onchange="uploadAvatar(this)">
+                </div>
+                <h3 class="text-xl font-bold mt-4">{{ user.full_name or user.username }}</h3>
+                <p class="text-gray-500 text-sm">{{ user.role|replace('admin', 'مدیر سیستم')|replace('manager', 'مدیر')|replace('analyst', 'تحلیلگر')|replace('viewer', 'کاربر عادی') }}</p>
+            </div>
+            
+            <!-- اطلاعات سریع -->
+            <div class="border-t border-gray-200 pt-6 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="icon-box w-10 h-10">
+                        <i class="fas fa-envelope text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">ایمیل</p>
+                        <p class="text-sm font-medium">{{ user.email }}</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <div class="icon-box w-10 h-10">
+                        <i class="fas fa-phone text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">تلفن</p>
+                        <p class="text-sm font-medium">{{ user.phone or '—' }}</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <div class="icon-box w-10 h-10">
+                        <i class="fas fa-building text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">دپارتمان</p>
+                        <p class="text-sm font-medium">{{ user.department or '—' }}</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <div class="icon-box w-10 h-10">
+                        <i class="fas fa-calendar text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">تاریخ عضویت</p>
+                        <p class="text-sm font-medium">{{ user.created_at|persian_date }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- دکمه تغییر رمز -->
+            <div class="border-t border-gray-200 pt-6 mt-4">
+                <button onclick="openChangePasswordModal()" class="btn-secondary w-full py-3 rounded-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-lock"></i>
+                    <span>تغییر رمز عبور</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content - فرم ویرایش اطلاعات -->
+    <div class="lg:col-span-2">
+        <div class="pro-card rounded-xl p-6">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <div class="icon-box">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <span>ویرایش اطلاعات</span>
+            </h3>
+            
+            <form id="profileForm" onsubmit="event.preventDefault(); updateProfile();" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- نام کاربری (غیرقابل ویرایش) -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">نام کاربری</label>
+                        <input type="text" value="{{ user.username }}" disabled 
+                               class="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-500">
+                    </div>
+                    
+                    <!-- ایمیل -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">ایمیل</label>
+                        <input type="email" id="email" name="email" value="{{ user.email }}" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    </div>
+                    
+                    <!-- نام کامل -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">نام و نام خانوادگی</label>
+                        <input type="text" id="full_name" name="full_name" value="{{ user.full_name or '' }}"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    </div>
+                    
+                    <!-- تلفن -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">شماره تلفن</label>
+                        <input type="tel" id="phone" name="phone" value="{{ user.phone or '' }}" dir="ltr"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    </div>
+                    
+                    <!-- دپارتمان -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">دپارتمان</label>
+                        <input type="text" id="department" name="department" value="{{ user.department or '' }}"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    </div>
+                    
+                    <!-- سمت -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">سمت</label>
+                        <input type="text" id="position" name="position" value="{{ user.position or '' }}"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                    </div>
+                </div>
+                
+                <!-- دکمه ذخیره -->
+                <div class="flex justify-end pt-4 border-t border-gray-200">
+                    <button type="submit" id="saveProfileBtn" class="btn-primary px-8 py-3 rounded-lg font-semibold">
+                        ذخیره تغییرات
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- فعالیت‌های اخیر -->
+        <div class="pro-card rounded-xl p-6 mt-6">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                <div class="icon-box">
+                    <i class="fas fa-history"></i>
+                </div>
+                <span>فعالیت‌های اخیر</span>
+            </h3>
+            
+            <div class="space-y-4" id="activities-list">
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+                    <p>در حال بارگذاری...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal تغییر رمز -->
+<div id="changePasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl max-w-md w-full m-4">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center rounded-t-2xl">
+            <h3 class="text-xl font-bold">تغییر رمز عبور</h3>
+            <button onclick="closeChangePasswordModal()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        
+        <div class="p-6">
+            <form id="changePasswordForm" onsubmit="event.preventDefault(); submitChangePassword();">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">رمز عبور فعلی</label>
+                        <div class="relative">
+                            <input type="password" id="old_password" name="old_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                            <button type="button" onclick="togglePasswordField('old_password')" 
+                                    class="absolute left-3 top-3 text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">رمز عبور جدید</label>
+                        <div class="relative">
+                            <input type="password" id="new_password" name="new_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                            <button type="button" onclick="togglePasswordField('new_password')" 
+                                    class="absolute left-3 top-3 text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">تکرار رمز جدید</label>
+                        <div class="relative">
+                            <input type="password" id="confirm_password" name="confirm_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                            <button type="button" onclick="togglePasswordField('confirm_password')" 
+                                    class="absolute left-3 top-3 text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="passwordError" class="text-red-600 text-sm hidden"></div>
+                    <div id="passwordSuccess" class="text-green-600 text-sm hidden"></div>
+                    
+                    <button type="submit" id="changePasswordSubmitBtn"
+                            class="w-full btn-primary py-3 rounded-lg font-semibold">
+                        تغییر رمز عبور
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+</style>
+
+<script>
+// ========================================
+// توابع مربوط به ویرایش پروفایل
+// ========================================
+async function updateProfile() {
+    const button = document.getElementById('saveProfileBtn');
+    const originalText = button.innerHTML;
+    
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>در حال ذخیره...';
+    
+    const data = {
+        email: document.getElementById('email').value.trim(),
+        full_name: document.getElementById('full_name').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        department: document.getElementById('department').value.trim(),
+        position: document.getElementById('position').value.trim()
+    };
+    
+    // اعتبارسنجی
+    if (!data.email) {
+        showNotification('ایمیل نمی‌تواند خالی باشد', 'error');
+        button.disabled = false;
+        button.innerHTML = originalText;
+        return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(data.email)) {
+        showNotification('ایمیل وارد شده معتبر نیست', 'error');
+        button.disabled = false;
+        button.innerHTML = originalText;
+        return;
+    }
+    
+    try {
+        const response = await fetch('/auth/api/profile/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showNotification('اطلاعات با موفقیت به‌روزرسانی شد', 'success');
+            
+            // به‌روزرسانی نام در منوی کاربر
+            const userNameElements = document.querySelectorAll('.user-menu-button span.md\\:inline');
+            if (userNameElements.length > 0 && data.full_name) {
+                userNameElements[0].textContent = data.full_name;
+            }
+            
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+        } else {
+            showNotification(result.message || 'خطا در ذخیره اطلاعات', 'error');
+            button.disabled = false;
+            button.innerHTML = originalText;
+        }
+    } catch (error) {
+        console.error('❌ خطا:', error);
+        showNotification('خطا در ارتباط با سرور', 'error');
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+// ========================================
+// توابع مربوط به تغییر رمز
+// ========================================
+function openChangePasswordModal() {
+    const modal = document.getElementById('changePasswordModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    setTimeout(() => {
+        document.getElementById('old_password').focus();
+    }, 100);
+}
+
+function closeChangePasswordModal() {
+    const modal = document.getElementById('changePasswordModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    
+    document.getElementById('changePasswordForm').reset();
+    document.getElementById('passwordError').classList.add('hidden');
+    document.getElementById('passwordSuccess').classList.add('hidden');
+    
+    document.querySelectorAll('#changePasswordModal input[type="password"]').forEach(field => {
+        field.type = 'password';
+    });
+    document.querySelectorAll('#changePasswordModal .fa-eye-slash').forEach(icon => {
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    });
+}
+
+function togglePasswordField(fieldId) {
+    const field = document.getElementById(fieldId);
+    const button = field.nextElementSibling;
+    const icon = button.querySelector('i');
+    
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        field.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+
+async function submitChangePassword() {
+    const oldPassword = document.getElementById('old_password').value;
+    const newPassword = document.getElementById('new_password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+    
+    const errorDiv = document.getElementById('passwordError');
+    const successDiv = document.getElementById('passwordSuccess');
+    const button = document.getElementById('changePasswordSubmitBtn');
+    const originalText = button.innerHTML;
+    
+    errorDiv.classList.add('hidden');
+    successDiv.classList.add('hidden');
+    
+    if (!oldPassword || !newPassword || !confirmPassword) {
+        errorDiv.textContent = 'تمام فیلدها را پر کنید';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+    
+    if (newPassword !== confirmPassword) {
+        errorDiv.textContent = 'رمز عبور جدید و تکرار آن مطابقت ندارند';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+    
+    if (newPassword.length < 8) {
+        errorDiv.textContent = 'رمز عبور باید حداقل ۸ کاراکتر باشد';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+    
+    const hasLetter = /[a-zA-Z]/.test(newPassword);
+    const hasNumber = /[0-9]/.test(newPassword);
+    
+    if (!hasLetter || !hasNumber) {
+        errorDiv.textContent = 'رمز عبور باید شامل حداقل یک حرف و یک عدد باشد';
+        errorDiv.classList.remove('hidden');
+        return;
+    }
+    
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>در حال تغییر...';
+    
+    try {
+        const response = await fetch('/auth/api/profile/change-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({
+                old_password: oldPassword,
+                new_password: newPassword
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            successDiv.textContent = 'رمز عبور با موفقیت تغییر کرد';
+            successDiv.classList.remove('hidden');
+            errorDiv.classList.add('hidden');
+            
+            document.getElementById('changePasswordForm').reset();
+            
+            setTimeout(() => {
+                closeChangePasswordModal();
+                showNotification('رمز عبور با موفقیت تغییر کرد', 'success');
+            }, 2000);
+        } else {
+            errorDiv.textContent = result.message || 'خطا در تغییر رمز عبور';
+            errorDiv.classList.remove('hidden');
+            successDiv.classList.add('hidden');
+            button.disabled = false;
+            button.innerHTML = originalText;
+        }
+    } catch (error) {
+        console.error('❌ خطا:', error);
+        errorDiv.textContent = 'خطا در ارتباط با سرور';
+        errorDiv.classList.remove('hidden');
+        successDiv.classList.add('hidden');
+        button.disabled = false;
+        button.innerHTML = originalText;
+    }
+}
+
+// ========================================
+// توابع مربوط به آپلود آواتار
+// ========================================
+async function uploadAvatar(input) {
+    if (!input.files || !input.files[0]) return;
+    
+    const file = input.files[0];
+    
+    if (file.size > 2 * 1024 * 1024) {
+        showNotification('حجم فایل نباید بیشتر از ۲ مگابایت باشد', 'error');
+        return;
+    }
+    
+    if (!file.type.startsWith('image/')) {
+        showNotification('فقط تصویر مجاز است', 'error');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('avatar', file);
+    
+    const avatarContainer = document.querySelector('.w-32.h-32.rounded-full');
+    const originalContent = avatarContainer.innerHTML;
+    avatarContainer.innerHTML = '<i class="fas fa-spinner fa-spin text-3xl"></i>';
+    
+    try {
+        const response = await fetch('/auth/api/profile/avatar', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showNotification('تصویر با موفقیت آپلود شد', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            avatarContainer.innerHTML = originalContent;
+            showNotification(result.message || 'خطا در آپلود تصویر', 'error');
+        }
+    } catch (error) {
+        console.error('❌ خطا:', error);
+        avatarContainer.innerHTML = originalContent;
+        showNotification('خطا در ارتباط با سرور', 'error');
+    }
+}
+
+// ========================================
+// توابع مربوط به نمایش نوتیفیکیشن
+// ========================================
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-slide-down ${
+        type === 'success' ? 'bg-green-600 text-white' :
+        type === 'error' ? 'bg-red-600 text-white' :
+        'bg-blue-600 text-white'
+    }`;
+    
+    const icon = type === 'success' ? 'fa-check-circle' :
+                 type === 'error' ? 'fa-exclamation-circle' :
+                 'fa-info-circle';
+    
+    notification.innerHTML = `
+        <i class="fas ${icon} text-xl"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('animate-slide-up');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// ========================================
+// بارگذاری فعالیت‌های اخیر
+// ========================================
+async function loadActivities() {
+    const container = document.getElementById('activities-list');
+    if (!container) return;
+    
+    try {
+        const response = await fetch('/auth/api/profile/activities');
+        const activities = await response.json();
+        
+        if (!activities || activities.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-history text-4xl mb-3 opacity-50"></i>
+                    <p>هیچ فعالیتی ثبت نشده است</p>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = activities.map(activity => `
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                <div class="icon-box ${getActivityIcon(activity.action).color} w-10 h-10">
+                    <i class="${getActivityIcon(activity.action).icon}"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="font-medium">${getActivityText(activity)}</p>
+                    <p class="text-xs text-gray-500 mt-1">${formatPersianDate(activity.created_at)}</p>
+                </div>
+                <div class="text-xs text-gray-400">
+                    ${getActivityBadge(activity.action)}
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('❌ خطا در بارگذاری فعالیت‌ها:', error);
+        container.innerHTML = `
+            <div class="text-center py-8 text-red-500">
+                <i class="fas fa-exclamation-circle text-4xl mb-3"></i>
+                <p>خطا در بارگذاری فعالیت‌ها</p>
+            </div>
+        `;
+    }
+}
+
+function getActivityIcon(action) {
+    const icons = {
+        'login': { icon: 'fas fa-sign-in-alt', color: 'success' },
+        'logout': { icon: 'fas fa-sign-out-alt', color: 'warning' },
+        'change_password': { icon: 'fas fa-lock', color: 'info' },
+        'update_profile': { icon: 'fas fa-user-edit', color: 'primary' }
+    };
+    return icons[action] || { icon: 'fas fa-circle', color: 'secondary' };
+}
+
+function getActivityText(activity) {
+    const texts = {
+        'login': 'ورود به سیستم',
+        'logout': 'خروج از سیستم',
+        'change_password': 'تغییر رمز عبور',
+        'update_profile': 'به‌روزرسانی پروفایل'
+    };
+    
+    if (activity.details) {
+        try {
+            const details = typeof activity.details === 'string' ? 
+                JSON.parse(activity.details) : activity.details;
+            
+            if (activity.action === 'update_profile' && details.fields) {
+                return `به‌روزرسانی: ${details.fields.join('، ')}`;
+            }
+        } catch (e) {}
+    }
+    
+    return texts[activity.action] || activity.action;
+}
+
+function getActivityBadge(action) {
+    const badges = {
+        'login': '<span class="badge badge-success">ورود</span>',
+        'logout': '<span class="badge badge-warning">خروج</span>',
+        'change_password': '<span class="badge badge-info">امنیتی</span>',
+        'update_profile': '<span class="badge badge-primary">پروفایل</span>'
+    };
+    return badges[action] || '';
+}
+
+function formatPersianDate(dateStr) {
+    try {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('fa-IR', {
+            hour: '2-digit',
+            minute: '2-digit',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    } catch (e) {
+        return dateStr;
+    }
+}
+
+// ========================================
+// Event Listeners
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    loadActivities();
+    
+    const modal = document.getElementById('changePasswordModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeChangePasswordModal();
+            }
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('changePasswordModal');
+            if (modal && !modal.classList.contains('hidden')) {
+                closeChangePasswordModal();
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

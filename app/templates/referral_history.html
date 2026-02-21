@@ -1,587 +1,356 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تاریخچه تحلیلی ارجاعیات - نور توس</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: 'Vazir';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
-        }
-        * { font-family: 'Vazir', sans-serif; }
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
-        .nav-link { transition: all 0.3s ease; }
-        .nav-link:hover { background: rgba(255, 255, 255, 0.2); }
-        .stat-card { transition: all 0.3s ease; }
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); }
-        .table-row-hover:hover { background: rgba(139, 92, 246, 0.1); }
-        .trend-up { color: #10b981; }
-        .trend-down { color: #ef4444; }
-        .trend-stable { color: #f59e0b; }
-    </style>
-</head>
-<body class="text-gray-800">
+{% extends "base.html" %}
 
-    <!-- ناوبری -->
-    <nav class="bg-purple-800 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <i class="fas fa-chart-pie text-3xl ml-3"></i>
-                    <span class="text-2xl font-bold">سیستم تحلیل هوشمند CRM</span>
-                </div>
-                <div class="flex items-center space-x-2 space-x-reverse">
-                    <a href="/" class="nav-link px-4 py-2 rounded-lg transition flex items-center">صفحه اصلی</a>
-                    <a href="/users" class="nav-link px-4 py-2 rounded-lg transition flex items-center">تحلیل کارشناسان</a>
-                    <a href="/history" class="nav-link px-4 py-2 rounded-lg transition flex items-center">تاریخچه فروش</a>
-                    <a href="/referral" class="nav-link px-4 py-2 rounded-lg transition flex items-center bg-green-500 hover:bg-green-600">ارجاعات</a>
-                    <a href="/referral-history" class="nav-link px-4 py-2 rounded-lg transition flex items-center bg-purple-600 hover:bg-purple-700 font-bold">تاریخچه ارجاعات</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+{% block title %}تاریخچه تحلیلی ارجاعیات - نور توس{% endblock %}
 
-    <div class="container mx-auto px-4 py-8">
-        <!-- عنوان و آمار کلی -->
-        <div class="glass-card rounded-3xl p-8 mb-8">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold gradient-text">📋 تاریخچه تحلیلی ارجاعیات</h2>
-                <div class="flex gap-3">
-                    <button onclick="exportAllData()" class="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition flex items-center">
-                        <i class="fas fa-file-excel ml-2"></i>
-                        خروجی Excel
-                    </button>
-                    <button onclick="refreshData()" class="bg-purple-600 text-white px-6 py-3 rounded-xl hover:bg-purple-700 transition flex items-center">
-                        <i class="fas fa-sync-alt ml-2"></i>
-                        بروزرسانی
-                    </button>
-                </div>
-            </div>
+{% block extra_css %}
+<style>
+    :root {
+        --primary: #1e3a5f;
+        --primary-dark: #0f2b4a;
+        --primary-light: #2b4c7c;
+    }
+    
+    body {
+        background: #f5f7fa;
+        color: #1f2937;
+    }
+    
+    .glass-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-radius: 1.5rem;
+    }
+    
+    .stat-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        padding: 1.25rem;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(30, 58, 95, 0.1);
+        border-color: var(--primary-light);
+    }
+    
+    .table-row-hover:hover {
+        background: rgba(30, 58, 95, 0.02);
+    }
+    
+    .trend-up { color: #059669; }
+    .trend-down { color: #b91c1c; }
+    .trend-stable { color: #d97706; }
+    
+    .gradient-text {
+        color: var(--primary);
+        font-weight: 700;
+    }
+    
+    /* Table Styles */
+    .data-table th {
+        background: #f9fafb;
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        padding: 1rem;
+        border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .data-table td {
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 0.95rem;
+    }
+    
+    /* Button Styles */
+    .btn-excel {
+        background: #059669;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-excel:hover {
+        background: #047857;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(5, 150, 105, 0.2);
+    }
+    
+    .btn-refresh {
+        background: var(--primary);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-refresh:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(30, 58, 95, 0.2);
+    }
+    
+    /* Filter Inputs */
+    .filter-input {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 0.625rem 1rem;
+        background: white;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .filter-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+    }
+    
+    .filter-select {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 0.625rem 1rem;
+        background: white;
+        transition: all 0.3s ease;
+        width: 100%;
+        cursor: pointer;
+    }
+    
+    .filter-select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+    }
+    
+    /* Pagination */
+    .pagination-btn {
+        background: var(--primary);
+        color: white;
+        padding: 0.5rem 1.25rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+    
+    .pagination-btn:hover:not(:disabled) {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
+    }
+    
+    .pagination-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    
+    /* Status Badges */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .status-high {
+        background: rgba(5, 150, 105, 0.1);
+        color: #059669;
+    }
+    
+    .status-medium {
+        background: rgba(217, 119, 6, 0.1);
+        color: #d97706;
+    }
+    
+    .status-low {
+        background: rgba(185, 28, 28, 0.1);
+        color: #b91c1c;
+    }
+    
+    /* Health Score */
+    .health-high {
+        background: rgba(5, 150, 105, 0.1);
+        color: #059669;
+    }
+    
+    .health-medium {
+        background: rgba(217, 119, 6, 0.1);
+        color: #d97706;
+    }
+    
+    .health-low {
+        background: rgba(185, 28, 28, 0.1);
+        color: #b91c1c;
+    }
+    
+    /* Risk Badge */
+    .risk-high {
+        background: #b91c1c;
+        color: white;
+    }
+    
+    .risk-medium {
+        background: #d97706;
+        color: white;
+    }
+    
+    .risk-low {
+        background: #6b7280;
+        color: white;
+    }
+    
+    /* Action Buttons */
+    .action-btn {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        color: var(--text-secondary);
+    }
+    
+    .action-btn:hover {
+        background: rgba(30, 58, 95, 0.1);
+        color: var(--primary);
+        transform: scale(1.1);
+    }
+    
+    /* Modal */
+    .modal-content {
+        background: white;
+        border-radius: 2rem;
+        max-width: 80rem;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        position: sticky;
+        top: 0;
+        background: white;
+        border-bottom: 2px solid #e5e7eb;
+        padding: 1.5rem 2rem;
+        z-index: 10;
+        border-radius: 2rem 2rem 0 0;
+    }
+</style>
+{% endblock %}
 
-            <!-- کارت‌های آماری کلی -->
-            <div class="grid md:grid-cols-5 gap-4 mb-8" id="overall-stats">
-                <!-- با JS پر می‌شود -->
-            </div>
-
-            <!-- فیلترهای پیشرفته -->
-            <div class="grid md:grid-cols-5 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">جستجو</label>
-                    <input type="text" id="search-input" placeholder="نام فایل..." class="w-full p-3 border rounded-xl">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">بازه نرخ موفقیت</label>
-                    <select id="success-rate-filter" class="w-full p-3 border rounded-xl">
-                        <option value="all">همه</option>
-                        <option value="high">بالای ۷۰٪</option>
-                        <option value="medium">۵۰-۷۰٪</option>
-                        <option value="low">زیر ۵۰٪</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">وضعیت گلوگاه</label>
-                    <select id="bottleneck-filter" class="w-full p-3 border rounded-xl">
-                        <option value="all">همه</option>
-                        <option value="has-bottleneck">دارای گلوگاه</option>
-                        <option value="no-bottleneck">بدون گلوگاه</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">از تاریخ</label>
-                    <input type="date" id="date-from" class="w-full p-3 border rounded-xl">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">تا تاریخ</label>
-                    <input type="date" id="date-to" class="w-full p-3 border rounded-xl">
-                </div>
-            </div>
-        </div>
-
-        <!-- جدول پیشرفته تاریخچه -->
-        <div class="glass-card rounded-3xl p-8">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-purple-100">
-                        <tr>
-                            <th class="p-4 text-right">ردیف</th>
-                            <th class="p-4 text-right">نام فایل</th>
-                            <th class="p-4 text-right">تاریخ تحلیل</th>
-                            <th class="p-4 text-center">کل ارجاعات</th>
-                            <th class="p-4 text-center">اتمام یافته</th>
-                            <th class="p-4 text-center">درصد موفقیت</th>
-                            <th class="p-4 text-center">بررسی نشده</th>
-                            <th class="p-4 text-center">گلوگاه اصلی</th>
-                            <th class="p-4 text-center">امتیاز سلامت</th>
-                            <th class="p-4 text-center">ریسک‌ها</th>
-                            <th class="p-4 text-center">عملیات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="history-table-body">
-                        <!-- داده‌ها با JS پر می‌شوند -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- صفحه‌بندی و اطلاعات -->
-            <div class="flex justify-between items-center mt-6">
-                <div class="text-gray-600" id="pagination-info"></div>
-                <div class="flex gap-2">
-                    <button id="prev-page" class="px-4 py-2 bg-purple-600 text-white rounded-lg disabled:opacity-50">قبلی</button>
-                    <button id="next-page" class="px-4 py-2 bg-purple-600 text-white rounded-lg disabled:opacity-50">بعدی</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- مودال جزئیات کامل -->
-    <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 overflow-y-auto">
-        <div class="bg-white rounded-3xl p-8 max-w-6xl w-full mx-4 my-8">
-            <div class="flex justify-between items-center mb-6 sticky top-0 bg-white">
-                <h3 class="text-2xl font-bold flex items-center">
-                    <i class="fas fa-chart-line text-purple-600 ml-3"></i>
-                    داشبورد تحلیلی کامل
-                </h3>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times text-2xl"></i>
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- عنوان و آمار کلی -->
+    <div class="glass-card rounded-3xl p-8 mb-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary">📋 تاریخچه تحلیلی ارجاعیات</h2>
+            <div class="flex flex-wrap gap-3">
+                <button onclick="exportAllData()" class="btn-excel px-6 py-3 rounded-xl transition flex items-center gap-2 text-sm md:text-base">
+                    <i class="fas fa-file-excel"></i>
+                    <span class="hidden sm:inline">خروجی Excel</span>
+                </button>
+                <button onclick="refreshData()" class="btn-refresh px-6 py-3 rounded-xl transition flex items-center gap-2 text-sm md:text-base">
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="hidden sm:inline">بروزرسانی</span>
                 </button>
             </div>
-            <div id="modal-content" class="space-y-6 max-h-[70vh] overflow-y-auto px-2"></div>
+        </div>
+
+        <!-- کارت‌های آماری کلی -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8" id="overall-stats">
+            <!-- با JS پر می‌شود -->
+        </div>
+
+        <!-- فیلترهای پیشرفته -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">جستجو</label>
+                <input type="text" id="search-input" placeholder="نام فایل..." class="filter-input">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">نرخ موفقیت</label>
+                <select id="success-rate-filter" class="filter-select">
+                    <option value="all">همه</option>
+                    <option value="high">بالای ۷۰٪</option>
+                    <option value="medium">۵۰-۷۰٪</option>
+                    <option value="low">زیر ۵۰٪</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">وضعیت گلوگاه</label>
+                <select id="bottleneck-filter" class="filter-select">
+                    <option value="all">همه</option>
+                    <option value="has-bottleneck">دارای گلوگاه</option>
+                    <option value="no-bottleneck">بدون گلوگاه</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">از تاریخ</label>
+                <input type="date" id="date-from" class="filter-input">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">تا تاریخ</label>
+                <input type="date" id="date-to" class="filter-input">
+            </div>
         </div>
     </div>
 
-    <script>
-        let currentPage = 1;
-        let totalPages = 1;
-        let analyses = [];
-        let allAnalyses = [];
+    <!-- جدول تاریخچه -->
+    <div class="glass-card rounded-3xl p-8">
+        <div class="overflow-x-auto">
+            <table class="w-full data-table">
+                <thead>
+                    <tr>
+                        <th class="text-right">ردیف</th>
+                        <th class="text-right">نام فایل</th>
+                        <th class="text-right">تاریخ تحلیل</th>
+                        <th class="text-center">کل ارجاعات</th>
+                        <th class="text-center">اتمام یافته</th>
+                        <th class="text-center">درصد موفقیت</th>
+                        <th class="text-center">بررسی نشده</th>
+                        <th class="text-center">گلوگاه اصلی</th>
+                        <th class="text-center">امتیاز سلامت</th>
+                        <th class="text-center">ریسک‌ها</th>
+                        <th class="text-center">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="history-table-body">
+                    <!-- داده‌ها با JS پر می‌شوند -->
+                </tbody>
+            </table>
+        </div>
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadHistory();
-            
-            // Event listeners برای فیلترها
-            document.getElementById('search-input').addEventListener('input', filterTable);
-            document.getElementById('success-rate-filter').addEventListener('change', filterTable);
-            document.getElementById('bottleneck-filter').addEventListener('change', filterTable);
-            document.getElementById('date-from').addEventListener('change', filterTable);
-            document.getElementById('date-to').addEventListener('change', filterTable);
-            
-            document.getElementById('prev-page').addEventListener('click', () => changePage(currentPage - 1));
-            document.getElementById('next-page').addEventListener('click', () => changePage(currentPage + 1));
-        });
+        <!-- صفحه‌بندی -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-6">
+            <div class="text-sm text-gray-600" id="pagination-info"></div>
+            <div class="flex gap-2">
+                <button id="prev-page" class="pagination-btn" disabled>قبلی</button>
+                <button id="next-page" class="pagination-btn" disabled>بعدی</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-        async function loadHistory() {
-            try {
-                const response = await fetch('/api/referral-history');
-                allAnalyses = await response.json();
-                analyses = [...allAnalyses];
-                calculateOverallStats();
-                renderTable();
-            } catch (error) {
-                console.error('خطا:', error);
-            }
-        }
+<!-- مودال جزئیات -->
+<div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 overflow-y-auto p-4">
+    <div class="modal-content">
+        <div class="modal-header flex justify-between items-center">
+            <h3 class="text-xl md:text-2xl font-bold flex items-center gap-3">
+                <i class="fas fa-chart-line text-primary"></i>
+                داشبورد تحلیلی کامل
+            </h3>
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 transition">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <div id="modal-content" class="p-6 space-y-6">
+            <!-- محتوا با JS پر می‌شود -->
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-        function calculateOverallStats() {
-            const totalAnalyses = allAnalyses.length;
-            const totalReferrals = allAnalyses.reduce((sum, a) => sum + (a.total_referrals || 0), 0);
-            const totalCompleted = allAnalyses.reduce((sum, a) => sum + (a.completed_count || 0), 0);
-            const totalPending = allAnalyses.reduce((sum, a) => sum + (a.pending_count || 0), 0);
-            const avgSuccessRate = totalReferrals ? (totalCompleted / totalReferrals * 100).toFixed(1) : 0;
-            
-            // واحدهای گلوگاه پرتکرار
-            const bottlenecks = allAnalyses.map(a => a.bottleneck_unit).filter(Boolean);
-            const topBottleneck = getMostFrequent(bottlenecks);
-            
-            document.getElementById('overall-stats').innerHTML = `
-                <div class="bg-purple-50 p-4 rounded-xl stat-card">
-                    <i class="fas fa-chart-bar text-2xl text-purple-600 mb-2"></i>
-                    <div class="text-2xl font-bold text-purple-600">${totalAnalyses}</div>
-                    <div class="text-sm text-gray-600">کل تحلیل‌ها</div>
-                </div>
-                <div class="bg-blue-50 p-4 rounded-xl stat-card">
-                    <i class="fas fa-phone-alt text-2xl text-blue-600 mb-2"></i>
-                    <div class="text-2xl font-bold text-blue-600">${totalReferrals}</div>
-                    <div class="text-sm text-gray-600">کل ارجاعات</div>
-                </div>
-                <div class="bg-green-50 p-4 rounded-xl stat-card">
-                    <i class="fas fa-check-circle text-2xl text-green-600 mb-2"></i>
-                    <div class="text-2xl font-bold text-green-600">${totalCompleted}</div>
-                    <div class="text-sm text-gray-600">اتمام یافته</div>
-                </div>
-                <div class="bg-yellow-50 p-4 rounded-xl stat-card">
-                    <i class="fas fa-clock text-2xl text-yellow-600 mb-2"></i>
-                    <div class="text-2xl font-bold text-yellow-600">${totalPending}</div>
-                    <div class="text-sm text-gray-600">بررسی نشده</div>
-                </div>
-                <div class="bg-red-50 p-4 rounded-xl stat-card">
-                    <i class="fas fa-exclamation-triangle text-2xl text-red-600 mb-2"></i>
-                    <div class="text-2xl font-bold text-red-600">${topBottleneck || '—'}</div>
-                    <div class="text-sm text-gray-600">گلوگاه اصلی</div>
-                </div>
-            `;
-        }
-
-        function getMostFrequent(arr) {
-            if (!arr.length) return null;
-            const counts = arr.reduce((acc, val) => {
-                acc[val] = (acc[val] || 0) + 1;
-                return acc;
-            }, {});
-            return Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
-        }
-
-        function renderTable() {
-            const tbody = document.getElementById('history-table-body');
-            const filtered = filterAnalyses();
-            
-            totalPages = Math.ceil(filtered.length / 10);
-            const start = (currentPage - 1) * 10;
-            const end = start + 10;
-            const pageData = filtered.slice(start, end);
-            
-            tbody.innerHTML = pageData.map((item, index) => {
-                const successRate = item.completion_rate || 0;
-                const rateClass = successRate >= 70 ? 'bg-green-100 text-green-800' : 
-                                 successRate >= 50 ? 'bg-yellow-100 text-yellow-800' : 
-                                 'bg-red-100 text-red-800';
-                
-                const riskCount = item.risk_count || 0;
-                const riskClass = riskCount > 2 ? 'bg-red-600' : riskCount > 0 ? 'bg-orange-600' : 'bg-gray-400';
-                
-                return `
-                <tr class="border-b table-row-hover">
-                    <td class="p-4">${start + index + 1}</td>
-                    <td class="p-4 font-semibold">
-                        <i class="fas fa-file-excel text-green-600 ml-2"></i>
-                        ${item.file_name}
-                    </td>
-                    <td class="p-4">${new Date(item.analyzed_at).toLocaleDateString('fa-IR')}</td>
-                    <td class="p-4 text-center font-bold">${item.total_referrals}</td>
-                    <td class="p-4 text-center font-bold text-green-600">${item.completed_count}</td>
-                    <td class="p-4 text-center">
-                        <span class="px-3 py-1 rounded-full text-sm font-bold ${rateClass}">
-                            ${successRate}%
-                        </span>
-                    </td>
-                    <td class="p-4 text-center font-bold text-red-600">${item.pending_count}</td>
-                    <td class="p-4 text-center">
-                        ${item.bottleneck_unit ? 
-                            `<span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm">
-                                ${item.bottleneck_unit}
-                            </span>` : 
-                            '<span class="text-gray-400">—</span>'
-                        }
-                    </td>
-                    <td class="p-4 text-center">
-                        <span class="px-3 py-1 ${getHealthClass(item.health_score)} rounded-full text-sm font-bold">
-                            ${item.health_score || '—'}
-                        </span>
-                    </td>
-                    <td class="p-4 text-center">
-                        ${riskCount > 0 ? 
-                            `<span class="px-3 py-1 ${riskClass} text-white rounded-full text-sm font-bold">
-                                ${riskCount} ریسک
-                            </span>` : 
-                            '<span class="text-gray-400">—</span>'
-                        }
-                    </td>
-                    <td class="p-4 text-center">
-                        <button onclick="showDetails(${item.id})" class="text-purple-600 hover:text-purple-800 ml-3" title="مشاهده جزئیات">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button onclick="downloadReport(${item.id})" class="text-green-600 hover:text-green-800 ml-3" title="دانلود گزارش">
-                            <i class="fas fa-download"></i>
-                        </button>
-                        <button onclick="compareWithPrevious(${item.id})" class="text-blue-600 hover:text-blue-800" title="مقایسه با قبلی">
-                            <i class="fas fa-chart-line"></i>
-                        </button>
-                    </td>
-                </tr>
-            `}).join('');
-            
-            document.getElementById('pagination-info').textContent = 
-                `نمایش ${start + 1} تا ${Math.min(end, filtered.length)} از ${filtered.length} رکورد`;
-        }
-
-        function getHealthClass(score) {
-            if (!score) return 'bg-gray-100 text-gray-800';
-            if (score >= 80) return 'bg-green-100 text-green-800';
-            if (score >= 60) return 'bg-yellow-100 text-yellow-800';
-            return 'bg-red-100 text-red-800';
-        }
-
-        function filterAnalyses() {
-            const search = document.getElementById('search-input').value.toLowerCase();
-            const successRate = document.getElementById('success-rate-filter').value;
-            const bottleneck = document.getElementById('bottleneck-filter').value;
-            const from = document.getElementById('date-from').value;
-            const to = document.getElementById('date-to').value;
-            
-            return allAnalyses.filter(a => {
-                if (search && !a.file_name.toLowerCase().includes(search)) return false;
-                
-                const rate = a.completion_rate || 0;
-                if (successRate === 'high' && rate < 70) return false;
-                if (successRate === 'medium' && (rate < 50 || rate >= 70)) return false;
-                if (successRate === 'low' && rate >= 50) return false;
-                
-                if (bottleneck === 'has-bottleneck' && !a.bottleneck_unit) return false;
-                if (bottleneck === 'no-bottleneck' && a.bottleneck_unit) return false;
-                
-                const date = new Date(a.analyzed_at);
-                if (from && date < new Date(from)) return false;
-                if (to && date > new Date(to)) return false;
-                
-                return true;
-            });
-        }
-
-        function filterTable() {
-            currentPage = 1;
-            renderTable();
-        }
-
-        function changePage(newPage) {
-            if (newPage >= 1 && newPage <= totalPages) {
-                currentPage = newPage;
-                renderTable();
-            }
-        }
-
-        async function showDetails(id) {
-            try {
-                const response = await fetch(`/api/referral-analysis/${id}`);
-                const data = await response.json();
-                
-                const modal = document.getElementById('detail-modal');
-                const content = document.getElementById('modal-content');
-                
-                content.innerHTML = renderDetailedAnalysis(data);
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                
-            } catch (error) {
-                console.error('خطا:', error);
-            }
-        }
-
-        function renderDetailedAnalysis(data) {
-            const full = data.full_analysis || {};
-            const status = full.status_analysis || {};
-            const subject = full.subject_analysis || {};
-            const senderReceiver = full.sender_receiver_analysis || {};
-            const institution = full.institution_analysis || {};
-            const insights = full.comprehensive_insights || {};
-            const description = full.description_analysis || {};
-            
-            return `
-                <!-- ردیف اول: آمار کلی -->
-                <div class="grid grid-cols-5 gap-4">
-                    <div class="bg-purple-50 p-4 rounded-xl text-center">
-                        <i class="fas fa-chart-bar text-2xl text-purple-600 mb-2"></i>
-                        <div class="text-2xl font-bold text-purple-600">${data.total_referrals}</div>
-                        <div class="text-sm">کل ارجاعات</div>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-xl text-center">
-                        <i class="fas fa-check-circle text-2xl text-green-600 mb-2"></i>
-                        <div class="text-2xl font-bold text-green-600">${data.completed_count}</div>
-                        <div class="text-sm">اتمام یافته</div>
-                    </div>
-                    <div class="bg-red-50 p-4 rounded-xl text-center">
-                        <i class="fas fa-clock text-2xl text-red-600 mb-2"></i>
-                        <div class="text-2xl font-bold text-red-600">${data.pending_count}</div>
-                        <div class="text-sm">بررسی نشده</div>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-xl text-center">
-                        <i class="fas fa-percent text-2xl text-yellow-600 mb-2"></i>
-                        <div class="text-2xl font-bold text-yellow-600">${data.completion_rate}%</div>
-                        <div class="text-sm">نرخ موفقیت</div>
-                    </div>
-                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
-                        <i class="fas fa-heartbeat text-2xl text-indigo-600 mb-2"></i>
-                        <div class="text-2xl font-bold text-indigo-600">${insights.workflow_health_score || '—'}</div>
-                        <div class="text-sm">امتیاز سلامت</div>
-                    </div>
-                </div>
-
-                <!-- ردیف دوم: توزیع وضعیت‌ها و تحلیل گلوگاه -->
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h4 class="font-bold text-lg mb-4 flex items-center">
-                            <i class="fas fa-chart-pie text-purple-600 ml-2"></i>
-                            توزیع وضعیت‌ها
-                        </h4>
-                        <div class="space-y-3">
-                            ${Object.entries(status.status_distribution || {}).map(([key, value]) => `
-                                <div class="flex justify-between items-center p-2 bg-white rounded-lg">
-                                    <span class="font-medium">${key}</span>
-                                    <span class="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">${value}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h4 class="font-bold text-lg mb-4 flex items-center">
-                            <i class="fas fa-exclamation-triangle text-red-600 ml-2"></i>
-                            تحلیل گلوگاه‌ها
-                        </h4>
-                        <div class="space-y-4">
-                            ${(insights.top_bottlenecks || []).map(b => `
-                                <div class="bg-white p-4 rounded-lg border-r-4 ${b.impact === 'بالا' ? 'border-red-500' : b.impact === 'متوسط' ? 'border-yellow-500' : 'border-blue-500'}">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-bold">${b.bottleneck}</span>
-                                        <span class="bg-gray-200 px-3 py-1 rounded-full text-sm">${b.pending_count} مانده</span>
-                                    </div>
-                                    <span class="text-sm text-gray-600">تأثیر: ${b.impact}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ردیف سوم: موضوعات و واحدها -->
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h4 class="font-bold text-lg mb-4 flex items-center">
-                            <i class="fas fa-tags text-green-600 ml-2"></i>
-                            موضوعات با کار مانده
-                        </h4>
-                        <div class="space-y-2">
-                            ${Object.entries(subject.subject_pending || {}).map(([subj, count]) => `
-                                <div class="bg-white p-3 rounded-lg flex justify-between items-center">
-                                    <span>${subj}</span>
-                                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-bold">${count} مانده</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 p-6 rounded-xl">
-                        <h4 class="font-bold text-lg mb-4 flex items-center">
-                            <i class="fas fa-users text-blue-600 ml-2"></i>
-                            پرکارترین واحدها
-                        </h4>
-                        <div class="space-y-3">
-                            <div class="bg-white p-3 rounded-lg">
-                                <span class="text-sm text-gray-600">فرستنده‌ها:</span>
-                                ${(senderReceiver.top_senders || []).map(s => `
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="font-medium">${s.sender}</span>
-                                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">${s.count}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <div class="bg-white p-3 rounded-lg mt-3">
-                                <span class="text-sm text-gray-600">گیرنده‌ها:</span>
-                                ${(senderReceiver.top_receivers || []).map(r => `
-                                    <div class="flex justify-between items-center mt-2">
-                                        <span class="font-medium">${r.receiver}</span>
-                                        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">${r.count}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ردیف چهارم: تحلیل کلمات کلیدی -->
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-lg mb-4 flex items-center">
-                        <i class="fas fa-key text-yellow-600 ml-2"></i>
-                        کلمات کلیدی در توضیحات
-                    </h4>
-                    <div class="flex flex-wrap gap-3">
-                        ${(description.top_keywords || []).map(k => `
-                            <div class="bg-white px-4 py-2 rounded-full shadow-sm border ${k.completion_rate > 70 ? 'border-green-300' : 'border-gray-200'}">
-                                <span class="font-medium">${k.word}</span>
-                                <span class="text-sm text-gray-500 mr-2">${k.count} بار</span>
-                                <span class="text-xs ${k.completion_rate > 70 ? 'text-green-600' : 'text-gray-500'}">${k.completion_rate || 0}% موفقیت</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <!-- ردیف پنجم: مشتریان استراتژیک -->
-                <div class="bg-gray-50 p-6 rounded-xl">
-                    <h4 class="font-bold text-lg mb-4 flex items-center">
-                        <i class="fas fa-building text-purple-600 ml-2"></i>
-                        مشتریان استراتژیک
-                    </h4>
-                    <div class="grid grid-cols-3 gap-4">
-                        ${(institution.top_institutions || []).map(inst => `
-                            <div class="bg-white p-4 rounded-lg">
-                                <div class="font-bold text-purple-700">${inst.name}</div>
-                                <div class="text-sm text-gray-600 mt-2">
-                                    <span class="block">${inst.count} ارجاع</span>
-                                    <span class="block">اشتراک: ${inst.subs || '—'}</span>
-                                    <span class="block mt-1 ${inst.completion_rate === 100 ? 'text-green-600' : inst.completion_rate === 0 ? 'text-red-600' : 'text-yellow-600'}">
-                                        ${inst.completion_rate || 0}% موفقیت
-                                    </span>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <!-- ردیف ششم: بینش‌ها و توصیه‌ها -->
-                <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-8 rounded-xl">
-                    <h4 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-lightbulb text-3xl ml-3"></i>
-                        بینش‌های هوشمند
-                    </h4>
-                    <p class="text-lg leading-relaxed mb-6 opacity-90">${insights.summary_fa || ''}</p>
-                    
-                    <h4 class="text-xl font-bold mb-3">توصیه‌های عملی:</h4>
-                    <ul class="space-y-3">
-                        ${(insights.recommendations_fa || []).map(rec => `
-                            <li class="flex items-start bg-white bg-opacity-20 rounded-lg p-4">
-                                <i class="fas fa-check-circle mt-1 ml-3 text-green-300 text-xl"></i>
-                                <span class="text-lg">${rec}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-            `;
-        }
-
-        function closeModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
-            document.getElementById('detail-modal').classList.remove('flex');
-        }
-
-        async function downloadReport(id) {
-            window.location.href = `/api/referral-report/${id}`;
-        }
-
-        function compareWithPrevious(id) {
-            // برای مقایسه دو تحلیل
-            const index = allAnalyses.findIndex(a => a.id === id);
-            if (index > 0) {
-                showComparison(id, allAnalyses[index - 1].id);
-            } else {
-                alert('تحلیل قبلی برای مقایسه وجود ندارد');
-            }
-        }
-
-        async function showComparison(id1, id2) {
-            // این تابع می‌تونه دو تحلیل رو مقایسه کنه
-            // برای مرحله بعد
-        }
-
-        function exportAllData() {
-            // خروجی Excel از همه داده‌ها
-            window.location.href = '/api/referral-export-all';
-        }
-
-        function refreshData() {
-            loadHistory();
-        }
-    </script>
-</body>
-</html>
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='referral_history.js') }}"></script>
+{% endblock %}

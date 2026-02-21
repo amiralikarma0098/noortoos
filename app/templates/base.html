@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}نور توس - سیستم تحلیل هوشمند CRM سازمانی{% endblock %}</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Vazirmatn', 'IBM Plex Sans Arabic', Tahoma, sans-serif;
+        }
+        
+        :root {
+            --primary: #1e3a5f;
+            --primary-dark: #0f2b4a;
+            --primary-light: #2b4c7c;
+            --secondary: #4b5563;
+            --secondary-light: #6b7280;
+            --accent: #8b5cf6;
+            --bg-main: #f3f4f6;
+            --bg-card: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --border: #e5e7eb;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #b91c1c;
+            --info: #2563eb;
+        }
+        
+        body {
+            background: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: 0 4px 20px rgba(0, 20, 40, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Mega Menu Styles */
+        .mega-menu {
+            position: static;
+        }
+        
+        .mega-menu-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border-top: 3px solid var(--primary);
+            border-radius: 0 0 1rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 90%;
+        }
+        
+        .mega-menu:hover .mega-menu-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .mega-menu-section {
+            padding: 1.5rem;
+            border-left: 1px solid var(--border);
+        }
+        
+        .mega-menu-section:last-child {
+            border-left: none;
+        }
+        
+        .mega-menu-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .mega-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .mega-menu-item:hover {
+            background: rgba(30, 58, 95, 0.05);
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+        
+        .mega-menu-item i {
+            width: 20px;
+            font-size: 1rem;
+        }
+        
+        .mega-menu-badge {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            background: var(--primary-light);
+            color: white;
+            margin-right: 0.5rem;
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-button {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+        }
+        
+        /* Mobile Menu Panel */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu-panel.open {
+            right: 0;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+        
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border-right: 3px solid transparent;
+            font-size: 0.95rem;
+        }
+        
+        .mobile-nav-link:hover {
+            background: rgba(30, 58, 95, 0.03);
+            border-right-color: var(--primary);
+        }
+        
+        .mobile-nav-link.active {
+            background: rgba(30, 58, 95, 0.05);
+            border-right-color: var(--primary);
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .mobile-nav-link i {
+            width: 24px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 1px solid var(--border);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        
+        .dropdown-item:hover {
+            background: rgba(30, 58, 95, 0.05);
+            color: var(--primary);
+        }
+        
+        .dropdown-item i {
+            width: 20px;
+            font-size: 1rem;
+        }
+        
+        /* User Menu */
+        .user-menu-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            color: white;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .user-menu-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 600;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        
+        /* Navigation Links */
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-logo {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .social-link {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: var(--bg-main);
+            color: var(--secondary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.025em;
+        }
+        
+        .badge-success {
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(217, 119, 6, 0.1);
+            color: var(--warning);
+        }
+        
+        .badge-danger {
+            background: rgba(185, 28, 28, 0.1);
+            color: var(--danger);
+        }
+        
+        .badge-info {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--info);
+        }
+        
+        /* Icon Box */
+        .icon-box {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(30, 58, 95, 0.1);
+            color: var(--primary);
+        }
+        
+        .icon-box.white {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        /* Loading Animation */
+        .loader {
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            background: var(--border);
+            height: 6px;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: var(--primary);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-light);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            background: var(--bg-main);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-align: right;
+            padding: 0.875rem 1rem;
+            border-bottom: 2px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
+        
+        .data-table td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(30, 58, 95, 0.02);
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Mobile Menu Panel -->
+    <div id="mobile-menu-panel" class="mobile-menu-panel">
+        <div class="p-6 border-b border-gray-200">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="icon-box">
+                        <i class="fas fa-brain text-xl"></i>
+                    </div>
+                    <span class="font-bold text-xl text-gray-800">نور توس</span>
+                </div>
+                <button onclick="closeMobileMenu()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                <i class="fas fa-user-circle text-3xl text-primary"></i>
+                <div>
+                    <p class="font-semibold text-gray-800">{{ session.get('full_name', 'کاربر') }}</p>
+                    <p class="text-xs text-gray-500">{{ session.get('email', 'user@noortoos.ir') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="p-4">
+            <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">داشبورد</div>
+            <a href="{{ url_for('main.index') }}" class="mobile-nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
+                <i class="fas fa-home"></i>
+                <span>داشبورد اصلی</span>
+            </a>
+            
+            <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mt-4">تحلیل‌ها</div>
+            <a href="{{ url_for('main.sales_analysis') }}" class="mobile-nav-link {% if request.endpoint == 'main.sales_analysis' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i>
+                <span>تحلیل فروش</span>
+            </a>
+            <a href="{{ url_for('main.users_page') }}" class="mobile-nav-link {% if request.endpoint == 'main.users_page' %}active{% endif %}">
+                <i class="fas fa-users"></i>
+                <span>تحلیل کارشناسان</span>
+            </a>
+            <a href="{{ url_for('referral.referral_page') }}" class="mobile-nav-link {% if request.endpoint == 'referral.referral_page' %}active{% endif %}">
+                <i class="fas fa-diagram-project"></i>
+                <span>مدیریت ارجاعات</span>
+            </a>
+            <a href="{{ url_for('referral.referral_history_page') }}" class="mobile-nav-link {% if request.endpoint == 'referral.referral_history_page' %}active{% endif %}">
+                <i class="fas fa-archive"></i>
+                <span>آرشیو ارجاعات</span>
+            </a>
+            <a href="{{ url_for('main.history') }}" class="mobile-nav-link {% if request.endpoint == 'main.history' %}active{% endif %}">
+                <i class="fas fa-history"></i>
+                <span>تاریخچه تحلیلها</span>
+            </a>
+            
+            <div class="my-4 border-t border-gray-200"></div>
+            
+            <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">حساب کاربری</div>
+            <a href="{{ url_for('auth.profile') }}" class="mobile-nav-link">
+                <i class="fas fa-user"></i>
+                <span>پروفایل من</span>
+            </a>
+            <a href="#" onclick="openChangePasswordModal(); return false;" class="mobile-nav-link">
+                <i class="fas fa-lock"></i>
+                <span>تغییر رمز</span>
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="mobile-nav-link text-red-600">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>خروج</span>
+            </a>
+        </nav>
+        
+        <div class="p-6 border-t border-gray-200">
+            <p class="text-xs text-gray-500 text-center">
+                نسخه ۲.۰.۰ سازمانی<br>
+                © ۱۴۰۴ نور توس
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="icon-box white">
+                        <i class="fas fa-brain text-xl sm:text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                            نور توس
+                            <span class="bg-white/10 text-xs px-2 py-0.5 rounded border border-white/20 hidden sm:inline-block">سازمانی</span>
+                        </h1>
+                        <p class="text-xs text-blue-200/80 hidden sm:block">سیستم یکپارچه تحلیل سازمانی</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Mega Menu Navigation -->
+                <nav class="desktop-menu flex items-center gap-1">
+                    <!-- داشبورد -->
+                    <a href="{{ url_for('main.index') }}" class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
+                        <i class="fas fa-home"></i>
+                        <span class="hidden lg:inline">داشبورد</span>
+                    </a>
+                    
+                    <!-- مگا منوی تحلیل‌ها -->
+                    <div class="mega-menu">
+                        <button class="nav-link flex items-center gap-1 {% if request.endpoint in ['main.sales_analysis', 'main.users_page', 'referral.referral_page', 'referral.referral_history_page', 'main.history'] %}active{% endif %}">
+                            <i class="fas fa-chart-pie"></i>
+                            <span class="hidden lg:inline">تحلیل‌ها</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        
+                        <div class="mega-menu-content">
+                            <div class="grid grid-cols-3 gap-0">
+                                <!-- بخش 1: تحلیل فروش و کارشناسان -->
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-chart-line text-primary"></i>
+                                        تحلیل‌های CRM
+                                    </div>
+                                    <a href="{{ url_for('main.sales_analysis') }}" class="mega-menu-item">
+                                        <i class="fas fa-upload text-blue-600"></i>
+                                        <span>تحلیل فروش جدید</span>
+                                    </a>
+                                    <a href="{{ url_for('main.users_page') }}" class="mega-menu-item">
+                                        <i class="fas fa-users text-purple-600"></i>
+                                        <span>تحلیل کارشناسان</span>
+                                    </a>
+                                    <a href="{{ url_for('main.history') }}" class="mega-menu-item">
+                                        <i class="fas fa-history text-green-600"></i>
+                                        <span>تاریخچه تحلیل‌ها</span>
+                                        <span class="mega-menu-badge">CRM</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- بخش 2: ارجاعات -->
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-diagram-project text-primary"></i>
+                                        ارجاعات
+                                    </div>
+                                    <a href="{{ url_for('referral.referral_page') }}" class="mega-menu-item">
+                                        <i class="fas fa-plus-circle text-green-600"></i>
+                                        <span>ارجاع جدید</span>
+                                    </a>
+                                    <a href="{{ url_for('referral.referral_history_page') }}" class="mega-menu-item">
+                                        <i class="fas fa-archive text-amber-600"></i>
+                                        <span>آرشیو ارجاعات</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- بخش 3: آمار و رکوردها -->
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-trophy text-primary"></i>
+                                        آمار و رکوردها
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="text-xs text-gray-500 mb-2">کارشناسان برتر:</div>
+                                        <div class="space-y-1">
+                                            <div class="flex justify-between text-xs">
+                                                <span>پورحسین</span>
+                                                <span class="font-bold text-success">۴۵</span>
+                                            </div>
+                                            <div class="flex justify-between text-xs">
+                                                <span>رسولی</span>
+                                                <span class="font-bold text-success">۳۸</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- فوتر مگا منو -->
+                            <div class="bg-gray-50 px-6 py-3 rounded-b-lg border-t border-gray-200 flex justify-between items-center">
+                                <div class="text-xs text-gray-600">
+                                    <i class="fas fa-sync-alt ml-1"></i>
+                                    آخرین بروزرسانی: ۱۴۰۴/۱۲/۰۲
+                                </div>
+                                <a href="{{ url_for('main.history') }}" class="text-xs text-primary hover:underline">
+                                    مشاهده همه تحلیل‌ها
+                                    <i class="fas fa-arrow-left mr-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Mobile Menu Button & User Actions -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button class="mobile-menu-button" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <button class="nav-link !p-2 relative hidden sm:block">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">۳</span>
+                    </button>
+                    
+                    <!-- User Menu -->
+                    <div class="relative group hidden sm:block">
+                        <button class="user-menu-button">
+                            <i class="fas fa-user-circle text-xl"></i>
+                            <span class="hidden md:inline">{{ session.get('full_name', 'کاربر') }}</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        
+                        <div class="dropdown-menu left-auto right-0">
+                            <a href="{{ url_for('auth.profile') }}" class="dropdown-item">
+                                <i class="fas fa-user"></i>
+                                <span>پروفایل من</span>
+                            </a>
+                            <a href="#" onclick="openChangePasswordModal(); return false;" class="dropdown-item">
+                                <i class="fas fa-lock"></i>
+                                <span>تغییر رمز</span>
+                            </a>
+                            <hr class="my-2 border-gray-200">
+                            <a href="{{ url_for('auth.logout') }}" class="dropdown-item text-red-600">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>خروج</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+        <!-- Page Header (optional) -->
+        {% block page_header %}{% endblock %}
+        
+        <!-- Main Content Block -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 py-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span class="footer-logo">نور توس</span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4 max-w-md">
+                        ارائه‌دهنده راهکارهای هوشمند تحلیل CRM با بهره‌گیری از پیشرفته‌ترین الگوریتم‌های هوش مصنوعی برای سازمان‌های بزرگ کشور
+                    </p>
+                    <div class="flex gap-2">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-4">دسترسی سریع</h3>
+                    <ul class="space-y-2">
+                        <li><a href="{{ url_for('main.index') }}" class="text-gray-600 hover:text-primary transition text-sm">داشبورد اصلی</a></li>
+                        <li><a href="{{ url_for('main.sales_analysis') }}" class="text-gray-600 hover:text-primary transition text-sm">تحلیل فروش</a></li>
+                        <li><a href="{{ url_for('main.users_page') }}" class="text-gray-600 hover:text-primary transition text-sm">تحلیل کارشناسان</a></li>
+                        <li><a href="{{ url_for('referral.referral_page') }}" class="text-gray-600 hover:text-primary transition text-sm">مدیریت ارجاعات</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-4">ارتباط با ما</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2 text-gray-600 text-sm">
+                            <i class="fas fa-phone text-primary w-5"></i>
+                            <span dir="ltr">۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600 text-sm">
+                            <i class="fas fa-envelope text-primary w-5"></i>
+                            <span>info@noortoos.ir</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-600 text-sm">
+                            <i class="fas fa-map-marker-alt text-primary w-5"></i>
+                            <span>مشهد، بلوار وکیل‌آباد</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 pt-6 mt-4">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-500 text-xs">
+                        © ۱۴۰۴ کلیه حقوق مادی و معنوی این سامانه متعلق به <span class="font-bold text-primary">نور توس</span> می‌باشد.
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                        نسخه ۲.۰.۰ | توسعه یافته در نور توس
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal تغییر رمز -->
+    <div id="changePasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full m-4">
+            <div class="border-b border-gray-200 p-6 flex justify-between items-center">
+                <h3 class="text-xl font-bold">تغییر رمز عبور</h3>
+                <button onclick="closeChangePasswordModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form id="changePasswordForm" onsubmit="event.preventDefault(); submitChangePassword();">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">رمز عبور فعلی</label>
+                            <input type="password" id="old_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">رمز عبور جدید</label>
+                            <input type="password" id="new_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">تکرار رمز جدید</label>
+                            <input type="password" id="confirm_password" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition">
+                        </div>
+                        
+                        <div id="passwordError" class="text-red-600 text-sm hidden"></div>
+                        <div id="passwordSuccess" class="text-green-600 text-sm hidden"></div>
+                        
+                        <button type="submit" id="changePasswordBtn"
+                                class="w-full btn-primary py-3 rounded-lg font-semibold">
+                            تغییر رمز عبور
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // توابع منوی موبایل
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu-panel').classList.toggle('open');
+            document.getElementById('mobile-menu-overlay').classList.toggle('open');
+            document.body.style.overflow = document.body.style.overflow === 'hidden' ? '' : 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu-panel').classList.remove('open');
+            document.getElementById('mobile-menu-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                closeMobileMenu();
+            }
+        });
+        
+        // توابع تغییر رمز
+        function openChangePasswordModal() {
+            document.getElementById('changePasswordModal').classList.remove('hidden');
+            document.getElementById('changePasswordModal').classList.add('flex');
+        }
+        
+        function closeChangePasswordModal() {
+            document.getElementById('changePasswordModal').classList.add('hidden');
+            document.getElementById('changePasswordModal').classList.remove('flex');
+            document.getElementById('changePasswordForm').reset();
+            document.getElementById('passwordError').classList.add('hidden');
+            document.getElementById('passwordSuccess').classList.add('hidden');
+        }
+        
+        async function submitChangePassword() {
+            const oldPass = document.getElementById('old_password').value;
+            const newPass = document.getElementById('new_password').value;
+            const confirmPass = document.getElementById('confirm_password').value;
+            
+            const errorDiv = document.getElementById('passwordError');
+            const successDiv = document.getElementById('passwordSuccess');
+            const btn = document.getElementById('changePasswordBtn');
+            
+            errorDiv.classList.add('hidden');
+            successDiv.classList.add('hidden');
+            
+            if (!oldPass || !newPass || !confirmPass) {
+                errorDiv.textContent = 'تمام فیلدها را پر کنید';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            
+            if (newPass !== confirmPass) {
+                errorDiv.textContent = 'رمز عبور جدید و تکرار آن مطابقت ندارند';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            
+            if (newPass.length < 8) {
+                errorDiv.textContent = 'رمز عبور باید حداقل ۸ کاراکتر باشد';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>در حال تغییر...';
+            
+            try {
+                const response = await fetch('/auth/api/profile/change-password', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        old_password: oldPass,
+                        new_password: newPass
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    successDiv.textContent = 'رمز عبور با موفقیت تغییر کرد';
+                    successDiv.classList.remove('hidden');
+                    document.getElementById('changePasswordForm').reset();
+                    setTimeout(closeChangePasswordModal, 2000);
+                } else {
+                    errorDiv.textContent = result.message;
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorDiv.textContent = 'خطا در ارتباط با سرور';
+                errorDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'تغییر رمز عبور';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // فعال کردن لینک‌ها
+            const currentLocation = window.location.pathname;
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href === currentLocation) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // بستن modal با کلیک روی overlay
+            document.getElementById('changePasswordModal').addEventListener('click', function(e) {
+                if (e.target === this) closeChangePasswordModal();
+            });
+        });
+    </script>
+    
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    {% endblock %}
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

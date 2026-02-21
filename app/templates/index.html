@@ -1,559 +1,141 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سیستم تحلیل هوشمند CRM - نسخه سازمانی</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #1e40af;
-            --primary-dark: #1e3a8a;
-            --primary-light: #3b82f6;
-            --secondary: #64748b;
-            --secondary-light: #94a3b8;
-            --accent: #0ea5e9;
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-        }
-        
-        body {
-            background: var(--bg-main);
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
-        
-        /* Header Styles */
-        .main-header {
-            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
-        }
-        
-        /* Card Styles */
-        .pro-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .pro-card:hover {
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.12);
-            transform: translateY(-2px);
-        }
-        
-        /* Button Styles */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(30, 64, 175, 0.25);
-        }
-        
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-secondary:hover {
-            background: var(--bg-main);
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-        
-        /* Tab Styles */
-        .tab-button {
-            color: var(--text-secondary);
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            padding: 1rem 1.5rem;
-            background: transparent;
-        }
-        
-        .tab-button:hover {
-            color: var(--primary);
-            background: rgba(30, 64, 175, 0.05);
-        }
-        
-        .tab-button.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-            background: rgba(30, 64, 175, 0.08);
-            font-weight: 600;
-        }
-        
-        /* Upload Area */
-        .upload-area {
-            border: 2px dashed var(--border);
-            background: var(--bg-card);
-            transition: all 0.3s ease;
-        }
-        
-        .upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(30, 64, 175, 0.03);
-        }
-        
-        .upload-area.dragover {
-            border-color: var(--accent);
-            background: rgba(14, 165, 233, 0.08);
-            border-style: solid;
-        }
-        
-        /* Stats Card */
-        .stat-card {
-            background: var(--bg-card);
-            border-left: 4px solid var(--primary);
-        }
-        
-        .stat-card.success {
-            border-left-color: var(--success);
-        }
-        
-        .stat-card.warning {
-            border-left-color: var(--warning);
-        }
-        
-        .stat-card.info {
-            border-left-color: var(--accent);
-        }
-        
-        /* Badge Styles */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.375rem 0.875rem;
-            border-radius: 9999px;
-            font-size: 0.813rem;
-            font-weight: 600;
-            letter-spacing: 0.025em;
-        }
-        
-        .badge-success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-        
-        .badge-warning {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-        }
-        
-        .badge-danger {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-        }
-        
-        .badge-info {
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--accent);
-        }
-        
-        /* Loading Animation */
-        .loader {
-            border: 4px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Progress Bar */
-        .progress-bar {
-            background: var(--border);
-            height: 6px;
-            border-radius: 9999px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background: var(--bg-card);
-            border-right: 1px solid var(--border);
-            min-height: calc(100vh - 4rem);
-        }
-        
-        .sidebar-item {
-            color: var(--text-secondary);
-            padding: 0.75rem 1rem;
-            transition: all 0.2s ease;
-            border-right: 3px solid transparent;
-        }
-        
-        .sidebar-item:hover {
-            background: var(--bg-main);
-            color: var(--primary);
-            border-right-color: var(--primary);
-        }
-        
-        .sidebar-item.active {
-            background: rgba(30, 64, 175, 0.08);
-            color: var(--primary);
-            border-right-color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Table Styles */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .data-table th {
-            background: var(--bg-main);
-            color: var(--text-secondary);
-            font-weight: 600;
-            text-align: right;
-            padding: 0.875rem 1rem;
-            border-bottom: 2px solid var(--border);
-            font-size: 0.875rem;
-        }
-        
-        .data-table td {
-            padding: 0.875rem 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .data-table tr:hover {
-            background: var(--bg-main);
-        }
-        
-        /* Icon Styles */
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            background: rgba(30, 64, 175, 0.1);
-            color: var(--primary);
-        }
-        
-        .icon-box.success {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-        
-        .icon-box.warning {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--warning);
-        }
-        
-        .icon-box.info {
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--accent);
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-main);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--secondary-light);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
-        }
-        
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Section Title */
-        .section-title {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--border);
-        }
-        
-        /* Info Box */
-        .info-box {
-            background: rgba(14, 165, 233, 0.05);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--text-secondary);
-        }
-    </style>
-</head>
-<body>
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block title %}داشبورد اصلی - سیستم تحلیل هوشمند CRM{% endblock %}
+
+{% block page_header %}
+<div class="mb-8 fade-in">
+    <h2 class="text-3xl font-bold text-gray-800">داشبورد اصلی</h2>
+    <p class="text-gray-600 mt-2">نمای کلی از فعالیت‌ها و تحلیل‌های سیستم</p>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 fade-in" id="overview-stats">
+    <!-- توسط JavaScript پر می‌شود -->
+</div>
+
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 fade-in">
+    <!-- Trend Chart -->
+    <div class="pro-card rounded-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold">روند هفتگی تحلیل‌ها</h3>
+            <div class="icon-box info w-10 h-10">
+                <i class="fas fa-chart-line"></i>
+            </div>
+        </div>
+        <div style="height: 250px;">
+            <canvas id="trendChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Score Distribution Chart -->
+    <div class="pro-card rounded-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold">توزیع امتیازها</h3>
+            <div class="icon-box success w-10 h-10">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+        </div>
+        <div style="height: 250px;">
+            <canvas id="scoreDistributionChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Tables Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 fade-in">
+    <!-- Top Sellers -->
+    <div class="pro-card rounded-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold">فروشندگان برتر</h3>
+            <div class="icon-box warning w-10 h-10">
+                <i class="fas fa-trophy"></i>
+            </div>
+        </div>
+        <div id="top-sellers">
+            <!-- توسط JavaScript پر می‌شود -->
+        </div>
+    </div>
+
+    <!-- Top Customers -->
+    <div class="pro-card rounded-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold">مشتریان فعال</h3>
+            <div class="icon-box info w-10 h-10">
+                <i class="fas fa-building"></i>
+            </div>
+        </div>
+        <div id="top-customers" class="space-y-2">
+            <!-- توسط JavaScript پر می‌شود -->
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="pro-card rounded-lg p-6 bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold">دسترسی سریع</h3>
+            <div class="icon-box white w-10 h-10">
+                <i class="fas fa-bolt"></i>
+            </div>
+        </div>
+        <div class="space-y-3">
+            <a href="{{ url_for('main.sales_analysis') }}" class="block bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg p-3 transition">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-chart-line"></i>
+                    <span>تحلیل فروش جدید</span>
+                </div>
+            </a>
+            <a href="{{ url_for('referral.referral_page') }}" class="block bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg p-3 transition">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-diagram-project"></i>
+                    <span>تحلیل ارجاعات جدید</span>
+                </div>
+            </a>
+            <a href="{{ url_for('main.history') }}" class="block bg-white bg-opacity-20 hover:bg-opacity-30 rounded-lg p-3 transition">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-history"></i>
+                    <span>مشاهده تاریخچه</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activities -->
+<div class="pro-card rounded-lg p-6 fade-in">
+    <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold">فعالیت‌های اخیر</h3>
+        <a href="{{ url_for('main.history') }}" class="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1">
+            مشاهده همه
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    </div>
     
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo & Title -->
-                <div class="flex items-center gap-4">
-                    <div class="icon-box bg-white bg-opacity-20">
-                        <i class="fas fa-brain text-2xl text-white"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-white">سیستم تحلیل هوشمند CRM</h1>
-                        <p class="text-blue-200 text-sm">تحلیل پیشرفته مکالمات فروش با هوش مصنوعی</p>
-                    </div>
-                </div>
-                
-                <!-- Navigation -->
-                <nav class="flex items-center gap-3">
-                    <a href="/" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
-                        <i class="fas fa-home"></i>
-                        <span>صفحه اصلی</span>
-                    </a>
-                    <a href="/users" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
-                        <i class="fas fa-users"></i>
-                        <span>تحلیل کارشناسان</span>
-                    </a>
-                    <a href="/history" class="btn-secondary px-5 py-2.5 rounded-lg font-medium flex items-center gap-2">
-                        <i class="fas fa-history"></i>
-                        <span>تاریخچه</span>
-                    </a>
-                <a href="/referral" class="nav-link px-4 py-2 rounded-lg transition flex items-center bg-green-500 hover:bg-green-600">
-                    <i class="fas fa-diagram-project ml-2"></i>
-                    ارجاعات
-                </a>
-                <a href="/referral-history" class="nav-link px-4 py-2 rounded-lg transition flex items-center bg-purple-600 hover:bg-purple-700">
-    <i class="fas fa-history ml-2"></i>
-    تاریخچه ارجاعات
-</a>
-                </nav>
-            </div>
-        </div>
-    </header>
+    <div class="overflow-x-auto">
+        <table class="data-table" id="recent-activities">
+            <thead>
+                <tr>
+                    <th>نوع فعالیت</th>
+                    <th>کاربر</th>
+                    <th>تاریخ</th>
+                    <th>نتیجه</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- توسط JavaScript پر می‌شود -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
 
-    <main class="max-w-7xl mx-auto px-6 py-8">
-        
-        <!-- Upload Section -->
-        <section id="upload-section" class="mb-8 fade-in">
-            <div class="pro-card rounded-xl p-8">
-                <div class="mb-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-2">آپلود فایل جدید</h2>
-                    <p class="text-gray-600 text-sm">فایل گزارش CRM خود را برای تحلیل بارگذاری کنید</p>
-                </div>
-                
-                <!-- Upload Area -->
-                <div id="upload-area" class="upload-area rounded-xl p-12 cursor-pointer text-center">
-                    <input type="file" id="file-input" class="hidden" accept=".txt,.rtf,.pdf,.docx,.xlsx,.xls">
-                    
-                    <div class="icon-box info mx-auto mb-4 w-16 h-16">
-                        <i class="fas fa-cloud-upload-alt text-3xl"></i>
-                    </div>
-                    
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">
-                        فایل را اینجا رها کنید یا کلیک کنید
-                    </h3>
-                    <p class="text-gray-500 text-sm mb-3">
-                        حداکثر حجم: 16 مگابایت
-                    </p>
-                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
-                        <span class="badge badge-info">TXT</span>
-                        <span class="badge badge-info">RTF</span>
-                        <span class="badge badge-info">PDF</span>
-                        <span class="badge badge-info">DOCX</span>
-                        <span class="badge badge-info">XLSX</span>
-                    </div>
-                </div>
-                
-                <!-- File Info -->
-                <div id="file-info" class="hidden mt-6 p-5 bg-blue-50 border border-blue-200 rounded-xl">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="icon-box info">
-                                <i class="fas fa-file-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <p class="font-semibold text-gray-800" id="file-name"></p>
-                                <p class="text-sm text-gray-500" id="file-size"></p>
-                            </div>
-                        </div>
-                        <button onclick="removeFile()" class="text-red-500 hover:text-red-700 transition">
-                            <i class="fas fa-times-circle text-xl"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Analyze Button -->
-                <button id="analyze-btn" class="hidden w-full mt-6 btn-primary px-6 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
-                    <i class="fas fa-magic"></i>
-                    <span>شروع تحلیل هوشمند</span>
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-            </div>
-            
-            <!-- Info Boxes -->
-            <div class="grid md:grid-cols-3 gap-4 mt-6">
-                <div class="info-box">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-shield-check text-blue-600 text-xl mt-0.5"></i>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-1">امنیت داده‌ها</h4>
-                            <p class="text-xs text-gray-600">تمامی اطلاعات شما محرمانه و امن است</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="info-box">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-bolt text-blue-600 text-xl mt-0.5"></i>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-1">تحلیل سریع</h4>
-                            <p class="text-xs text-gray-600">نتایج در کمتر از 30 ثانیه آماده می‌شود</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="info-box">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-chart-line text-blue-600 text-xl mt-0.5"></i>
-                        <div>
-                            <h4 class="font-semibold text-gray-800 mb-1">گزارش جامع</h4>
-                            <p class="text-xs text-gray-600">تحلیل دقیق با نمودارها و آمار کامل</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{% block scripts %}
+<!-- اینجا app.js رو لود نمی‌کنیم -->
+{% endblock %}
 
-        <!-- Loading Section -->
-        <section id="loading" class="hidden pro-card rounded-xl p-12 text-center fade-in">
-            <div class="loader mx-auto mb-6"></div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">در حال تحلیل اطلاعات...</h3>
-            <p class="text-gray-600 mb-8">لطفاً کمی صبر کنید، هوش مصنوعی در حال پردازش داده‌هاست</p>
-            
-            <!-- Progress Steps -->
-            <div class="max-w-2xl mx-auto">
-                <div class="grid grid-cols-3 gap-4 mb-4">
-                    <div class="text-center">
-                        <div class="icon-box success mx-auto mb-2">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <p class="text-xs font-medium text-gray-700">استخراج متن</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="icon-box info mx-auto mb-2">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                        <p class="text-xs font-medium text-gray-700">تحلیل AI</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="icon-box mx-auto mb-2">
-                            <i class="fas fa-hourglass-half"></i>
-                        </div>
-                        <p class="text-xs font-medium text-gray-700">آماده‌سازی گزارش</p>
-                    </div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 60%"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Results Section -->
-        <section id="results" class="hidden fade-in">
-            
-            <!-- Tabs Navigation -->
-            <div class="pro-card rounded-xl mb-6 overflow-hidden">
-                <div class="flex overflow-x-auto">
-                    <button onclick="showTab('overview')" class="tab-button active flex-shrink-0">
-                        <i class="fas fa-home ml-2"></i>
-                        خلاصه کلی
-                    </button>
-                    <button onclick="showTab('scores')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-star ml-2"></i>
-                        امتیازها
-                    </button>
-                    <button onclick="showTab('analysis')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-brain ml-2"></i>
-                        تحلیل عمیق
-                    </button>
-                    <button onclick="showTab('disc')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-users ml-2"></i>
-                        DISC
-                    </button>
-                    <button onclick="showTab('lists')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-list-check ml-2"></i>
-                        لیست‌ها
-                    </button>
-                    <button onclick="showTab('stats')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-chart-pie ml-2"></i>
-                        آمار
-                    </button>
-                    <button onclick="showTab('best')" class="tab-button flex-shrink-0">
-                        <i class="fas fa-trophy ml-2"></i>
-                        بهترین‌ها
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tab Content -->
-            <div id="tab-content" class="space-y-6">
-                <!-- محتوا توسط JavaScript رندر می‌شود -->
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 mt-12 py-6">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-gray-500 text-sm">
-                © 2025 سیستم تحلیل هوشمند CRM. تمامی حقوق محفوظ است.
-            </p>
-        </div>
-    </footer>
-
-    <script src="/static/app.js"></script>
-</body>
-</html>
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

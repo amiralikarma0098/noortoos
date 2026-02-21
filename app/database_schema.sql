@@ -11,6 +11,74 @@ DROP TABLE IF EXISTS top_customers;
 DROP TABLE IF EXISTS active_users;
 DROP TABLE IF EXISTS analyses;
 
+
+-- ========================================
+-- جداول احراز هویت و کاربران
+-- ========================================
+
+-- جدول کاربران
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    role ENUM('admin', 'manager', 'analyst', 'viewer') DEFAULT 'viewer',
+    department VARCHAR(100),
+    position VARCHAR(100),
+    phone VARCHAR(20),
+    avatar_url VARCHAR(255),
+    is_active BOOLEAN DEFAULT TRUE,
+    last_login TIMESTAMP NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_by INT,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- جدول نشست‌ها (برای مدیریت توکن‌ها)
+CREATE TABLE IF NOT EXISTS sessions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    session_token VARCHAR(255) UNIQUE NOT NULL,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- جدول لاگ فعالیت‌ها
+CREATE TABLE IF NOT EXISTS activity_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    action VARCHAR(50) NOT NULL,
+    entity_type VARCHAR(50),
+    entity_id INT,
+    details JSON,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- جدول تنظیمات کاربر
+CREATE TABLE IF NOT EXISTS user_settings (
+    user_id INT PRIMARY KEY,
+    theme ENUM('light', 'dark', 'system') DEFAULT 'system',
+    language VARCHAR(10) DEFAULT 'fa',
+    notifications JSON,
+    dashboard_config JSON,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- ایجاد کاربر ادمین پیش‌فرض (رمز: Admin@123)
+-- INSERT INTO users (username, email, password_hash, full_name, role) 
+-- VALUES ('admin', 'admin@noortoos.ir', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj2NqKQqVxWC', 'مدیر سیستم', 'admin');
+
+
+
 CREATE TABLE analyses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     

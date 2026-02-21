@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}ثبت‌نام - نور توس{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <div class="flex justify-center">
+                <div class="icon-box white !bg-primary w-20 h-20">
+                    <i class="fas fa-brain text-4xl text-white"></i>
+                </div>
+            </div>
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                ثبت‌نام در نور توس
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                یا 
+                <a href="{{ url_for('auth.login') }}" class="font-medium text-primary hover:text-primary-dark">
+                    وارد شوید
+                </a>
+            </p>
+        </div>
+        
+        <!-- Register Form -->
+        <div class="pro-card rounded-xl p-8">
+            <form class="space-y-4" id="registerForm">
+                <div>
+                    <label for="full_name" class="block text-sm font-medium text-gray-700 mb-2">
+                        نام و نام خانوادگی
+                    </label>
+                    <input id="full_name" name="full_name" type="text" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
+                           placeholder="علی محمدی">
+                </div>
+                
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                        نام کاربری <span class="text-red-500">*</span>
+                    </label>
+                    <input id="username" name="username" type="text" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
+                           placeholder="ali.mohammadi">
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        ایمیل <span class="text-red-500">*</span>
+                    </label>
+                    <input id="email" name="email" type="email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
+                           placeholder="ali@noortoos.ir">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                            رمز عبور <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <input id="password" name="password" type="password" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
+                                   placeholder="••••••••">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-2">
+                            تکرار رمز <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <input id="confirm_password" name="confirm_password" type="password" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition"
+                                   placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Password Strength -->
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="text-gray-600">قدرت رمز عبور:</span>
+                        <span id="passwordStrength" class="font-bold text-gray-500">ضعیف</span>
+                    </div>
+                    <div class="flex gap-1 h-1">
+                        <div id="strength1" class="flex-1 bg-gray-200 rounded"></div>
+                        <div id="strength2" class="flex-1 bg-gray-200 rounded"></div>
+                        <div id="strength3" class="flex-1 bg-gray-200 rounded"></div>
+                        <div id="strength4" class="flex-1 bg-gray-200 rounded"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                        رمز عبور باید حداقل ۸ کاراکتر شامل حروف و اعداد باشد
+                    </p>
+                </div>
+                
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required 
+                           class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                    <label for="terms" class="mr-2 block text-sm text-gray-900">
+                        <a href="#" class="text-primary hover:underline">قوانین و مقررات</a> را می‌پذیرم
+                    </label>
+                </div>
+                
+                <div>
+                    <button type="submit" id="registerButton"
+                            class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                        <i class="fas fa-user-plus"></i>
+                        <span>ثبت‌نام</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// بررسی قدرت رمز عبور
+document.getElementById('password').addEventListener('input', function() {
+    const password = this.value;
+    let strength = 0;
+    
+    if (password.length >= 8) strength++;
+    if (password.match(/[a-z]+/)) strength++;
+    if (password.match(/[A-Z]+/)) strength++;
+    if (password.match(/[0-9]+/)) strength++;
+    if (password.match(/[$@#&!]+/)) strength++;
+    
+    const strengthMap = ['ضعیف', 'متوسط', 'خوب', 'قوی', 'بسیار قوی'];
+    const colorMap = ['bg-gray-400', 'bg-yellow-500', 'bg-green-500', 'bg-green-600', 'bg-green-700'];
+    
+    document.getElementById('passwordStrength').textContent = strengthMap[strength - 1] || 'ضعیف';
+    
+    for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById(`strength${i}`);
+        if (i <= strength) {
+            el.className = `flex-1 ${colorMap[strength - 1]} rounded`;
+        } else {
+            el.className = 'flex-1 bg-gray-200 rounded';
+        }
+    }
+});
+
+// بررسی تطابق رمز عبور
+document.getElementById('confirm_password').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const confirm = this.value;
+    
+    if (confirm && password !== confirm) {
+        this.classList.add('border-red-500', 'focus:ring-red-500');
+    } else {
+        this.classList.remove('border-red-500', 'focus:ring-red-500');
+        this.classList.add('border-gray-300');
+    }
+});
+
+// ارسال فرم
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const button = document.getElementById('registerButton');
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>در حال ثبت‌نام...</span>';
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+        const response = await fetch('/auth/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('ثبت‌نام با موفقیت انجام شد. لطفاً وارد شوید.');
+            window.location.href = result.redirect;
+        } else {
+            alert(result.message);
+            button.disabled = false;
+            button.innerHTML = '<i class="fas fa-user-plus"></i><span>ثبت‌نام</span>';
+        }
+    } catch (error) {
+        alert('خطا در ارتباط با سرور');
+        button.disabled = false;
+        button.innerHTML = '<i class="fas fa-user-plus"></i><span>ثبت‌نام</span>';
+    }
+});
+</script>
+{% endblock %}

@@ -3,8 +3,8 @@
 // Version: 2.0 - Complete Edition
 // ========================================
 
-let selectedFile = null;
-let analysisData = null;
+// let selectedFile = null; // این خط رو کامنت کن
+//let analysisData = null;
 let currentTab = 'overview';
 let charts = {};
 
