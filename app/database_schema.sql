@@ -254,3 +254,82 @@ CREATE TABLE common_mistakes (
     FOREIGN KEY (analysis_id) REFERENCES analyses(id) ON DELETE CASCADE,
     INDEX idx_analysis_id (analysis_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+-- جدول اصلی ارجاعیات
+CREATE TABLE referral_analyses (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    file_name VARCHAR(255),
+    file_path VARCHAR(500),
+    file_size INT,
+    analyzed_at DATETIME,
+    
+    -- آمار کلی
+    total_referrals INT,
+    completed_count INT,
+    pending_count INT,
+    in_progress_count INT,
+    seen_count INT,
+    accepted_count INT,
+    
+    -- درصدها
+    completion_rate FLOAT,
+    pending_rate FLOAT,
+    
+    -- JSON کامل برای ذخیره تمام جزئیات
+    full_analysis JSON,
+    
+    created_at DATETIME DEFAULT NOW()
+);
+
+-- جدول جزئیات وضعیت‌ها
+CREATE TABLE referral_status_details (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    analysis_id INT,
+    status_name VARCHAR(50),
+    status_count INT,
+    FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
+);
+
+-- جدول موضوعات
+CREATE TABLE referral_subjects (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    analysis_id INT,
+    subject_name VARCHAR(255),
+    frequency INT,
+    avg_response_time FLOAT,
+    pending_count INT,
+    FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
+);
+
+-- جدول فرستنده‌ها و گیرنده‌ها
+CREATE TABLE referral_units (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    analysis_id INT,
+    unit_name VARCHAR(100),
+    role ENUM('sender', 'receiver'),
+    referral_count INT,
+    pending_count INT,
+    FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
+);
+
+-- جدول مشتریان
+CREATE TABLE referral_customers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    analysis_id INT,
+    customer_name VARCHAR(255),
+    subscription_code VARCHAR(50),
+    referral_count INT,
+    subjects TEXT,
+    FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
+);
+
+-- جدول بینش‌ها و توصیه‌ها
+CREATE TABLE referral_insights (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    analysis_id INT,
+    insight_type ENUM('pattern', 'factor', 'recommendation'),
+    insight_text TEXT,
+    frequency INT,
+    FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
+);
