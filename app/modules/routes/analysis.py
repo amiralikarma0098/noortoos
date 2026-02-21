@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, request, jsonify, send_file
 import os
+from modules.auth.decorators import login_required
 from datetime import datetime
 from modules.file_handler import FileHandler
 from modules.openai_client import OpenAIClient
@@ -13,6 +14,7 @@ file_handler = FileHandler(Config.UPLOAD_FOLDER)
 ai_client = OpenAIClient()
 
 @analysis_bp.route('/api/analyze', methods=['POST'])
+@login_required
 def analyze():
     """API برای تحلیل فایل CRM عمومی"""
     file_info = None
@@ -72,6 +74,7 @@ def analyze():
         }), 500
 
 @analysis_bp.route('/api/analysis/latest')
+@login_required
 def get_latest_analysis():
     """آخرین تحلیل انجام شده"""
     try:
@@ -110,6 +113,7 @@ def api_history():
     return jsonify(analyses)
 
 @analysis_bp.route('/api/analysis/<int:analysis_id>')
+@login_required
 def api_analysis_detail(analysis_id):
     """API دریافت جزئیات یک تحلیل"""
     analysis = AnalysisModel.get_by_id(analysis_id)
@@ -118,6 +122,7 @@ def api_analysis_detail(analysis_id):
     return jsonify({"error": "تحلیل یافت نشد"}), 404
 
 @analysis_bp.route('/api/analysis/<int:analysis_id>', methods=['DELETE'])
+@login_required
 def delete_analysis(analysis_id):
     """حذف یک تحلیل CRM به همراه فایل مرتبط"""
     conn = None
@@ -179,6 +184,7 @@ def delete_analysis(analysis_id):
         }), 500
 
 @analysis_bp.route('/api/file/<int:analysis_id>')
+@login_required
 def download_file(analysis_id):
     """دانلود فایل مربوط به یک تحلیل"""
     analysis = AnalysisModel.get_by_id(analysis_id)

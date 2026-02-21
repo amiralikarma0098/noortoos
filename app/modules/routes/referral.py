@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, request, jsonify, render_template, send_file
 import os
+from modules.auth.decorators import login_required
 from datetime import datetime
 from modules.file_handler import FileHandler
 from modules.openai_client import OpenAIClient
@@ -13,16 +14,19 @@ file_handler = FileHandler(Config.UPLOAD_FOLDER)
 ai_client = OpenAIClient()
 
 @referral_bp.route('/referral')
+@login_required
 def referral_page():
     """صفحه تحلیل ارجاعیات"""
     return render_template('referral.html')
 
 @referral_bp.route('/referral-history')
+@login_required
 def referral_history_page():
     """صفحه تاریخچه ارجاعیات"""
     return render_template('referral_history.html')
 
 @referral_bp.route('/api/analyze-referral', methods=['POST'])
+@login_required
 def analyze_referral():
     """API برای تحلیل فایل ارجاعیات"""
     file_info = None
@@ -83,6 +87,7 @@ def analyze_referral():
         }), 500
 
 @referral_bp.route('/api/referral-history')
+@login_required
 def get_referral_history():
     """دریافت تاریخچه تحلیل‌های ارجاعیات"""
     try:
@@ -93,6 +98,7 @@ def get_referral_history():
         return jsonify([])
 
 @referral_bp.route('/api/referral-analysis/<int:analysis_id>')
+@login_required
 def get_referral_analysis(analysis_id):
     """دریافت جزئیات یک تحلیل ارجاعیات"""
     try:
@@ -112,6 +118,7 @@ def get_referral_analysis(analysis_id):
         return jsonify({"error": str(e)}), 500
 
 @referral_bp.route('/api/referral-analysis/<int:analysis_id>', methods=['DELETE'])
+@login_required
 def delete_referral_analysis(analysis_id):
     """حذف یک تحلیل ارجاعیات به همراه فایل مرتبط"""
     conn = None
@@ -189,6 +196,7 @@ def get_latest_referral_analysis():
         return jsonify({"error": True, "message": str(e)}), 500
 
 @referral_bp.route('/api/referral-report/<int:analysis_id>')
+@login_required
 def download_referral_report(analysis_id):
     """دانلود گزارش Excel از تحلیل ارجاعیات"""
     try:

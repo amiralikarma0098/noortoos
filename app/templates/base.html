@@ -224,88 +224,6 @@
             font-size: 1.1rem;
         }
         
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            background: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: all 0.3s ease;
-            z-index: 100;
-            border: 1px solid var(--border);
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-        
-        .dropdown-item:hover {
-            background: rgba(30, 58, 95, 0.05);
-            color: var(--primary);
-        }
-        
-        .dropdown-item i {
-            width: 20px;
-            font-size: 1rem;
-        }
-        
-        /* User Menu */
-        .user-menu-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 2rem;
-            padding: 0.4rem 1rem;
-            color: white;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .user-menu-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .notification-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--danger);
-            color: white;
-            font-size: 0.6rem;
-            font-weight: 600;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-        
         /* Navigation Links */
         .nav-link {
             color: rgba(255, 255, 255, 0.9);
@@ -408,6 +326,84 @@
         .icon-box.white {
             background: rgba(255, 255, 255, 0.15);
             color: white;
+        }
+        
+        /* User Menu */
+        .user-menu-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 0.4rem 1rem;
+            color: white;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        
+        .user-menu-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            left: 0;
+            margin-top: 0.5rem;
+            width: 14rem;
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(0.5rem);
+            transition: all 0.2s ease;
+            z-index: 50;
+        }
+        
+        .user-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .user-dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .user-dropdown-item:hover {
+            background: rgba(30, 58, 95, 0.05);
+            color: var(--primary);
+        }
+        
+        .user-dropdown-item i {
+            width: 1.25rem;
+            font-size: 1rem;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--danger);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 600;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
         }
         
         /* Loading Animation */
@@ -708,27 +704,37 @@
                         <span class="notification-badge">۳</span>
                     </button>
                     
-                    <!-- User Menu -->
-                    <div class="relative group hidden sm:block">
-                        <button class="user-menu-button">
+                    <!-- User Menu - اصلاح شده با کلیک -->
+                    <div class="relative hidden sm:block" id="userMenuContainer">
+                        <button onclick="toggleUserMenu()" class="user-menu-button" id="userMenuButton">
                             <i class="fas fa-user-circle text-xl"></i>
                             <span class="hidden md:inline">{{ session.get('full_name', 'کاربر') }}</span>
-                            <i class="fas fa-chevron-down text-xs"></i>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-200" id="userMenuIcon"></i>
                         </button>
                         
-                        <div class="dropdown-menu left-auto right-0">
-                            <a href="{{ url_for('auth.profile') }}" class="dropdown-item">
-                                <i class="fas fa-user"></i>
+                        <div class="user-dropdown" id="userMenuDropdown">
+                            <!-- هدر dropdown -->
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <p class="text-sm font-semibold text-gray-800">{{ session.get('full_name', 'کاربر') }}</p>
+                                <p class="text-xs text-gray-500 mt-1">{{ session.get('email', 'user@noortoos.ir') }}</p>
+                            </div>
+                            
+                            <!-- لینک‌های منو -->
+                            <a href="{{ url_for('auth.profile') }}" class="user-dropdown-item">
+                                <i class="fas fa-user text-blue-600"></i>
                                 <span>پروفایل من</span>
                             </a>
-                            <a href="#" onclick="openChangePasswordModal(); return false;" class="dropdown-item">
-                                <i class="fas fa-lock"></i>
-                                <span>تغییر رمز</span>
+                            
+                            <a href="#" onclick="openChangePasswordModal(); return false;" class="user-dropdown-item">
+                                <i class="fas fa-lock text-orange-600"></i>
+                                <span>تغییر رمز عبور</span>
                             </a>
-                            <hr class="my-2 border-gray-200">
-                            <a href="{{ url_for('auth.logout') }}" class="dropdown-item text-red-600">
+                            
+                            <div class="border-t border-gray-100 my-1"></div>
+                            
+                            <a href="{{ url_for('auth.logout') }}" class="user-dropdown-item text-red-600">
                                 <i class="fas fa-sign-out-alt"></i>
-                                <span>خروج</span>
+                                <span>خروج از سیستم</span>
                             </a>
                         </div>
                     </div>
@@ -879,6 +885,32 @@
         window.addEventListener('resize', function() {
             if (window.innerWidth > 1024) {
                 closeMobileMenu();
+            }
+        });
+        
+        // توابع منوی کاربر
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userMenuDropdown');
+            const icon = document.getElementById('userMenuIcon');
+            
+            dropdown.classList.toggle('show');
+            
+            if (dropdown.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // بستن منو با کلیک بیرون
+        document.addEventListener('click', function(event) {
+            const container = document.getElementById('userMenuContainer');
+            const dropdown = document.getElementById('userMenuDropdown');
+            const icon = document.getElementById('userMenuIcon');
+            
+            if (container && !container.contains(event.target) && dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                icon.style.transform = 'rotate(0deg)';
             }
         });
         

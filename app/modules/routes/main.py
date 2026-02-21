@@ -2,14 +2,14 @@
 from flask import Blueprint, render_template, request, jsonify, current_app, session
 from modules.config import Config
 from modules.database import test_connection, get_db_connection
-from modules.auth.decorators import login_required, role_required  # اضافه کردن دکوریتورها
+from modules.auth.decorators import login_required, role_required
 import json
 from datetime import datetime, timedelta
 
 main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
-@login_required  # محافظت از صفحه اصلی
+@login_required
 def index():
     """صفحه اصلی"""
     return render_template('index.html')
@@ -34,7 +34,7 @@ def sales_analysis():
 
 @main_bp.route('/api/health')
 def health():
-    """بررسی سلامت API (عمومی)"""
+    """بررسی سلامت API (عمومی - بدون نیاز به لاگین)"""
     errors = Config.validate()
     db_status = test_connection()
     
