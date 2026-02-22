@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}اساتید فروش - نور توس{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">اساتید فروش</h1>
+    </div>
+
+    <!-- لیست اساتید با جاوااسکریپت پر می‌شود -->
+    <div id="masters-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- اینجا با جاوااسکریپت پر می‌شود -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/academy/api/master/list?department=sales')
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                const container = document.getElementById('masters-list');
+                container.innerHTML = data.masters.map(master => `
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-graduate text-3xl text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">${master.full_name}</h3>
+                                <p class="text-sm text-gray-600">${master.expertise}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm mb-4">${master.bio || 'توضیحات تکمیلی...'}</p>
+                        <button class="w-full bg-primary/5 text-primary py-2 rounded-lg hover:bg-primary/10 transition">
+                            مشاهده پروفایل
+                        </button>
+                    </div>
+                `).join('');
+            }
+        });
+});
+</script>
+{% endblock %}

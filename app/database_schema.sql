@@ -401,3 +401,220 @@ CREATE TABLE referral_insights (
     frequency INT,
     FOREIGN KEY (analysis_id) REFERENCES referral_analyses(id)
 );
+
+
+
+
+-- ====================================================
+-- جداول آموزشگاه (Academy)
+-- ====================================================
+
+-- 1. جدول اساتید (Academy Masters)
+CREATE TABLE IF NOT EXISTS `academy_masters` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `full_name` VARCHAR(100) NOT NULL,
+    `expertise` VARCHAR(200),
+    `department` ENUM('sales', 'services') NOT NULL,
+    `bio` TEXT,
+    `image_url` VARCHAR(500),
+    `email` VARCHAR(100),
+    `phone` VARCHAR(20),
+    `education` JSON,  -- برای ذخیره تحصیلات به صورت JSON
+    `experience` JSON, -- برای ذخیره سوابق به صورت JSON
+    `courses_count` INT DEFAULT 0,
+    `students_count` INT DEFAULT 0,
+    `rating` DECIMAL(2,1) DEFAULT 0,
+    `is_active` BOOLEAN DEFAULT TRUE,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX `idx_department` (`department`),
+    INDEX `idx_is_active` (`is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 2. جدول کارگاه‌های آموزشی (Academy Workshops)
+CREATE TABLE IF NOT EXISTS `academy_workshops` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `title` VARCHAR(200) NOT NULL,
+    `department` ENUM('sales', 'services') NOT NULL,
+    `master_id` INT,
+    `description` TEXT,
+    `start_date` DATETIME,
+    `end_date` DATETIME,
+    `capacity` INT DEFAULT 0,
+    `registered_count` INT DEFAULT 0,
+    `workshop_type` ENUM('online', 'practical', 'theoretical') DEFAULT 'online',
+    `status` ENUM('upcoming', 'ongoing', 'completed', 'cancelled') DEFAULT 'upcoming',
+    `price` VARCHAR(50),
+    `location` VARCHAR(200),
+    `syllabus` JSON,  -- سرفصل‌های دوره
+    `prerequisites` JSON,  -- پیش‌نیازها
+    `target_audience` JSON,  -- مخاطبان هدف
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`master_id`) REFERENCES `academy_masters`(`id`) ON DELETE SET NULL,
+    INDEX `idx_department` (`department`),
+    INDEX `idx_status` (`status`),
+    INDEX `idx_dates` (`start_date`, `end_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 3. جدول جلسات کارگاه (Workshop Sessions)
+CREATE TABLE IF NOT EXISTS `academy_sessions` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `workshop_id` INT NOT NULL,
+    `master_id` INT,
+    `title` VARCHAR(200),
+    `description` TEXT,
+    `date` DATETIME,
+    `duration` INT,  -- به دقیقه
+    `material_url` VARCHAR(500),
+    `video_url` VARCHAR(500),
+    `meeting_link` VARCHAR(500),
+    `status` ENUM('upcoming', 'completed', 'cancelled') DEFAULT 'upcoming',
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`workshop_id`) REFERENCES `academy_workshops`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`master_id`) REFERENCES `academy_masters`(`id`) ON DELETE SET NULL,
+    INDEX `idx_workshop` (`workshop_id`),
+    INDEX `idx_date` (`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 4. جدول ثبت‌نام در کارگاه‌ها (Workshop Registrations)
+CREATE TABLE IF NOT EXISTS `academy_registrations` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `workshop_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `registration_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `status` ENUM('registered', 'attended', 'completed', 'cancelled') DEFAULT 'registered',
+    `attendance_percentage` DECIMAL(5,2) DEFAULT 0,
+    `certificate_issued` BOOLEAN DEFAULT FALSE,
+    `certificate_url` VARCHAR(500),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`workshop_id`) REFERENCES `academy_workshops`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    UNIQUE KEY `unique_registration` (`workshop_id`, `user_id`),
+    INDEX `idx_user` (`user_id`),
+    INDEX `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 5. جدول سنجش و ارزیابی (Assessments)
+CREATE TABLE IF NOT EXISTS `academy_assessments` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `title` VARCHAR(200) NOT NULL,
+    `department` ENUM('sales', 'services') NOT NULL,
+    `master_id` INT,
+    `workshop_id` INT,
+    `assessment_type` ENUM('quiz', 'practical', 'survey', 'final') DEFAULT 'quiz',
+    `description` TEXT,
+    `questions` JSON,  -- ذخیره سوالات به صورت JSON
+    `max_score` INT DEFAULT 100,
+    `passing_score` INT DEFAULT 70,
+    `duration` INT,  -- به دقیقه
+    `start_date` DATETIME,
+    `end_date` DATETIME,
+    `status` ENUM('draft', 'active', 'completed', 'archived') DEFAULT 'draft',
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`master_id`) REFERENCES `academy_masters`(`id`) ON DELETE SET NULL,
+    FOREIGN KEY (`workshop_id`) REFERENCES `academy_workshops`(`id`) ON DELETE CASCADE,
+    INDEX `idx_department` (`department`),
+    INDEX `idx_status` (`status`),
+    INDEX `idx_dates` (`start_date`, `end_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 6. جدول نتایج سنجش (Assessment Results)
+CREATE TABLE IF NOT EXISTS `academy_assessment_results` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `assessment_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `score` DECIMAL(5,2),
+    `answers` JSON,  -- ذخیره پاسخ‌ها
+    `status` ENUM('passed', 'failed', 'pending') DEFAULT 'pending',
+    `started_at` TIMESTAMP NULL,
+    `completed_at` TIMESTAMP NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`assessment_id`) REFERENCES `academy_assessments`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    UNIQUE KEY `unique_assessment_user` (`assessment_id`, `user_id`),
+    INDEX `idx_user` (`user_id`),
+    INDEX `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 7. جدول پرسش و پاسخ (Q&A)
+CREATE TABLE IF NOT EXISTS `academy_qa` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `workshop_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `master_id` INT,
+    `question` TEXT NOT NULL,
+    `answer` TEXT,
+    `is_answered` BOOLEAN DEFAULT FALSE,
+    `answered_at` TIMESTAMP NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`workshop_id`) REFERENCES `academy_workshops`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`master_id`) REFERENCES `academy_masters`(`id`) ON DELETE SET NULL,
+    INDEX `idx_workshop` (`workshop_id`),
+    INDEX `idx_is_answered` (`is_answered`),
+    INDEX `idx_created` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 8. جدول مکالمات چت (Chat Sessions)
+CREATE TABLE IF NOT EXISTS `chat_sessions` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `user_id` INT NOT NULL,
+    `title` VARCHAR(200),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    INDEX `idx_user` (`user_id`),
+    INDEX `idx_updated` (`updated_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 9. جدول پیام‌های چت (Chat Messages)
+CREATE TABLE IF NOT EXISTS `chat_messages` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `session_id` INT NOT NULL,
+    `role` ENUM('user', 'assistant', 'system') NOT NULL,
+    `content` TEXT NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (`session_id`) REFERENCES `chat_sessions`(`id`) ON DELETE CASCADE,
+    INDEX `idx_session` (`session_id`),
+    INDEX `idx_created` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- 10. جدول تقویم آموزشی (Schedule)
+CREATE TABLE IF NOT EXISTS `academy_schedule` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `department` ENUM('sales', 'services') NOT NULL,
+    `title` VARCHAR(200) NOT NULL,
+    `description` TEXT,
+    `event_date` DATETIME NOT NULL,
+    `event_type` ENUM('workshop', 'assessment', 'session', 'holiday', 'other') DEFAULT 'workshop',
+    `related_id` INT,  -- ID مربوط به رویداد (مثلاً workshop_id)
+    `color` VARCHAR(20),
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX `idx_department` (`department`),
+    INDEX `idx_date` (`event_date`),
+    INDEX `idx_type` (`event_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_persian_ci;
+
+-- ====================================================
+-- درج داده‌های نمونه (Optional)
+-- ====================================================
+
+-- اساتید نمونه
+INSERT INTO `academy_masters` (`full_name`, `expertise`, `department`, `bio`, `courses_count`, `students_count`, `rating`) VALUES
+('دکتر علی محمدی', 'فروش و بازاریابی پیشرفته', 'sales', 'دکترای مدیریت بازاریابی با ۱۵ سال سابقه تدریس در سازمان‌های بزرگ', 12, 450, 4.8),
+('مهندس سارا احمدی', 'مذاکرات فروش حرفه‌ای', 'sales', 'مشاور فروش شرکت‌های بزرگ با سابقه بیش از ۱۰۰۰ ساعت کارگاه آموزشی', 8, 320, 4.9),
+('دکتر رضا حسینی', 'مدیریت ارتباط با مشتری', 'services', 'دکترای مدیریت خدمات با سابقه اجرایی در شرکت‌های بین‌المللی', 10, 380, 4.7),
+('مهندس مریم کریمی', 'خدمات پس از فروش', 'services', 'کارشناس ارشد مدیریت خدمات با ۱۲ سال سابقه در صنعت خودرو', 6, 210, 4.6);
+
+-- کارگاه‌های نمونه
+INSERT INTO `academy_workshops` (`title`, `department`, `master_id`, `description`, `start_date`, `end_date`, `capacity`, `workshop_type`, `status`, `price`, `location`) VALUES
+('کارگاه فروش حرفه‌ای', 'sales', 1, 'آموزش تکنیک‌های پیشرفته فروش و مذاکره', '2025-03-15 10:00:00', '2025-03-17 18:00:00', 30, 'online', 'upcoming', 'رایگان', 'آنلاین - اسکای روم'),
+('مدیریت ارتباط با مشتری', 'services', 3, 'اصول و تکنیک‌های مدیریت ارتباط با مشتری', '2025-03-20 09:00:00', '2025-03-22 17:00:00', 25, 'practical', 'upcoming', '450,000 تومان', 'مشهد - بلوار وکیل‌آباد'),
+('مذاکرات فروش پیشرفته', 'sales', 2, 'تکنیک‌های مذاکره در فروش B2B', '2025-02-10 10:00:00', '2025-02-12 18:00:00', 20, 'online', 'completed', 'رایگان', 'آنلاین - اسکای روم');

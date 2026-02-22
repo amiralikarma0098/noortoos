@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}محاسبه‌گر هوشمند نور توس{% endblock %}
+
+{% block extra_css %}
+<style>
+    #root {
+        min-height: 600px;
+        width: 100%;
+    }
+    /* ریست کردن استایل‌های تداخلی */
+    .wizard-container * {
+        box-sizing: border-box;
+    }
+</style>
+<!-- لود از مسیر صحیح assets -->
+<link rel="stylesheet" href="/static/calculator/dist/assets/index-e06c80c3.css">
+{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100 wizard-container">
+        <div id="root"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/calculator/dist/assets/index-e12ec1a5.js"></script>
+{% endblock %}

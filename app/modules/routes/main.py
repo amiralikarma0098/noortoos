@@ -318,6 +318,20 @@ def get_latest_analysis():
         traceback.print_exc()
         return jsonify(None)
 
+
+@main_bp.route('/calculator')
+@login_required
+def calculator():
+    """نمایش محاسبه‌گر ری اکت"""
+    return render_template('calculator.html')
+
+@main_bp.route('/price-list')
+@login_required
+def price_list():
+    """صفحه لیست قیمت محصولات"""
+    return render_template('price_list.html')
+
+
 @main_bp.route('/api/recent-activities')
 @login_required
 def get_recent_activities():

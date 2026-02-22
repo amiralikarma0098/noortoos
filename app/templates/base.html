@@ -70,9 +70,9 @@
             z-index: 1000;
             border-top: 3px solid var(--primary);
             border-radius: 0 0 1rem 1rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            width: 90%;
+            width: 95%;
         }
         
         .mega-menu:hover .mega-menu-content {
@@ -133,6 +133,37 @@
             background: var(--primary-light);
             color: white;
             margin-right: 0.5rem;
+        }
+        
+        /* زیرمنوهای داخلی برای آموزشگاه */
+        .submenu-items {
+            margin-right: 1.8rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+            border-right: 2px dashed var(--border);
+        }
+        
+        .submenu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            border-radius: 0.4rem;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+        
+        .submenu-item:hover {
+            background: rgba(30, 58, 95, 0.03);
+            color: var(--primary);
+        }
+        
+        .submenu-item i {
+            width: 16px;
+            font-size: 0.8rem;
+            color: var(--primary-light);
         }
         
         /* Mobile Menu Styles */
@@ -222,6 +253,33 @@
             width: 24px;
             color: var(--primary);
             font-size: 1.1rem;
+        }
+        
+        .mobile-submenu {
+            margin-right: 3rem;
+            border-right: 2px dashed var(--border);
+        }
+        
+        .mobile-submenu-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .mobile-submenu-link:hover {
+            background: rgba(30, 58, 95, 0.03);
+            color: var(--primary);
+        }
+        
+        .mobile-submenu-link i {
+            width: 18px;
+            font-size: 0.8rem;
+            color: var(--primary-light);
         }
         
         /* Navigation Links */
@@ -530,12 +588,154 @@
         </div>
         
         <nav class="p-4">
+            <!-- داشبورد -->
             <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">داشبورد</div>
             <a href="{{ url_for('main.index') }}" class="mobile-nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">
                 <i class="fas fa-home"></i>
                 <span>داشبورد اصلی</span>
             </a>
             
+            <!-- آموزشگاه -->
+            <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mt-4">آموزشگاه</div>
+            
+            <!-- آموزشکاه فروش -->
+            <div class="mb-2">
+                <div class="mobile-nav-link">
+                    <i class="fas fa-store"></i>
+                    <span>آموزشکاه فروش</span>
+                </div>
+                <div class="mobile-submenu">
+                    <!-- استاد با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>استاد</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.sales_qa') }}" class="mobile-submenu-link">
+                                <i class="fas fa-comments"></i>
+                                <span>پرسش و پاسخ</span>
+                            </a>
+                            <a href="{{ url_for('academy.sales_master') }}?tab=schedule" class="mobile-submenu-link">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>برنامه آموزشی</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- سنجش با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>سنجش</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.sales_assessment') }}?tab=evaluations" class="mobile-submenu-link">
+                                <i class="fas fa-poll"></i>
+                                <span>ارزیابی‌ها</span>
+                            </a>
+                            <a href="{{ url_for('academy.sales_assessment') }}?tab=results" class="mobile-submenu-link">
+                                <i class="fas fa-star"></i>
+                                <span>نتایج سنجش</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- کارگاه آموزشی با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-tools"></i>
+                            <span>کارگاه آموزشی</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.sales_workshop') }}?tab=list" class="mobile-submenu-link">
+                                <i class="fas fa-list"></i>
+                                <span>لیست کارگاه‌ها</span>
+                            </a>
+                            <a href="{{ url_for('academy.sales_workshop') }}?tab=calendar" class="mobile-submenu-link">
+                                <i class="fas fa-clock"></i>
+                                <span>تقویم آموزشی</span>
+                            </a>
+                            <a href="{{ url_for('academy.sales_workshop') }}?tab=online" class="mobile-submenu-link">
+                                <i class="fas fa-video"></i>
+                                <span>کارگاه‌های آنلاین</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- آموزشکاه خدمات -->
+            <div class="mb-4">
+                <div class="mobile-nav-link">
+                    <i class="fas fa-headset"></i>
+                    <span>آموزشکاه خدمات</span>
+                </div>
+                <div class="mobile-submenu">
+                    <!-- استاد با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>استاد</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.services_master') }}?tab=qa" class="mobile-submenu-link">
+                                <i class="fas fa-users-cog"></i>
+                                <span>پرسش و پاسخ</span>
+                            </a>
+                            <a href="{{ url_for('academy.services_master') }}?tab=schedule" class="mobile-submenu-link">
+                                <i class="fas fa-user-clock"></i>
+                                <span>برنامه آموزشی</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- سنجش با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>سنجش</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.services_assessment') }}?tab=skills" class="mobile-submenu-link">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>سنجش مهارت</span>
+                            </a>
+                            <a href="{{ url_for('academy.services_assessment') }}?tab=certificates" class="mobile-submenu-link">
+                                <i class="fas fa-medal"></i>
+                                <span>گواهینامه‌ها</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- کارگاه آموزشی با زیرمنوها -->
+                    <div class="mb-1">
+                        <div class="mobile-submenu-link font-bold text-primary">
+                            <i class="fas fa-tools"></i>
+                            <span>کارگاه آموزشی</span>
+                        </div>
+                        <div class="mr-4 pr-2 border-r border-gray-200">
+                            <a href="{{ url_for('academy.services_workshop') }}?tab=practical" class="mobile-submenu-link">
+                                <i class="fas fa-wrench"></i>
+                                <span>کارگاه‌های عملی</span>
+                            </a>
+                            <a href="{{ url_for('academy.services_workshop') }}?tab=specialized" class="mobile-submenu-link">
+                                <i class="fas fa-certificate"></i>
+                                <span>دوره‌های تخصصی</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- محاسبه‌گر -->
+            <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mt-2">ابزارها</div>
+            <a href="{{ url_for('main.calculator') }}" class="mobile-nav-link">
+                <i class="fas fa-calculator text-green-600"></i>
+                <span>محاسبه‌گر هوشمند</span>
+            </a>
+            
+            <!-- تحلیل‌ها -->
             <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider mt-4">تحلیل‌ها</div>
             <a href="{{ url_for('main.sales_analysis') }}" class="mobile-nav-link {% if request.endpoint == 'main.sales_analysis' %}active{% endif %}">
                 <i class="fas fa-chart-line"></i>
@@ -560,6 +760,7 @@
             
             <div class="my-4 border-t border-gray-200"></div>
             
+            <!-- حساب کاربری -->
             <div class="mb-2 px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">حساب کاربری</div>
             <a href="{{ url_for('auth.profile') }}" class="mobile-nav-link">
                 <i class="fas fa-user"></i>
@@ -608,6 +809,161 @@
                         <i class="fas fa-home"></i>
                         <span class="hidden lg:inline">داشبورد</span>
                     </a>
+                    
+                    <!-- محاسبه‌گر -->
+                    <a href="{{ url_for('main.calculator') }}" class="nav-link flex items-center gap-1">
+                        <i class="fas fa-calculator text-green-300"></i>
+                        <span class="hidden lg:inline">محاسبه‌گر</span>
+                        
+                    </a>
+                    
+                    <!-- مگا منوی آموزشگاه -->
+                    <div class="mega-menu">
+                        <button class="nav-link flex items-center gap-1">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span class="hidden lg:inline">آموزشگاه</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        
+                        <div class="mega-menu-content">
+                            <div class="grid grid-cols-2 gap-0">
+                                <!-- بخش آموزشکاه فروش -->
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-store text-primary"></i>
+                                        آموزشکاه فروش
+                                    </div>
+                                    <div class="mega-menu-item" style="cursor: default; background: none;">
+                                        <i class="fas fa-chalkboard-teacher text-purple-600"></i>
+                                        <span class="font-bold">استاد</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.sales_qa') }}" class="submenu-item">
+                                            <i class="fas fa-comments"></i>
+                                            <span>پرسش و پاسخ</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.sales_master') }}?tab=schedule" class="submenu-item">
+                                            <i class="fas fa-calendar-check"></i>
+                                            <span>برنامه آموزشی</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mega-menu-item" style="cursor: default; background: none; margin-top: 0.5rem;">
+                                        <i class="fas fa-clipboard-check text-green-600"></i>
+                                        <span class="font-bold">سنجش</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.sales_assessment') }}?tab=evaluations" class="submenu-item">
+                                            <i class="fas fa-poll"></i>
+                                            <span>ارزیابی‌ها</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.sales_assessment') }}?tab=results" class="submenu-item">
+                                            <i class="fas fa-star"></i>
+                                            <span>نتایج سنجش</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mega-menu-item" style="cursor: default; background: none; margin-top: 0.5rem;">
+                                        <i class="fas fa-tools text-amber-600"></i>
+                                        <span class="font-bold">کارگاه آموزشی</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.sales_workshop') }}?tab=list" class="submenu-item">
+                                            <i class="fas fa-list"></i>
+                                            <span>لیست کارگاه‌ها</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.sales_workshop') }}?tab=calendar" class="submenu-item">
+                                            <i class="fas fa-clock"></i>
+                                            <span>تقویم آموزشی</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.sales_workshop') }}?tab=online" class="submenu-item">
+                                            <i class="fas fa-video"></i>
+                                            <span>کارگاه‌های آنلاین</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mt-4 pt-2 border-t border-gray-100">
+                                        <a href="{{ url_for('main.calculator') }}" class="flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition">
+                                            <i class="fas fa-calculator"></i>
+                                            <span>محاسبه‌گر هوشمند</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <!-- بخش آموزشکاه خدمات -->
+                                <div class="mega-menu-section">
+                                    <div class="mega-menu-title">
+                                        <i class="fas fa-headset text-primary"></i>
+                                        آموزشکاه خدمات
+                                    </div>
+                                    <div class="mega-menu-item" style="cursor: default; background: none;">
+                                        <i class="fas fa-chalkboard-teacher text-purple-600"></i>
+                                        <span class="font-bold">استاد</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.services_master') }}?tab=qa" class="submenu-item">
+                                            <i class="fas fa-users-cog"></i>
+                                            <span>پرسش و پاسخ</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.services_master') }}?tab=schedule" class="submenu-item">
+                                            <i class="fas fa-user-clock"></i>
+                                            <span>برنامه آموزشی</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mega-menu-item" style="cursor: default; background: none; margin-top: 0.5rem;">
+                                        <i class="fas fa-clipboard-check text-green-600"></i>
+                                        <span class="font-bold">سنجش</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.services_assessment') }}?tab=skills" class="submenu-item">
+                                            <i class="fas fa-chart-bar"></i>
+                                            <span>سنجش مهارت</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.services_assessment') }}?tab=certificates" class="submenu-item">
+                                            <i class="fas fa-medal"></i>
+                                            <span>گواهینامه‌ها</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mega-menu-item" style="cursor: default; background: none; margin-top: 0.5rem;">
+                                        <i class="fas fa-tools text-amber-600"></i>
+                                        <span class="font-bold">کارگاه آموزشی</span>
+                                    </div>
+                                    <div class="submenu-items">
+                                        <a href="{{ url_for('academy.services_workshop') }}?tab=practical" class="submenu-item">
+                                            <i class="fas fa-wrench"></i>
+                                            <span>کارگاه‌های عملی</span>
+                                        </a>
+                                        <a href="{{ url_for('academy.services_workshop') }}?tab=specialized" class="submenu-item">
+                                            <i class="fas fa-certificate"></i>
+                                            <span>دوره‌های تخصصی</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="mt-4 pt-2 border-t border-gray-100">
+                                        <a href="{{ url_for('main.calculator') }}" class="flex items-center gap-2 text-sm text-primary hover:text-primary-dark transition">
+                                            <i class="fas fa-calculator"></i>
+                                            <span>محاسبه‌گر هوشمند</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- فوتر مگا منو آموزشگاه -->
+                            <div class="bg-gray-50 px-6 py-3 rounded-b-lg border-t border-gray-200 flex justify-between items-center">
+                                <div class="text-xs text-gray-600">
+                                    <i class="fas fa-calendar-alt ml-1"></i>
+                                    ترم جدید: ۱۵ فروردین ۱۴۰۴
+                                </div>
+                                <a href="{{ url_for('main.calculator') }}" class="text-xs text-primary hover:underline flex items-center gap-1">
+                                    <i class="fas fa-calculator"></i>
+                                    محاسبه‌گر هوشمند
+                                    <i class="fas fa-arrow-left mr-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- مگا منوی تحلیل‌ها -->
                     <div class="mega-menu">
@@ -699,12 +1055,7 @@
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                     
-                    <button class="nav-link !p-2 relative hidden sm:block">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">۳</span>
-                    </button>
-                    
-                    <!-- User Menu - اصلاح شده با کلیک -->
+                    <!-- User Menu -->
                     <div class="relative hidden sm:block" id="userMenuContainer">
                         <button onclick="toggleUserMenu()" class="user-menu-button" id="userMenuButton">
                             <i class="fas fa-user-circle text-xl"></i>
@@ -783,9 +1134,9 @@
                     <h3 class="font-bold text-gray-800 mb-4">دسترسی سریع</h3>
                     <ul class="space-y-2">
                         <li><a href="{{ url_for('main.index') }}" class="text-gray-600 hover:text-primary transition text-sm">داشبورد اصلی</a></li>
+                        <li><a href="{{ url_for('main.calculator') }}" class="text-gray-600 hover:text-primary transition text-sm">محاسبه‌گر هوشمند</a></li>
                         <li><a href="{{ url_for('main.sales_analysis') }}" class="text-gray-600 hover:text-primary transition text-sm">تحلیل فروش</a></li>
                         <li><a href="{{ url_for('main.users_page') }}" class="text-gray-600 hover:text-primary transition text-sm">تحلیل کارشناسان</a></li>
-                        <li><a href="{{ url_for('referral.referral_page') }}" class="text-gray-600 hover:text-primary transition text-sm">مدیریت ارجاعات</a></li>
                     </ul>
                 </div>
                 

@@ -1,0 +1,412 @@
+{% extends "base.html" %}
+
+{% block title %}لیست قیمت محصولات - نور توس{% endblock %}
+
+{% block extra_css %}
+<style>
+    .product-table-container {
+        max-height: 600px;
+        overflow-y: auto;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .product-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+    }
+    
+    .product-table thead {
+        position: sticky;
+        top: 0;
+        background: #f8fafc;
+        z-index: 10;
+    }
+    
+    .product-table th {
+        padding: 1rem;
+        text-align: right;
+        font-weight: 600;
+        color: #1f2937;
+        border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .product-table td {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .product-table tbody tr:hover {
+        background: #f1f5f9;
+    }
+    
+    .price-input {
+        width: 120px;
+        padding: 0.4rem 0.75rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        text-align: left;
+        direction: ltr;
+    }
+    
+    .price-input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    .stock-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: inline-block;
+    }
+    
+    .stock-high {
+        background: #d1fae5;
+        color: #065f46;
+    }
+    
+    .stock-medium {
+        background: #fef3c7;
+        color: #92400e;
+    }
+    
+    .stock-low {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+    
+    .filter-badge {
+        background: #f3f4f6;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .filter-badge:hover {
+        background: #e5e7eb;
+    }
+    
+    .filter-badge.active {
+        background: #2563eb;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- هدر صفحه -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+                <i class="fas fa-tags text-primary"></i>
+                لیست قیمت محصولات
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">
+                برای تغییر قیمت، روی عدد کلیک کنید و Enter بزنید
+            </p>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <button onclick="saveAllChanges()" id="saveAllBtn" class="bg-primary text-white px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <i class="fas fa-save ml-2"></i>
+                ذخیره همه تغییرات
+            </button>
+        </div>
+    </div>
+    
+    <!-- فیلترها -->
+    <div class="bg-white rounded-xl shadow-sm p-4 border border-gray-100 mb-6">
+        <div class="flex flex-wrap items-center gap-4">
+            <div class="flex items-center gap-2">
+                <span class="text-sm text-gray-500">نوع محصول:</span>
+                <div class="flex gap-1">
+                    <span class="filter-badge active" onclick="filterType('all')" id="filter-all">همه</span>
+                    <span class="filter-badge" onclick="filterType('UPS')" id="filter-ups">UPS</span>
+                    <span class="filter-badge" onclick="filterType('STABILIZER')" id="filter-stabilizer">استابلایزر</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 mr-auto">
+                <span class="text-sm text-gray-500">جستجو:</span>
+                <input type="text" 
+                       id="searchInput" 
+                       placeholder="نام محصول یا مدل..." 
+                       class="border rounded-lg px-3 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary focus:border-primary">
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-4 mt-4">
+            <span class="text-sm text-gray-500">برند:</span>
+            <div class="flex flex-wrap gap-1" id="brand-filters">
+                <!-- برندها با JS پر میشن -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- جدول محصولات -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="product-table-container">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>نام محصول</th>
+                        <th>مدل</th>
+                        <th>نوع</th>
+                        <th>توان (VA)</th>
+                        <th>قیمت (ریال)</th>
+                        <th>موجودی</th>
+                        <th>گارانتی</th>
+                    </tr>
+                </thead>
+                <tbody id="products-table-body">
+                    <tr>
+                        <td colspan="8" class="text-center py-8 text-gray-500">
+                            <i class="fas fa-spinner fa-spin text-3xl mb-3"></i>
+                            <p>در حال بارگذاری محصولات...</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- پایین صفحه - آمار -->
+    <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4" id="stats-container">
+        <!-- آمار با JS پر میشه -->
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- لود مستقیم فایل product.js -->
+<script src="{{ url_for('static', filename='product.js') }}"></script>
+
+<script>
+let allProducts = [];
+let filteredProducts = [];
+let changedPrices = {};
+let currentFilter = 'all';
+let currentBrand = 'all';
+let searchTerm = '';
+
+// لود محصولات
+function loadProducts() {
+    if (typeof NOORTOOS_PRODUCTS !== 'undefined') {
+        allProducts = NOORTOOS_PRODUCTS;
+        console.log('✅', allProducts.length, 'محصول بارگذاری شد');
+        filterProducts();
+        renderBrandFilters();
+        renderStats();
+    } else {
+        console.error('❌ NOORTOOS_PRODUCTS یافت نشد');
+        document.getElementById('products-table-body').innerHTML = `
+            <tr>
+                <td colspan="8" class="text-center py-8 text-red-600">
+                    <i class="fas fa-exclamation-triangle text-3xl mb-3"></i>
+                    <p>خطا در بارگذاری محصولات</p>
+                </td>
+            </tr>
+        `;
+    }
+}
+
+// رندر فیلتر برندها
+function renderBrandFilters() {
+    const brands = [...new Set(allProducts.map(p => p.brand).filter(Boolean))].sort();
+    const container = document.getElementById('brand-filters');
+    
+    container.innerHTML = `
+        <span class="filter-badge active" onclick="filterBrand('all')" id="brand-all">همه</span>
+        ${brands.map(brand => `
+            <span class="filter-badge" onclick="filterBrand('${brand}')" id="brand-${brand}">${brand}</span>
+        `).join('')}
+    `;
+}
+
+// فیلتر بر اساس نوع
+function filterType(type) {
+    currentFilter = type;
+    document.querySelectorAll('[id^="filter-"]').forEach(el => {
+        el.classList.remove('active');
+    });
+    document.getElementById(`filter-${type}`).classList.add('active');
+    filterProducts();
+}
+
+// فیلتر بر اساس برند
+function filterBrand(brand) {
+    currentBrand = brand;
+    document.querySelectorAll('[id^="brand-"]').forEach(el => {
+        el.classList.remove('active');
+    });
+    document.getElementById(`brand-${brand}`).classList.add('active');
+    filterProducts();
+}
+
+// جستجو
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    searchTerm = e.target.value.toLowerCase();
+    filterProducts();
+});
+
+// اعمال فیلترها
+function filterProducts() {
+    filteredProducts = allProducts.filter(p => {
+        // فیلتر نوع
+        if (currentFilter !== 'all' && p.type !== currentFilter) return false;
+        
+        // فیلتر برند
+        if (currentBrand !== 'all' && p.brand !== currentBrand) return false;
+        
+        // جستجو
+        if (searchTerm) {
+            const searchText = `${p.name || ''} ${p.model || ''} ${p.brand || ''}`.toLowerCase();
+            if (!searchText.includes(searchTerm)) return false;
+        }
+        
+        return true;
+    });
+    
+    renderTable();
+}
+
+// رندر جدول
+function renderTable() {
+    const tbody = document.getElementById('products-table-body');
+    
+    if (filteredProducts.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8" class="text-center py-8 text-gray-500">
+                    <i class="fas fa-search text-3xl mb-3"></i>
+                    <p>محصولی یافت نشد</p>
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    tbody.innerHTML = filteredProducts.map((product, index) => {
+        const price = changedPrices[product.id] !== undefined ? changedPrices[product.id] : (product.price || 0);
+        const stock = product.stock || 0;
+        
+        let stockClass = 'stock-high';
+        let stockText = 'موجود';
+        if (stock === 0) {
+            stockClass = 'stock-low';
+            stockText = 'ناموجود';
+        } else if (stock < 5) {
+            stockClass = 'stock-medium';
+            stockText = 'محدود';
+        }
+        
+        return `
+            <tr>
+                <td>${index + 1}</td>
+                <td class="font-medium">${product.name || 'نامشخص'}</td>
+                <td class="text-gray-600">${product.model || '-'}</td>
+                <td>
+                    <span class="px-2 py-1 text-xs rounded-full ${
+                        product.type === 'UPS' ? 'bg-blue-100 text-blue-700' :
+                        'bg-amber-100 text-amber-700'
+                    }">
+                        ${product.type === 'UPS' ? 'UPS' : 'استابلایزر'}
+                    </span>
+                </td>
+                <td class="text-gray-600">${product.powerVA ? product.powerVA.toLocaleString('fa-IR') : '-'}</td>
+                <td>
+                    <input type="text" 
+                           class="price-input" 
+                           value="${price.toLocaleString('fa-IR')}" 
+                           data-id="${product.id}"
+                           data-original="${product.price || 0}"
+                           onchange="handlePriceChange(this, '${product.id}')">
+                </td>
+                <td>
+                    <span class="stock-badge ${stockClass}">${stockText}</span>
+                </td>
+                <td class="text-gray-600">${product.warranty || 18} ماه</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// مدیریت تغییر قیمت
+function handlePriceChange(input, productId) {
+    const newValue = input.value.replace(/[^0-9]/g, '');
+    const originalValue = input.getAttribute('data-original');
+    
+    if (newValue && newValue !== originalValue) {
+        changedPrices[productId] = parseInt(newValue);
+    } else {
+        delete changedPrices[productId];
+        input.value = parseInt(originalValue).toLocaleString('fa-IR');
+    }
+    
+    document.getElementById('saveAllBtn').disabled = Object.keys(changedPrices).length === 0;
+}
+
+// ذخیره همه تغییرات
+function saveAllChanges() {
+    if (Object.keys(changedPrices).length === 0) return;
+    
+    const btn = document.getElementById('saveAllBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i>در حال ذخیره...';
+    
+    setTimeout(() => {
+        // آپدیت محصولات
+        Object.keys(changedPrices).forEach(id => {
+            const product = allProducts.find(p => p.id === id);
+            if (product) product.price = changedPrices[id];
+        });
+        
+        changedPrices = {};
+        filterProducts();
+        
+        alert('✅ قیمت‌ها با موفقیت به‌روزرسانی شدند');
+        
+        btn.innerHTML = '<i class="fas fa-save ml-2"></i>ذخیره همه تغییرات';
+        btn.disabled = true;
+    }, 1000);
+}
+
+// آمار
+function renderStats() {
+    const total = allProducts.length;
+    const ups = allProducts.filter(p => p.type === 'UPS').length;
+    const stabilizers = allProducts.filter(p => p.type === 'STABILIZER').length;
+    const inStock = allProducts.filter(p => (p.stock || 0) > 0).length;
+    
+    document.getElementById('stats-container').innerHTML = `
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <span class="text-sm text-gray-500">کل محصولات</span>
+            <div class="text-2xl font-bold text-primary">${total.toLocaleString('fa-IR')}</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <span class="text-sm text-gray-500">UPS</span>
+            <div class="text-2xl font-bold text-blue-600">${ups.toLocaleString('fa-IR')}</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <span class="text-sm text-gray-500">استابلایزر</span>
+            <div class="text-2xl font-bold text-amber-600">${stabilizers.toLocaleString('fa-IR')}</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 border border-gray-100">
+            <span class="text-sm text-gray-500">محصولات موجود</span>
+            <div class="text-2xl font-bold text-green-600">${inStock.toLocaleString('fa-IR')}</div>
+        </div>
+    `;
+}
+
+// شروع
+document.addEventListener('DOMContentLoaded', loadProducts);
+</script>
+{% endblock %}

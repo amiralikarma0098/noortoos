@@ -1,0 +1,7924 @@
+import { Product } from '../types';
+
+export const NOORTOOS_PRODUCTS: Product[] = [
+  // ========== MEGAMODE UPS ==========
+
+  // این استابلایزرها رو به آرایه NOORTOOS_PRODUCTS اضافه کن
+  // ========== FARATEL STABILIZERS ==========
+  {
+    id: 'frl-stb-2000m',
+    type: 'STABILIZER',
+    brand: 'FARATEL',
+    name: 'استابلایزر فاراتل مدل STB2000M',
+    model: 'STB2000M',
+    powerVA: 2000,
+    technology: 'RELAY',
+    phase: '1/1',
+    formFactor: 'TOWER',
+    price: 0, // قیمت: تماس بگیرید
+    warranty: 12,
+    country: 'IRAN',
+    stock: 5,
+    official: true,
+    image: '/images/products/faratel-stb-2000m.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      'مناسب مصارف خانگی و اداری',
+      'دارای دو مرحله تقویت و یک مرحله تضعیف',
+      'محدوده ورودی ۱۶۰~۲۷۵ ولت',
+      'مجهز به میکروکنترلر و محافظ رعد و برق',
+      'دارای فیلتر ورودی جهت کاهش نویز',
+      'قابلیت تشخیص عدم اتصال سیم ارت',
+      'یک سال گارانتی'
+    ]
+  },
+  {
+    id: 'frl-stb-3000m',
+    type: 'STABILIZER',
+    brand: 'FARATEL',
+    name: 'استابلایزر فاراتل مدل STB3000M',
+    model: 'STB3000M',
+    powerVA: 3000,
+    technology: 'RELAY',
+    phase: '1/1',
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'IRAN',
+    stock: 4,
+    official: true,
+    image: '/images/products/faratel-stb-3000m.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      'مناسب مصارف خانگی و اداری پر مصرف',
+      'دارای دو مرحله تقویت و یک مرحله تضعیف',
+      'محدوده ورودی ۱۶۰~۲۷۵ ولت',
+      'مجهز به میکروکنترلر و محافظ رعد و برق',
+      'دارای فیلتر ورودی جهت کاهش نویز',
+      'یک سال گارانتی'
+    ]
+  },
+  {
+    id: 'frl-stb-5000m',
+    type: 'STABILIZER',
+    brand: 'FARATEL',
+    name: 'استابلایزر فاراتل مدل STB5000M',
+    model: 'STB5000M',
+    powerVA: 5000,
+    technology: 'RELAY',
+    phase: '1/1',
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/faratel-stb-5000m.jpg',
+    specs: [
+      '۵۰۰۰ ولت آمپر',
+      'مناسب مصارف نیمه صنعتی و کارگاهی',
+      'دارای دو مرحله تقویت و یک مرحله تضعیف',
+      'محدوده ورودی ۱۶۰~۲۷۵ ولت',
+      'مجهز به میکروکنترلر و محافظ رعد و برق',
+      'یک سال گارانتی'
+    ]
+  },
+  {
+    id: 'frl-stb-10000m',
+    type: 'STABILIZER',
+    brand: 'FARATEL',
+    name: 'استابلایزر فاراتل مدل STB10000M',
+    model: 'STB10000M',
+    powerVA: 10000,
+    technology: 'RELAY',
+    phase: '1/1',
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/faratel-stb-10000m.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      'مناسب مصارف صنعتی و کارگاه‌های بزرگ',
+      'دارای دو مرحله تقویت و یک مرحله تضعیف',
+      'محدوده ورودی ۱۶۰~۲۷۵ ولت',
+      'مجهز به میکروکنترلر و محافظ رعد و برق',
+      'یک سال گارانتی'
+    ]
+  },
+
+  // ========== YASKAWA STABILIZERS (صنعتی سه فاز) ==========
+  {
+    id: 'ysk-stb-33-20kva',
+    type: 'STABILIZER',
+    brand: 'YASKAWA',
+    name: 'استابلایزر یاسکاوا ۲۰KVA سه فاز',
+    model: 'STB-33-20KVA',
+    powerVA: 20000,
+    technology: 'SERVO_MOTOR',
+    phase: '3/3',
+    formFactor: 'CABINET',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/yaskawa-20kva.jpg',
+    specs: [
+      '۲۰ کیلوولت آمپر',
+      'مناسب مصارف صنعتی',
+      'ساختار واریاک با کنترل میکروپروسسوری',
+      'تصحیح مستقل ولتاژ در هر فاز',
+      'دقت ولتاژ خروجی ۱٪',
+      'مجهز به سیستم هشدار',
+      'دارای مدار بایپس و فن خنک‌کننده',
+      'گارانتی ۲۴ ماه'
+    ]
+  },
+  {
+    id: 'ysk-stb-33-30kva',
+    type: 'STABILIZER',
+    brand: 'YASKAWA',
+    name: 'استابلایزر یاسکاوا ۳۰KVA سه فاز',
+    model: 'STB-33-30KVA',
+    powerVA: 30000,
+    technology: 'SERVO_MOTOR',
+    phase: '3/3',
+    formFactor: 'CABINET',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/yaskawa-30kva.jpg',
+    specs: [
+      '۳۰ کیلوولت آمپر',
+      'مناسب مصارف صنعتی',
+      'ساختار واریاک با کنترل میکروپروسسوری',
+      'تصحیح مستقل ولتاژ در هر فاز',
+      'دقت ولتاژ خروجی ۱٪',
+      'گارانتی ۲۴ ماه'
+    ]
+  },
+  {
+    id: 'ysk-stb-33-50kva',
+    type: 'STABILIZER',
+    brand: 'YASKAWA',
+    name: 'استابلایزر یاسکاوا ۵۰KVA سه فاز',
+    model: 'STB-33-50KVA',
+    powerVA: 50000,
+    technology: 'SERVO_MOTOR',
+    phase: '3/3',
+    formFactor: 'CABINET',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/yaskawa-50kva.jpg',
+    specs: [
+      '۵۰ کیلوولت آمپر',
+      'مناسب مصارف صنعتی سنگین',
+      'ساختار واریاک با کنترل میکروپروسسوری',
+      'تصحیح مستقل ولتاژ در هر فاز',
+      'دقت ولتاژ خروجی ۱٪',
+      'گارانتی ۲۴ ماه'
+    ]
+  },
+  {
+    id: 'ysk-stb-33-100kva',
+    type: 'STABILIZER',
+    brand: 'YASKAWA',
+    name: 'استابلایزر یاسکاوا ۱۰۰KVA سه فاز',
+    model: 'STB-33-100KVA',
+    powerVA: 100000,
+    technology: 'SERVO_MOTOR',
+    phase: '3/3',
+    formFactor: 'CABINET',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/yaskawa-100kva.jpg',
+    specs: [
+      '۱۰۰ کیلوولت آمپر',
+      'مناسب مصارف صنعتی بسیار سنگین',
+      'ساختار واریاک با کنترل میکروپروسسوری',
+      'تصحیح مستقل ولتاژ در هر فاز',
+      'دقت ولتاژ خروجی ۱٪',
+      'گارانتی ۲۴ ماه'
+    ]
+  },
+  {
+    id: 'ysk-stb-33-300kva',
+    type: 'STABILIZER',
+    brand: 'YASKAWA',
+    name: 'استابلایزر یاسکاوا ۳۰۰KVA سه فاز',
+    model: 'STB-33-300KVA',
+    powerVA: 300000,
+    technology: 'SERVO_MOTOR',
+    phase: '3/3',
+    formFactor: 'CABINET',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/yaskawa-300kva.jpg',
+    specs: [
+      '۳۰۰ کیلوولت آمپر',
+      'مناسب مصارف صنعتی و کارگاه‌های بزرگ',
+      'ساختار واریاک با کنترل میکروپروسسوری',
+      'تصحیح مستقل ولتاژ در هر فاز',
+      'دقت ولتاژ خروجی ۱٪',
+      'مجهز به سیستم هشدار',
+      'دارای مدار بایپس و فن خنک‌کننده',
+      'ابعاد: ۲۰۰۰×۱۲۳×۱۰۶ میلی‌متر',
+      'وزن: ۸۷۴ کیلوگرم',
+      'گارانتی ۲۴ ماه'
+    ]
+  },
+  {
+    id: 'mm-pelank-450',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پلنک ۴۵۰VA',
+    model: 'PELANK 450',
+    powerVA: 450,
+    powerWatt: 270,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 4.5
+    },
+    formFactor: 'TOWER',
+    price: 84880000,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 15,
+    official: true,
+    image: '/images/products/mm-pelank-450.jpg',
+    specs: [
+      '۴۵۰ ولت آمپر',
+      '۲۷۰ وات',
+      '۱ باتری ۴.۵ آمپر داخلی',
+      'رگولاتور داخلی AVR'
+    ]
+  },
+  {
+    id: 'mm-pelank-650',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پلنک ۶۵۰VA',
+    model: 'PELANK 650',
+    powerVA: 650,
+    powerWatt: 390,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 103800000,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 12,
+    official: true,
+    image: '/images/products/mm-pelank-650.jpg',
+    specs: [
+      '۶۵۰ ولت آمپر',
+      '۳۹۰ وات',
+      '۱ باتری ۷ آمپر داخلی',
+      'AVR پیشرفته'
+    ]
+  },
+  {
+    id: 'mm-pelank-850',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پلنک ۸۵۰VA',
+    model: 'PELANK 850',
+    powerVA: 850,
+    powerWatt: 510,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 132000000,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 10,
+    official: true,
+    image: '/images/products/mm-pelank-850.jpg',
+    specs: [
+      '۸۵۰ ولت آمپر',
+      '۵۱۰ وات',
+      '۲ باتری ۷ آمپر داخلی',
+      'نمایشگر LCD'
+    ]
+  },
+  {
+    id: 'mm-pelank-1200',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پلنک ۱۲۰۰VA',
+    model: 'PELANK 1200',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7.5
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 8,
+    official: true,
+    image: '/images/products/mm-pelank-1200.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری ۷.۵ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'mm-gate-600',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ۶۰۰VA',
+    model: 'GATE',
+    powerVA: 600,
+    powerWatt: 360,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gate-600.jpg',
+    specs: [
+      '۶۰۰ ولت آمپر',
+      '۳۶۰ وات',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-gate-1000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ۱۰۰۰VA',
+    model: 'GATE',
+    powerVA: 1000,
+    powerWatt: 600,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gate-1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۶۰۰ وات',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-gate-1200',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ۱۲۰۰VA',
+    model: 'GATE',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gate-1200.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-gate-2000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ۲۰۰۰VA',
+    model: 'GATE',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gate-2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-gate-2400',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ۲۴۰۰VA',
+    model: 'GATE',
+    powerVA: 2400,
+    powerWatt: 1440,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gate-2400.jpg',
+    specs: [
+      '۲۴۰۰ ولت آمپر',
+      '۱۴۴۰ وات',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-gatesine-1000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گیت ساین ۱۰۰۰VA',
+    model: 'GATESINE',
+    powerVA: 1000,
+    powerWatt: 600,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-gatesine-1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۶۰۰ وات',
+      'موج سینوسی خالص',
+      'باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-hisine-1000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'های ساین ۱۰۰۰VA',
+    model: 'HISINE',
+    powerVA: 1000,
+    powerWatt: 600,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-hisine-1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۶۰۰ وات',
+      'موج سینوسی خالص',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-hisine-2000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'های ساین ۲۰۰۰VA',
+    model: 'HISINE',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-hisine-2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      'موج سینوسی خالص',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-guard-led-1500',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گارد LED ۱۵۰۰VA',
+    model: 'GUARD LED',
+    powerVA: 1500,
+    powerWatt: 900,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-guard-led-1500.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'نمایشگر LED'
+    ]
+  },
+  {
+    id: 'mm-guard-led-2000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'گارد LED ۲۰۰۰VA',
+    model: 'GUARD LED',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 18,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-guard-led-2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'نمایشگر LED'
+    ]
+  },
+  {
+    id: 'mm-volta-1000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۱۰۰۰VA',
+    model: 'VOLTA COMPACT XP',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 3,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 416400000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 5,
+    official: true,
+    image: '/images/products/mm-volta-1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری ۷ آمپر',
+      'تکنولوژی آنلاین',
+      'راندمان بالا'
+    ]
+  },
+  {
+    id: 'mm-volta-1000-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت RT ۱۰۰۰VA',
+    model: 'VOLTA COMPACT XP RT',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'RACK',
+    price: 396000000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/mm-volta-1000-rt.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-2000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۲۰۰۰VA',
+    model: 'VOLTA COMPACT XP',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 615600000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 4,
+    official: true,
+    image: '/images/products/mm-volta-2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری ۷ آمپر',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'mm-volta-2000-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت RT ۲۰۰۰VA',
+    model: 'VOLTA COMPACT XP RT',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'RACK',
+    price: 667200000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/mm-volta-2000-rt.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-2000-easy',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا ایزی ۲۰۰۰VA',
+    model: 'VOLTA EASY',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 549200000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/mm-volta-2000-easy.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'mm-volta-2000-easy-wb',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا ایزی WB ۲۰۰۰VA',
+    model: 'VOLTA EASY WB',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 609800000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 10,
+    official: true,
+    image: '/images/products/mm-volta-2000-easy-wb.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'mm-volta-2000-plus-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پلاس RT ۲۰۰۰VA',
+    model: 'VOLTA PLUS RT',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4
+    },
+    formFactor: 'RACK',
+    price: 660000000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/mm-volta-2000-plus-rt.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-2000-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا RT ۲۰۰۰VA',
+    model: 'VOLTA RT',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-2000-rt.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-3000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۳۰۰۰VA',
+    model: 'VOLTA COMPACT XP',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 698400000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/mm-volta-3000.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۷ آمپر',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'mm-volta-3000-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت RT ۳۰۰۰VA',
+    model: 'VOLTA COMPACT XP RT',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'RACK',
+    price: 729600000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/mm-volta-3000-rt.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-3000-easy',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا ایزی ۳۰۰۰VA',
+    model: 'VOLTA EASY',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-3000-easy.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-3000-rt-wb',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت RT WB ۳۰۰۰VA',
+    model: 'VOLTA COMPACT XP RT WB',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 7
+    },
+    formFactor: 'RACK',
+    price: 834000000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/mm-volta-3000-rt-wb.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۷ آمپر داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-volta-3000-wb',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت WB ۳۰۰۰VA',
+    model: 'VOLTA COMPACT XP WB',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 782400000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/mm-volta-3000-wb.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'mm-volta-3000-easy-wb',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا ایزی WB ۳۰۰۰VA',
+    model: 'VOLTA EASY WB',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-3000-easy-wb.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'mm-volta-pro-2000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پرو ۲۰۰۰VA',
+    model: 'VOLTA PRO',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-pro-2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'mm-volta-pro-3000-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پرو RT ۳۰۰۰VA',
+    model: 'VOLTA PRO RT',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 9
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-pro-3000-rt.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری ۹ آمپر داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-hicompact-3000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'های کامپکت ۳۰۰۰VA',
+    model: 'HICOMPACT',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-hicompact-3000.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-hitech-1000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'های تک ۱۰۰۰VA',
+    model: 'HITECH',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 3,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-hitech-1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'mm-volta-6000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پرو کامپکت ۶۰۰۰VA',
+    model: 'VOLTA PRO COMPACT',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/mm-volta-6000.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-6000-plus-rt',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پلاس RT ۶۰۰۰VA',
+    model: 'VOLTA PLUS RT',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-6000-plus-rt.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-henry-6000',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'هنری ۶۰۰۰VA',
+    model: 'HENRY',
+    powerVA: 6000,
+    powerWatt: 5400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      external: true,
+      count: 16,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 1818900000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/mm-henry-6000.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۵۴۰۰ وات',
+      '۱۶ باتری داخلی',
+      'قابلیت باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-hitech-10k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'های تک ۱۰KVA',
+    model: 'HITECH',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-hitech-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-pro-10k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پرو کامپکت ۱۰KVA',
+    model: 'VOLTA PRO COMPACT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 1512000000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 5,
+    official: true,
+    image: '/images/products/mm-volta-pro-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-plus-rt-10k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پلاس RT ۱۰KVA',
+    model: 'VOLTA PLUS RT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-plus-rt-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      '۱۶ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-henry-10k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'هنری ۱۰KVA',
+    model: 'HENRY',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-henry-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-easy-module-10k-31',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ایزی ماژول ۱۰KVA (۳/۱)',
+    model: 'EASY MODULE',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'RACK',
+    price: 3884800000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-easy-module-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ماژولار'
+    ]
+  },
+  {
+    id: 'mm-volta-compact-10k-31',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۱۰KVA (۳/۱)',
+    model: 'VOLTA COMPACT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1800000000,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-compact-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-plus-rt-10k-31',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا پلاس RT ۱۰KVA (۳/۱)',
+    model: 'VOLTA PLUS RT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-plus-rt-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-10k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۱۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-10k-33.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'mm-easy-module-10k-33-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ایزی ماژول ۱۰KVA (۳/۳) ۳۲',
+    model: 'EASY MODULE',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-easy-module-10k-33-32.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۲ باتری خارجی',
+      'ماژولار'
+    ]
+  },
+  {
+    id: 'mm-easy-module-10k-33-42',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ایزی ماژول ۱۰KVA (۳/۳) ۴۲',
+    model: 'EASY MODULE',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 42
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-easy-module-10k-33-42.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۲ باتری خارجی',
+      'ماژولار'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-10k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۱۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-10k-32.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-10k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۱۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-10k-40.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-compact-20k-31-16',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۲۰KVA (۳/۱) ۱۶',
+    model: 'VOLTA COMPACT',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-compact-20k-31-16.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-volta-compact-20k-31-20',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ولتا کامپکت ۲۰KVA (۳/۱) ۲۰',
+    model: 'VOLTA COMPACT',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-volta-compact-20k-31-20.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-20k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۲۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-20k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۲۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-20k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۲۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-20k-32.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-20k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۲۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 40
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-20k-40.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-30k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۳۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-30k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۳۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-megashield-30k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'مگا شیلد ۳۰KVA',
+    model: 'MEGASHIELD',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 56
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-megashield-30k.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-30k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۳۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-30k-32.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-30k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۳۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 40
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-30k-40.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-megashield-40k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'مگا شیلد ۴۰KVA',
+    model: 'MEGASHIELD',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 56
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-megashield-40k.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-40k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۴۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-40k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۴۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-40k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۴۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-40k-32.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-40k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۴۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 40
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-40k-40.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-60k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۶۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-megashield-60k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'مگا شیلد ۶۰KVA',
+    model: 'MEGASHIELD',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 56
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-megashield-60k.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-60k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۶۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-60k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۶۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-60k-32.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-60k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۶۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 40
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-60k-40.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-80k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۸۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-80k-33.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-80k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۸۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-80k-33.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-80k-32',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۸۰KVA ۳۲',
+    model: 'PYRAMID COMPACT',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-80k-32.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-pyramid-compact-80k-40',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'پیرامید کامپکت ۸۰KVA ۴۰',
+    model: 'PYRAMID COMPACT',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 40
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-pyramid-compact-80k-40.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-100k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۱۰۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-100k-33.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-100k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۱۰۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-100k-33.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-dsp-t-120k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'DSP-T ۱۲۰KVA (۳/۳)',
+    model: 'DSP-T',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 54
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-dsp-t-120k-33.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-120k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۱۲۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-120k-33.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-megashield-120k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'مگا شیلد ۱۲۰KVA',
+    model: 'MEGASHIELD',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 56
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-megashield-120k.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-megashield-160k',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'مگا شیلد ۱۶۰KVA',
+    model: 'MEGASHIELD',
+    powerVA: 160000,
+    powerWatt: 144000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 56
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-megashield-160k.jpg',
+    specs: [
+      '۱۶۰۰۰۰ ولت آمپر',
+      '۱۴۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'mm-etr-evo-160k-33',
+    type: 'UPS',
+    brand: 'MEGAMODE',
+    name: 'ETR EVO ۱۶۰KVA (۳/۳)',
+    model: 'ETR EVO',
+    powerVA: 160000,
+    powerWatt: 144000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 60
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'TAIWAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/mm-etr-evo-160k-33.jpg',
+    specs: [
+      '۱۶۰۰۰۰ ولت آمپر',
+      '۱۴۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۰ باتری خارجی'
+    ]
+  },
+
+  // ========== FARAN UPS ==========
+  {
+    id: 'fr-cancello-1500',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کانچلو ۱۵۰۰VA',
+    model: 'CANCELLO',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 168795000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 8,
+    official: true,
+    image: '/images/products/fr-cancello.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      'موج سینوسی خالص',
+      '۲ باتری ۹ آمپر'
+    ]
+  },
+  {
+    id: 'fr-blazer-800',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'بلیزر ۸۰۰VA',
+    model: 'BLAZER',
+    powerVA: 800,
+    powerWatt: 560,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 106480000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 10,
+    official: true,
+    image: '/images/products/fr-blazer.jpg',
+    specs: [
+      '۸۰۰ ولت آمپر',
+      '۵۶۰ وات',
+      'موج سینوسی خالص',
+      '۱ باتری ۹ آمپر'
+    ]
+  },
+  {
+    id: 'fr-blazer-1500',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'بلیزر ۱۵۰۰VA',
+    model: 'BLAZER',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 197390000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 7,
+    official: true,
+    image: '/images/products/fr-blazer-1500.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      'موج سینوسی خالص',
+      '۲ باتری ۹ آمپر'
+    ]
+  },
+  {
+    id: 'fr-trust-1000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۱۰۰۰VA',
+    model: 'TRUST',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 259500000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 5,
+    official: true,
+    image: '/images/products/fr-trust-1000-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      'باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-trust-1500-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۱۵۰۰VA',
+    model: 'TRUST',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 309550000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 4,
+    official: true,
+    image: '/images/products/fr-trust-1500-ext.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      'باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-trust-1500-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۱۵۰۰VA',
+    model: 'TRUST',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 361790000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 6,
+    official: true,
+    image: '/images/products/fr-trust-1500-int.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-trust-2000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۲۰۰۰VA',
+    model: 'TRUST',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 379100000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-trust-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      '۴ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-trust-3000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۳۰۰۰VA',
+    model: 'TRUST',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 499100000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/fr-trust-3000-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-trust-3000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تراست ۳۰۰۰VA',
+    model: 'TRUST',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 429710000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-trust-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fr-titan-1000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۱۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 3,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 379100000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 6,
+    official: true,
+    image: '/images/products/fr-titan-1000-int.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری ۹ آمپر داخلی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'fr-titan-1000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۱۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'TOWER',
+    price: 326600000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 5,
+    official: true,
+    image: '/images/products/fr-titan-1000-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'fr-titan-2000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۲۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 603050000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 4,
+    official: true,
+    image: '/images/products/fr-titan-2000-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-2000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۲۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 539895000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 4,
+    official: true,
+    image: '/images/products/fr-titan-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-3000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۳۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 659500000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-titan-3000-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-3000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۳۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'TOWER',
+    price: 597000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-titan-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-6000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۶۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/fr-titan-6000-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-6000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۶۰۰۰VA',
+    model: 'TITAN PLUS',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-6000-int.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۲۰ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-10k-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۱۰KVA',
+    model: 'TITAN PLUS',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-10k-ext.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-10k-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۱۰KVA',
+    model: 'TITAN PLUS',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-10k-int.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-plus-10k-31',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۱۰KVA (۳/۱)',
+    model: 'TITAN PLUS LCD',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1516050000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-plus-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-plus-20k-31',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پلاس ۲۰KVA (۳/۱)',
+    model: 'TITAN PLUS LCD',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2491300000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-plus-20k-31.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-vigor-1000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۱۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 3,
+      capacityAh: 9
+    },
+    formFactor: 'RACK',
+    price: 379500000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-vigor-1000-int.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری ۹ آمپر داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-1000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۱۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'RACK',
+    price: 325000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 3,
+    official: true,
+    image: '/images/products/fr-vigor-1000-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۲ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-2000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۲۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'RACK',
+    price: 545950000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/fr-vigor-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-2000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۲۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'RACK',
+    price: 620000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/fr-vigor-2000-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-3000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۳۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'RACK',
+    price: 599210000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 2,
+    official: true,
+    image: '/images/products/fr-vigor-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-3000-int',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۳۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 9
+    },
+    formFactor: 'RACK',
+    price: 703270000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-vigor-3000-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۹ آمپر داخلی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-3000-rl',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RTL ۳۰۰۰VA',
+    model: 'VIGOR RTL',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'RACK',
+    price: 616150000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-vigor-3000-rl.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۴ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-6000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۶۰۰۰VA',
+    model: 'VIGOR RT',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'RACK',
+    price: 1060000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-vigor-6000-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-vigor-10k-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'ویگور RT ۱۰KVA',
+    model: 'VIGOR RT',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'RACK',
+    price: 1436000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-vigor-10k-ext.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-6000-ext',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۶۰۰۰VA',
+    model: 'TITAN PRO MAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1043750000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-6000-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-6000-int-16',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۶۰۰۰VA',
+    model: 'TITAN PRO MAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1293500000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-6000-int-16.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-6000-int-20',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۶۰۰۰VA',
+    model: 'TITAN PRO MAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1356300000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-6000-int-20.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۲۰ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-10k-ext-16',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۱۰KVA',
+    model: 'TITAN PRO MAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1427000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-10k-ext-16.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-10k-ext-20',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۱۰KVA',
+    model: 'TITAN PRO MAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 1428950000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-10k-ext-20.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-10k-int-16',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۱۰KVA',
+    model: 'TITAN PRO MAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1666320000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-10k-int-16.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-titan-pro-10k-int-20',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'تایتان پرو مکس ۱۰KVA',
+    model: 'TITAN PRO MAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1729870000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-titan-pro-10k-int-20.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'fr-durable-6000',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'دیورابل ۶۰۰۰VA',
+    model: 'DURABLE',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1308000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-durable-6000.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'fr-durable-10k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'دیورابل ۱۰KVA',
+    model: 'DURABLE',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1937200000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-durable-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'fr-durable-20k-31',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'دیورابل ۲۰KVA (۳/۱)',
+    model: 'DURABLE',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 3728100000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-durable-20k-31.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'fr-comet-10k-33',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس ۱۰KVA (۳/۳)',
+    model: 'COMET PLUS',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 2119000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-10k-33.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'fr-comet-20k-33',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس ۲۰KVA (۳/۳)',
+    model: 'COMET PLUS',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 2796000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'fr-comet-30k-33',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس ۳۰KVA (۳/۳)',
+    model: 'COMET PLUS',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 3445000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'fr-comet-40k-33',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس ۴۰KVA (۳/۳)',
+    model: 'COMET PLUS',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-comet-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'fr-comet-60k-33',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس ۶۰KVA (۳/۳)',
+    model: 'COMET PLUS',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-comet-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'fr-comet-plus-t-10k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس-T ۱۰KVA',
+    model: 'COMET PLUS-T',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 2487730000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-plus-t-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-comet-plus-t-20k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس-T ۲۰KVA',
+    model: 'COMET PLUS-T',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 3565500000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-plus-t-20k.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-comet-plus-t-30k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'کامت پلاس-T ۳۰KVA',
+    model: 'COMET PLUS-T',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 32
+    },
+    formFactor: 'TOWER',
+    price: 4620000000,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 1,
+    official: true,
+    image: '/images/products/fr-comet-plus-t-30k.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۴۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fr-galaxy-10k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۱۰KVA',
+    model: 'GALAXY',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-20k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۲۰KVA',
+    model: 'GALAXY',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-20k.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-30k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۳۰KVA',
+    model: 'GALAXY',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-30k.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-40k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۴۰KVA',
+    model: 'GALAXY',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-40k.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-60k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۶۰KVA',
+    model: 'GALAXY',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-60k.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-80k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۸۰KVA',
+    model: 'GALAXY',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-80k.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-100k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۱۰۰KVA',
+    model: 'GALAXY',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-100k.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-120k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی ۱۲۰KVA',
+    model: 'GALAXY',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 28
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-120k.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۲۸-۳۲ باتری خارجی',
+      'تریستوری'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-10k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۱۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-10k.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-20k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۲۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-20k.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-30k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۳۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-30k.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-40k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۴۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-40k.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-60k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۶۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-60k.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-80k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۸۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-80k.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-100k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۱۰۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-100k.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-120k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۱۲۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-120k.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+  {
+    id: 'fr-galaxy-double-160k',
+    type: 'UPS',
+    brand: 'FARAN',
+    name: 'گالکسی دابل IGBT ۱۶۰KVA',
+    model: 'GALAXY DOUBLE IGBT',
+    powerVA: 160000,
+    powerWatt: 144000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 24,
+    country: 'IRAN',
+    stock: 0,
+    official: true,
+    image: '/images/products/fr-galaxy-double-160k.jpg',
+    specs: [
+      '۱۶۰۰۰۰ ولت آمپر',
+      '۱۴۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'دابل IGBT'
+    ]
+  },
+
+  // ========== KSTAR UPS ==========
+  {
+    id: 'ks-ua300',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UA300 ۳۰۰۰VA',
+    model: 'UA300',
+    powerVA: 3000,
+    powerWatt: 1800,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 420000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: true,
+    image: '/images/products/ks-ua300.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      '۴ باتری ۹ آمپر',
+      'AVR داخلی'
+    ]
+  },
+  {
+    id: 'ks-ub10',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB10L ۱۰۰۰VA',
+    model: 'UB10L',
+    powerVA: 1000,
+    powerWatt: 900,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'TOWER',
+    price: 339700000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 7,
+    official: true,
+    image: '/images/products/ks-ub10.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      'شارژر قابل تنظیم ۶ آمپر',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'ks-ub20',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB20L ۲۰۰۰VA',
+    model: 'UB20L',
+    powerVA: 2000,
+    powerWatt: 1800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'TOWER',
+    price: 550000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: true,
+    image: '/images/products/ks-ub20.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      'شارژر قابل تنظیم ۶ آمپر'
+    ]
+  },
+  {
+    id: 'ks-ub30',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB30L ۳۰۰۰VA',
+    model: 'UB30L',
+    powerVA: 3000,
+    powerWatt: 2700,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'TOWER',
+    price: 600000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: true,
+    image: '/images/products/ks-ub30.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۷۰۰ وات',
+      '۸ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ks-ub60',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB60L ۶۰۰۰VA',
+    model: 'UB60L',
+    powerVA: 6000,
+    powerWatt: 5400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 1250000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: true,
+    image: '/images/products/ks-ub60.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۵۴۰۰ وات',
+      'شارژر قابل تنظیم ۱۰ آمپر',
+      'LCD پیشرفته'
+    ]
+  },
+  {
+    id: 'ks-ub100',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB100L ۱۰KVA',
+    model: 'UB100L',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 1530000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: true,
+    image: '/images/products/ks-ub100.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'شارژر قابل تنظیم ۱۰ آمپر'
+    ]
+  },
+  {
+    id: 'ks-ub20-int',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB20 ۲۰۰۰VA',
+    model: 'UB20',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ub20-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ks-ub60-int',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UB60 ۶۰۰۰VA',
+    model: 'UB60',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ub60-int.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۲۰ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ks-ud-20k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۲۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-30k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۳۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 3700000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: true,
+    image: '/images/products/ks-ud-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۱۶-۲۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-40k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۴۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-60k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۶۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-80k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۸۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-80k-33.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۵۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-100k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۱۰۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-100k-33.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۲-۵۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-120k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۱۲۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-120k-33.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'ks-ud-160k-33',
+    type: 'UPS',
+    brand: 'KSTAR',
+    name: 'UD ۱۶۰KVA (۳/۳)',
+    model: 'UD',
+    powerVA: 160000,
+    powerWatt: 144000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: true,
+    image: '/images/products/ks-ud-160k-33.jpg',
+    specs: [
+      '۱۶۰۰۰۰ ولت آمپر',
+      '۱۴۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+
+  // ========== KSTAR-MAKELSAN UPS ==========
+  {
+    id: 'makelsan-10k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۱۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 2450000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-10k-33.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-20k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۲۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 2950000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-30k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۳۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 3600000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-40k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۴۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 4470000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-60k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۶۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 6250000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-80k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۸۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 80000,
+    powerWatt: 72000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 8200000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-80k-33.jpg',
+    specs: [
+      '۸۰۰۰۰ ولت آمپر',
+      '۷۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+  {
+    id: 'makelsan-100k-33',
+    type: 'UPS',
+    brand: 'MAKELSAN',
+    name: 'MAKELSAN ۱۰۰KVA (۳/۳)',
+    model: 'MAKELSAN',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 62
+    },
+    formFactor: 'TOWER',
+    price: 9500000000,
+    warranty: 24,
+    country: 'TURKEY',
+    stock: 1,
+    official: true,
+    image: '/images/products/makelsan-100k-33.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۶۲ باتری خارجی',
+      'ساخت ترکیه'
+    ]
+  },
+
+  // ========== FARDA UPS ==========
+  {
+    id: 'fd-nt1500-int',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۱۵۰۰ ۱۵۰۰VA',
+    model: 'NT1500',
+    powerVA: 1500,
+    powerWatt: 900,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 220000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 10,
+    official: false,
+    image: '/images/products/fd-nt1500-int.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'AVR داخلی'
+    ]
+  },
+  {
+    id: 'fd-nt1500-ext',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۱۵۰۰ ۱۵۰۰VA',
+    model: 'NT1500',
+    powerVA: 1500,
+    powerWatt: 900,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 230000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 8,
+    official: false,
+    image: '/images/products/fd-nt1500-ext.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fd-nt1500-no-bat',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۱۵۰۰ ۱۵۰۰VA',
+    model: 'NT1500',
+    powerVA: 1500,
+    powerWatt: 900,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {},
+    formFactor: 'TOWER',
+    price: 200000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 5,
+    official: false,
+    image: '/images/products/fd-nt1500-no-bat.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      'بدون باتری'
+    ]
+  },
+  {
+    id: 'fd-nt1000',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۱۰۰۰ ۱۰۰۰VA',
+    model: 'NT1000',
+    powerVA: 1000,
+    powerWatt: 600,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 210000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 10,
+    official: false,
+    image: '/images/products/fd-nt1000.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۶۰۰ وات',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'fd-nt2000',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۲۰۰۰ ۲۰۰۰VA',
+    model: 'NT2000',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'TOWER',
+    price: 350000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 6,
+    official: false,
+    image: '/images/products/fd-nt2000.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      '۳ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'fd-nt3000',
+    type: 'UPS',
+    brand: 'FARDA',
+    name: 'NT۳۰۰۰ ۳۰۰۰VA',
+    model: 'NT3000',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 420000000,
+    warranty: 18,
+    country: 'IRAN',
+    stock: 5,
+    official: false,
+    image: '/images/products/fd-nt3000.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+
+  // ========== EAST UPS ==========
+  {
+    id: 'ea-2000-ext',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۲۰۰۰VA',
+    model: 'EA2000',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 440000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 6,
+    official: false,
+    image: '/images/products/ea-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'ea-3000-ext',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۳۰۰۰VA',
+    model: 'EA3000',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'TOWER',
+    price: 720000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/ea-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ea-6000-int',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۶۰۰۰VA',
+    model: 'EA6000',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1430000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/ea-6000-int.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی',
+      'LCD پیشرفته'
+    ]
+  },
+  {
+    id: 'ea-6000-ext',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۶۰۰۰VA',
+    model: 'EA6000',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1160000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/ea-6000-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ea-10k-ext',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۱۰KVA',
+    model: 'EA10000',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1520000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/ea-10k-ext.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶-۲۰ باتری خارجی',
+      'راندمان بالا'
+    ]
+  },
+  {
+    id: 'ea-10k-int',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۱۰KVA',
+    model: 'EA10000',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1630000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/ea-10k-int.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ea-10k-base',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۱۰KVA',
+    model: 'EA10000',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2020000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/ea-10k-base.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'ea-10k-31',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۱۰KVA (۳/۱)',
+    model: 'EA10000',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1770000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/ea-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ea-20k-31',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۲۰KVA (۳/۱)',
+    model: 'EA20000',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2730000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/ea-20k-31.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ea-20k-33',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۲۰KVA (۳/۳)',
+    model: 'EA20000',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 2880000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/ea-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰-۴۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ea-40k-33',
+    type: 'UPS',
+    brand: 'EAST',
+    name: 'EAST ۴۰KVA (۳/۳)',
+    model: 'EA40000',
+    powerVA: 40000,
+    powerWatt: 32000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 5750000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/ea-40k-33.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۲۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰-۴۴ باتری خارجی'
+    ]
+  },
+
+  // ========== EXIMPOWER UPS ==========
+  {
+    id: 'ex-1000-line-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1000,
+    powerWatt: 700,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 495000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 3,
+    official: false,
+    image: '/images/products/ex-1000-line-int.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۷۰۰ وات',
+      '۲ باتری ۷ آمپر داخلی',
+      'ساخت ایتالیا'
+    ]
+  },
+  {
+    id: 'ex-1000-line-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1000,
+    powerWatt: 700,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 430000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 3,
+    official: false,
+    image: '/images/products/ex-1000-line-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۷۰۰ وات',
+      '۲ باتری خارجی',
+      'ساخت ایتالیا'
+    ]
+  },
+  {
+    id: 'ex-1500-line-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۵۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 495000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 3,
+    official: false,
+    image: '/images/products/ex-1500-line-int.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      '۲ باتری ۷ آمپر داخلی',
+      'ساخت ایتالیا'
+    ]
+  },
+  {
+    id: 'ex-1500-line-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۵۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 430000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 3,
+    official: false,
+    image: '/images/products/ex-1500-line-ext.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      '۲ باتری خارجی',
+      'ساخت ایتالیا'
+    ]
+  },
+  {
+    id: 'ex-2000-line-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۲۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 775000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-2000-line-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      '۴ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-2000-line-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۲۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 640000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-2000-line-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-3000-line-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۳۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 920000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-3000-line-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-3000-line-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۳۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 870000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-3000-line-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-1000-online-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 3,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 640000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-1000-online-int.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری ۷ آمپر داخلی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'ex-1000-online-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'TOWER',
+    price: 567000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-1000-online-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی',
+      'تکنولوژی آنلاین'
+    ]
+  },
+  {
+    id: 'ex-2000-online-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۲۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 950000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-2000-online-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-2000-online-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۲۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'TOWER',
+    price: 850000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 2,
+    official: false,
+    image: '/images/products/ex-2000-online-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-3000-online-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۳۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 8,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 1170000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-3000-online-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-3000-online-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۳۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'TOWER',
+    price: 1010000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-3000-online-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-6000-online-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۶۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 3000000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-6000-online-int.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-6000-online-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۶۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2100000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-6000-online-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-10k-online-int',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰KVA',
+    model: 'EXIMPOWER',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 20,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 3200000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-10k-online-int.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'ex-10k-online-ext',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰KVA',
+    model: 'EXIMPOWER',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'TOWER',
+    price: 2820000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-10k-online-ext.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'ex-1000-rack',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'RACK',
+    price: 1050000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-1000-rack.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'ex-2000-rack',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۲۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 6
+    },
+    formFactor: 'RACK',
+    price: 1350000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-2000-rack.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۶ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'ex-3000-rack',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۳۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'RACK',
+    price: 1580000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-3000-rack.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'ex-6000-rack',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۶۰۰۰VA',
+    model: 'EXIMPOWER',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 3050000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-6000-rack.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'ex-10k-rack',
+    type: 'UPS',
+    brand: 'EXIMPOWER',
+    name: 'EXIMPOWER ۱۰KVA',
+    model: 'EXIMPOWER',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 20
+    },
+    formFactor: 'RACK',
+    price: 3920000000,
+    warranty: 24,
+    country: 'ITALY',
+    stock: 1,
+    official: false,
+    image: '/images/products/ex-10k-rack.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+
+  // ========== KT UPS ==========
+  {
+    id: 'kt-700-7',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۷۰۰VA',
+    model: 'KT',
+    powerVA: 700,
+    powerWatt: 420,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 99000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 10,
+    official: false,
+    image: '/images/products/kt-700-7.jpg',
+    specs: [
+      '۷۰۰ ولت آمپر',
+      '۴۲۰ وات',
+      '۱ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-700-9',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۷۰۰VA',
+    model: 'KT',
+    powerVA: 700,
+    powerWatt: 420,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 105000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 10,
+    official: false,
+    image: '/images/products/kt-700-9.jpg',
+    specs: [
+      '۷۰۰ ولت آمپر',
+      '۴۲۰ وات',
+      '۱ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-700-10',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۷۰۰VA',
+    model: 'KT',
+    powerVA: 700,
+    powerWatt: 420,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 10
+    },
+    formFactor: 'TOWER',
+    price: 127000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 8,
+    official: false,
+    image: '/images/products/kt-700-10.jpg',
+    specs: [
+      '۷۰۰ ولت آمپر',
+      '۴۲۰ وات',
+      '۱ باتری ۱۰ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-700-ext',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۷۰۰VA',
+    model: 'KT',
+    powerVA: 700,
+    powerWatt: 420,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 101000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 8,
+    official: false,
+    image: '/images/products/kt-700-ext.jpg',
+    specs: [
+      '۷۰۰ ولت آمپر',
+      '۴۲۰ وات',
+      '۱ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-1200-7',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۱۲۰۰VA',
+    model: 'KT',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 195000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 7,
+    official: false,
+    image: '/images/products/kt-1200-7.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-1200-9',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۱۲۰۰VA',
+    model: 'KT',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 210000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 7,
+    official: false,
+    image: '/images/products/kt-1200-9.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-1200-10',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۱۲۰۰VA',
+    model: 'KT',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 10
+    },
+    formFactor: 'TOWER',
+    price: 225000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 6,
+    official: false,
+    image: '/images/products/kt-1200-10.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری ۱۰ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-1200-ext',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۱۲۰۰VA',
+    model: 'KT',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 198000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 6,
+    official: false,
+    image: '/images/products/kt-1200-ext.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-2000-9',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۲۰۰۰VA',
+    model: 'KT',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 310000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/kt-2000-9.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-2000-10',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۲۰۰۰VA',
+    model: 'KT',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 10
+    },
+    formFactor: 'TOWER',
+    price: 325000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/kt-2000-10.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      '۲ باتری ۱۰ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-2000-ext',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۲۰۰۰VA',
+    model: 'KT',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 316000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/kt-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-3000-7',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۳۰۰۰VA',
+    model: 'KT',
+    powerVA: 3000,
+    powerWatt: 1800,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 410000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/kt-3000-7.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      '۴ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-3000-9',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۳۰۰۰VA',
+    model: 'KT',
+    powerVA: 3000,
+    powerWatt: 1800,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 440000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/kt-3000-9.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-3000-10',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۳۰۰۰VA',
+    model: 'KT',
+    powerVA: 3000,
+    powerWatt: 1800,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 10
+    },
+    formFactor: 'TOWER',
+    price: 467400000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/kt-3000-10.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      '۴ باتری ۱۰ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'kt-3000-ext',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۳۰۰۰VA',
+    model: 'KT',
+    powerVA: 3000,
+    powerWatt: 1800,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 425000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/kt-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۱۸۰۰ وات',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-1000-sine',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۱۰۰۰VA',
+    model: 'KT',
+    powerVA: 1000,
+    powerWatt: 700,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 231000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/kt-1000-sine.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۷۰۰ وات',
+      'موج سینوسی خالص',
+      '۱ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-2000-sine',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۲۰۰۰VA',
+    model: 'KT',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 415000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/kt-2000-sine.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      'موج سینوسی خالص',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-3500-sine',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۳۵۰۰VA',
+    model: 'KT',
+    powerVA: 3500,
+    powerWatt: 2450,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 510000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/kt-3500-sine.jpg',
+    specs: [
+      '۳۵۰۰ ولت آمپر',
+      '۲۴۵۰ وات',
+      'موج سینوسی خالص',
+      '۲ باتری خارجی'
+    ]
+  },
+  {
+    id: 'kt-5500-sine',
+    type: 'UPS',
+    brand: 'KT',
+    name: 'KT ۵۵۰۰VA',
+    model: 'KT',
+    powerVA: 5500,
+    powerWatt: 3850,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 780000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/kt-5500-sine.jpg',
+    specs: [
+      '۵۵۰۰ ولت آمپر',
+      '۳۸۵۰ وات',
+      'موج سینوسی خالص',
+      '۴ باتری خارجی'
+    ]
+  },
+
+  // ========== VOLTAMAX UPS ==========
+  {
+    id: 'vt-1000-int',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 400000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-1000-int.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-2000-int',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-2000-int.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-3000-int',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 6,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 830000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-3000-int.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-6000-int',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1560000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/vt-6000-int.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-10k-int',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 16,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 1950000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/vt-10k-int.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-1000-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'TOWER',
+    price: 410000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-1000-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-2000-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 2000,
+    powerWatt: 1600,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 625000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-2000-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۶۰۰ وات',
+      '۴ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-3000-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'TOWER',
+    price: 900000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-3000-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-6000-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1500000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/vt-6000-ext.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-10k-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1690000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/vt-10k-ext.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-6000-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 1720000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/vt-6000-base.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-10k-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2650000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-10k-base.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-1000-sine',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 700,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 344000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-1000-sine.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۷۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-1500-sine',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۵۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1500,
+    powerWatt: 1050,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-1500-sine.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۱۰۵۰ وات',
+      '۲ باتری ۹ آمپر داخلی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-3000-sine',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 4,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 670000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-3000-sine.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری ۹ آمپر داخلی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-1000-sine-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 700,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 380000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-1000-sine-ext.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۷۰۰ وات',
+      '۲ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-2000-sine-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 2000,
+    powerWatt: 1400,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 435000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-2000-sine-ext.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۴۰۰ وات',
+      '۴ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-3000-sine-ext',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 3000,
+    powerWatt: 2100,
+    technology: 'LINE_INTERACTIVE_SINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 4
+    },
+    formFactor: 'TOWER',
+    price: 590000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-3000-sine-ext.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۱۰۰ وات',
+      '۴ باتری خارجی',
+      'موج سینوسی خالص'
+    ]
+  },
+  {
+    id: 'vt-600-line',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 600,
+    powerWatt: 360,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 1,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 110000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 8,
+    official: false,
+    image: '/images/products/vt-600-line.jpg',
+    specs: [
+      '۶۰۰ ولت آمپر',
+      '۳۶۰ وات',
+      '۱ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-1000-line',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 600,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-1000-line.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۶۰۰ وات',
+      '۲ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-1200-line',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۲۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 7
+    },
+    formFactor: 'TOWER',
+    price: 200000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 6,
+    official: false,
+    image: '/images/products/vt-1200-line.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۲ باتری ۷ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-2000-line',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 2000,
+    powerWatt: 1200,
+    technology: 'LINE_INTERACTIVE',
+    phase: '1/1',
+    batteryConfig: {
+      internal: true,
+      count: 2,
+      capacityAh: 9
+    },
+    formFactor: 'TOWER',
+    price: 360000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-2000-line.jpg',
+    specs: [
+      '۲۰۰۰ ولت آمپر',
+      '۱۲۰۰ وات',
+      '۲ باتری ۹ آمپر داخلی'
+    ]
+  },
+  {
+    id: 'vt-1200-offline',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۲۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1200,
+    powerWatt: 720,
+    technology: 'OFFLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 195000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 5,
+    official: false,
+    image: '/images/products/vt-1200-offline.jpg',
+    specs: [
+      '۱۲۰۰ ولت آمپر',
+      '۷۲۰ وات',
+      '۱ باتری خارجی',
+      'آفلاین'
+    ]
+  },
+  {
+    id: 'vt-1500-offline',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۵۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1500,
+    powerWatt: 900,
+    technology: 'OFFLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 1
+    },
+    formFactor: 'TOWER',
+    price: 225000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 4,
+    official: false,
+    image: '/images/products/vt-1500-offline.jpg',
+    specs: [
+      '۱۵۰۰ ولت آمپر',
+      '۹۰۰ وات',
+      '۱ باتری خارجی',
+      'آفلاین'
+    ]
+  },
+  {
+    id: 'vt-2400-offline',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۴۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 2400,
+    powerWatt: 1440,
+    technology: 'OFFLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'TOWER',
+    price: 260000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/vt-2400-offline.jpg',
+    specs: [
+      '۲۴۰۰ ولت آمپر',
+      '۱۴۴۰ وات',
+      '۲ باتری خارجی',
+      'آفلاین'
+    ]
+  },
+  {
+    id: 'vt-700-rack',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۷۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 700,
+    powerWatt: 560,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 2
+    },
+    formFactor: 'RACK',
+    price: 380000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/vt-700-rack.jpg',
+    specs: [
+      '۷۰۰ ولت آمپر',
+      '۵۶۰ وات',
+      '۲ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'vt-1000-rack',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 1000,
+    powerWatt: 800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 3
+    },
+    formFactor: 'RACK',
+    price: 520000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 3,
+    official: false,
+    image: '/images/products/vt-1000-rack.jpg',
+    specs: [
+      '۱۰۰۰ ولت آمپر',
+      '۸۰۰ وات',
+      '۳ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'vt-3000-rack',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 3000,
+    powerWatt: 2400,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 8
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-3000-rack.jpg',
+    specs: [
+      '۳۰۰۰ ولت آمپر',
+      '۲۴۰۰ وات',
+      '۸ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'vt-6000-rack',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰۰۰VA',
+    model: 'VOLTAMAX',
+    powerVA: 6000,
+    powerWatt: 4800,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 1720000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 2,
+    official: false,
+    image: '/images/products/vt-6000-rack.jpg',
+    specs: [
+      '۶۰۰۰ ولت آمپر',
+      '۴۸۰۰ وات',
+      '۱۶-۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'vt-10k-rack',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '1/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'RACK',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-10k-rack.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      '۱۶-۲۰ باتری خارجی',
+      'قابل نصب روی رک'
+    ]
+  },
+  {
+    id: 'vt-10k-31',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA (۳/۱)',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 2750000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-10k-31.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-20k-31',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰KVA (۳/۱)',
+    model: 'VOLTAMAX',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 3550000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-20k-31.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶-۲۰ باتری خارجی'
+    ]
+  },
+  {
+    id: 'vt-10k-31-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA (۳/۱)',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 8000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 3360000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-10k-31-base.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۸۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-20k-31-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰KVA (۳/۱)',
+    model: 'VOLTAMAX',
+    powerVA: 20000,
+    powerWatt: 16000,
+    technology: 'ONLINE',
+    phase: '3/1',
+    batteryConfig: {
+      external: true,
+      count: 16
+    },
+    formFactor: 'TOWER',
+    price: 5400000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-20k-31-base.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۶۰۰۰ وات',
+      'سه فاز به تک فاز',
+      '۱۶ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-10k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 5880000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-10k-33-base.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-20k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 7750000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-20k-33-base.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-30k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 10250000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-30k-33-base.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-40k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۴۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 40000,
+    powerWatt: 36000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 10900000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-40k-33-base.jpg',
+    specs: [
+      '۴۰۰۰۰ ولت آمپر',
+      '۳۶۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-10k-33',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 10000,
+    powerWatt: 9000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 3720000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-10k-33.jpg',
+    specs: [
+      '۱۰۰۰۰ ولت آمپر',
+      '۹۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'vt-20k-33',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۲۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 20000,
+    powerWatt: 18000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true
+    },
+    formFactor: 'TOWER',
+    price: 5000000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-20k-33.jpg',
+    specs: [
+      '۲۰۰۰۰ ولت آمپر',
+      '۱۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'vt-30k-33',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۳۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 30000,
+    powerWatt: 27000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 5790000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-30k-33.jpg',
+    specs: [
+      '۳۰۰۰۰ ولت آمپر',
+      '۲۷۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'vt-60k-33',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 11450000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-60k-33.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰-۴۰ باتری خارجی',
+      'ترانس لس'
+    ]
+  },
+  {
+    id: 'vt-60k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۶۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 60000,
+    powerWatt: 54000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-60k-33-base.jpg',
+    specs: [
+      '۶۰۰۰۰ ولت آمپر',
+      '۵۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-100k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۰۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 100000,
+    powerWatt: 90000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-100k-33-base.jpg',
+    specs: [
+      '۱۰۰۰۰۰ ولت آمپر',
+      '۹۰۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-120k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۲۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 120000,
+    powerWatt: 108000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 30
+    },
+    formFactor: 'TOWER',
+    price: 22000000000,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 1,
+    official: false,
+    image: '/images/products/vt-120k-33-base.jpg',
+    specs: [
+      '۱۲۰۰۰۰ ولت آمپر',
+      '۱۰۸۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۳۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  },
+  {
+    id: 'vt-160k-33-base',
+    type: 'UPS',
+    brand: 'VOLTAMAX',
+    name: 'VOLTAMAX ۱۶۰KVA (۳/۳)',
+    model: 'VOLTAMAX',
+    powerVA: 160000,
+    powerWatt: 144000,
+    technology: 'ONLINE',
+    phase: '3/3',
+    batteryConfig: {
+      external: true,
+      count: 50
+    },
+    formFactor: 'TOWER',
+    price: 0,
+    warranty: 12,
+    country: 'CHINA',
+    stock: 0,
+    official: false,
+    image: '/images/products/vt-160k-33-base.jpg',
+    specs: [
+      '۱۶۰۰۰۰ ولت آمپر',
+      '۱۴۴۰۰۰ وات',
+      'سه فاز به سه فاز',
+      '۵۰ باتری خارجی',
+      'ترانس بیس'
+    ]
+  }
+];
+
+
+
+export const NOORTOOS_BRANDS = [
+  'MEGAMODE',
+  'FARAN',
+  'KSTAR',
+  'MAKELSAN',
+  'FARDA',
+  'EAST',
+  'EXIMPOWER',
+  'KT',
+  'VOLTAMAX',
+  'FARATEL', 
+  'YASKAWA',
+  'NIAN',
+  'SABA',
+  'ABIZA',
+  'FIAM'
+];
